@@ -1,174 +1,136 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:background="@drawable/background">
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/tablero"
+    android:scaleType="centerCrop"
+    android:weightSum="13"
+    android:gravity="center_horizontal">
+
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/background">
+        android:text="@string/partida_jugador1"
+        android:id="@+id/nomJuador1"
+        android:textColor="#fff" />
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            >
+    <ImageView
+        android:layout_width="54dp"
+        android:layout_height="77dp"
+        android:id="@+id/c1j1"
+        android:layout_gravity="left|center_vertical"
+        android:contentDescription="@string/partida_carta1j1"
+        android:background="@drawable/v0"
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/partida_jugador1"
-                android:id="@+id/nomJuador1" />
-        </LinearLayout>
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/c2j2"
+        android:layout_toStartOf="@+id/c2j2" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
+    <ImageView
+        android:layout_width="54dp"
+        android:layout_height="77dp"
+        android:id="@+id/c2j1"
+        android:contentDescription="@string/partida_carta2j1"
+        android:background="@drawable/v0"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
-            >
+    <ImageView
+        android:layout_width="54dp"
+        android:layout_height="77dp"
+        android:id="@+id/c3j1"
+        android:contentDescription="@string/partida_carta3j1"
+        android:background="@drawable/v0"
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/c1j1"
-                android:layout_gravity="center_vertical"
-                android:contentDescription="@string/partida_carta1j1"
-                android:background="@drawable/v0"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/c2j2"
+        android:layout_toEndOf="@+id/c2j2" />
 
-                />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/partida_jugador2"
+        android:id="@+id/nomJugador2"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/c2j1"
-                android:layout_gravity="center_vertical"
-                android:contentDescription="@string/partida_carta2j1"
-                android:background="@drawable/v0"
-                />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/partida_mensajes"
+        android:id="@+id/MensajesJuego"
+        android:textColor="#fff"
+        android:layout_alignParentBottom="true"
+        android:layout_toLeftOf="@+id/nomJuador1"
+        android:layout_toStartOf="@+id/nomJuador1" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/c3j1"
-                android:layout_gravity="center_vertical"
-                android:contentDescription="@string/partida_carta3j1"
-                android:background="@drawable/v0"
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="250dp"
+        android:id="@+id/c4j1"
+        android:contentDescription="@string/partida_espacio1"
+        android:background="@drawable/v1"
+        android:visibility="invisible"
+        android:layout_toLeftOf="@+id/mazo"
+        android:layout_above="@+id/MensajesJuego"
+        android:layout_below="@+id/c1j1" />
 
-                />
-        </LinearLayout>
+    <ImageView
+        android:layout_width="54dp"
+        android:layout_height="77dp"
+        android:id="@+id/pinta"
+        android:rotation="90"
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            >
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                >
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/c4j1"
-                    android:layout_gravity="center_vertical"
-                    android:contentDescription="@string/partida_espacio1"
-                    android:background="@drawable/v1"/>
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/c4j2"
-                    android:layout_gravity="center_vertical"
-                    android:contentDescription="@string/partida_espacio2"
-                    android:background="@drawable/v1"/>
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/partida_pinta"
+        android:background="@drawable/b6"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/c3j2"
+        android:layout_alignEnd="@+id/c3j2" />
 
-            </LinearLayout>
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:gravity="center"
-                >
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/pinta"
-                    android:rotation="90"
+    <ImageButton
+        android:layout_width="54dp"
+        android:layout_height="77dp"
+        android:id="@+id/mazo"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/partida_mazo"
+        android:background="@drawable/v0"
+        android:layout_alignTop="@+id/pinta"
+        android:layout_toRightOf="@+id/c3j2"
+        android:layout_toEndOf="@+id/c3j2" />
 
-                    android:layout_gravity="center_vertical"
-                    android:contentDescription="@string/partida_pinta"
-                    android:background="@drawable/b6"/>
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/mazo"
-                    android:layout_gravity="center_vertical"
-                    android:contentDescription="@string/partida_mazo"
-                    android:background="@drawable/v0"/>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c1j2"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/partida_carta1j2"
+        android:background="@drawable/b1"
+        android:layout_alignBottom="@+id/nomJugador2"
+        android:layout_toLeftOf="@+id/c2j2"
+        android:layout_toStartOf="@+id/c2j2" />
 
-            </LinearLayout>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c2j2"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="@string/partida_carta2j2"
+        android:background="@drawable/o1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-        </LinearLayout>
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/c3j2"
+        android:layout_gravity="center_vertical"
+        android:contentDescription="@string/partida_carta3j2"
+        android:background="@drawable/o12"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@+id/c2j2"
+        android:layout_toEndOf="@+id/c2j2" />
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center"
-            >
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/c1j2"
-                android:layout_gravity="center_vertical"
-                android:contentDescription="@string/partida_carta1j2"
-                android:background="@drawable/b1"/>
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/c2j2"
-                android:layout_gravity="center_vertical"
-                android:contentDescription="@string/partida_carta2j2"
-                android:background="@drawable/o1"/>
-
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/c3j2"
-                android:layout_gravity="center_vertical"
-                android:contentDescription="@string/partida_carta3j2"
-                android:background="@drawable/o12"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/partida_jugador2"
-                android:id="@+id/nomJugador2" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/partida_mensajes"
-                android:id="@+id/MensajesJuego" />
-        </LinearLayout>
-    </LinearLayout>
-</ScrollView>
+</RelativeLayout>
