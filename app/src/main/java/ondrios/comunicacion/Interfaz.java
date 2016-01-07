@@ -56,9 +56,6 @@ public class Interfaz extends AppCompatActivity  {
                     DownPT.y = event.getY();
                     break;
                 case MotionEvent.ACTION_UP:
-                    Log.d("Fin: ", "X" + cartaFin.getX() + " Y: " + cartaFin.getY());
-                    Log.d("Posicion Actual: ",""+v.getX()+" Y: "+v.getY());
-                    Log.d("Entre: X>",cartaFin.getX()+" X<"+(cartaFin.getX()+cartaFin.getWidth()) + " Y<" + cartaFin.getY() + " Y>"+(cartaFin.getY()-cartaFin.getHeight()));
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
                             && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
                         v.setX(cartaFin.getX()+carta1.getWidth());
