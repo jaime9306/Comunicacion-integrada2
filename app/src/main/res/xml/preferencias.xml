@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/pref_categoria1_title"
+        android:key="categoria1">
+    <EditTextPreference
+        android:key="nombreUsuario"
+        android:title="@string/pref_nombreusuario"
+        android:summary="@string/pref_nombreusuario_summary"
+        android:dialogTitle="@string/pref_nombreusuario_dialog"
+        >
+    </EditTextPreference>
+    </PreferenceCategory>
+    <PreferenceCategory
+        android:title="@string/pref_categoria2_title"
+        android:key="categoria2">
+        <ListPreference
+            android:key="idioma"
+            android:title="@string/pref_idioma_title"
+            android:summary="@string/pref_idioma_summary"
+            android:dialogTitle="@string/pref_idioma_dialog"
+            android:entries="@array/idioma"
+            android:entryValues="@array/codigoidioma"/>
+    </PreferenceCategory>
+
+</PreferenceScreen>

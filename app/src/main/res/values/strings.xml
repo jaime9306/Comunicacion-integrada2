@@ -1,0 +1,148 @@
+<resources>
+    <string name="title_activity_server">ServerActivity</string>
+    <string name="title_activity_client">ClientActivity</string>
+    <string name="app_name">Brisca 3.0</string>
+    <!--Main-->
+    <string name="titulo">Brisca3.0</string>
+    <string name="boton1">Crear partida</string>
+    <string name="boton2">Unirse a partida</string>
+    <string name="boton3">Estadísticas</string>
+    <string name="boton4">Instrucciones</string>
+    <string name="boton5">Reglas</string>
+    <string name="boton6">Preferencias</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="nombrePartida">Nombre de la Partida</string>
+
+    <!--ReglasBrisca-->
+    <string name="title_activity_reglas_brisca">Reglas de la Brisca</string>
+    <string name="reglas_descripcion">Descripción</string>
+    <string name="reglas_descripcion_text">Se trata de un juego de baraja española de 40 cartas.
+    La Brisca pertenece a la gran familia de juegos de cartas del Tute, juegos en los que se trata
+        de ir consiguiendo bazas, con un palo dominante o palo de triunfo.
+    En la Brisca se enfrenta un número variable de jugadores dispuestos en torno a la
+        mesa de juego. La cantidad de jugadores recomendable es de 2 o de 4 por parejas.
+    </string>
+
+    <string name="reglas_objetivo">Objetivos del juego</string>
+    <string name="reglas_objetivo_text">El objetivo general del juego es conseguir ganar el número de puntos/manos
+        pactadas inicialmente antes que los otros jugadores, y el objetivo concreto para ganar cada una de esas manos es
+        sumar el mayor número de puntos posible con las cartas ganadas en cada baza.
+        Habrá que intentar llevarse un gran número de bazas pero bazas con cartas de la puntuación más alta posible.
+    </string>
+
+    <string name="reglas_juego">Desarrollo del juego</string>
+    <string name="reglas_juego1">Comienzo de la partida</string>
+    <string name="reglas_juego1_text">Se echa a suertes para saber quién es el que reparte por primera vez y quién es mano
+        (el que se sitúe a la derecha del que reparte).
+        En cada mano el que reparte dará a cortar la baraja al jugador situado a su izquierda,
+        y seguidamente repartirá las cartas a cada jugador una a una y de izquierda a derecha.
+        Cuando haya terminado de repartir las cartas que correspondan a cada jugador en esa mano concreta,
+        levantará la siguiente dejándola visible sobre el mazo durante toda la mano: esa carta será la que pinte,
+        la que marque el triunfo en esa mano.
+        Cada una de las manos consta de varias bazas, tantas como el número que resulta de dividir el nº de cartas
+        de la baraja entre el de jugadores que intervienen. En definitiva, una baza es el conjunto de cartas (una por cada jugador)
+        que lanzan sobre el tapete los jugadores en su turno respectivo. Cada vez que se completa una baza habrá un jugador que la gana,
+        que se la lleva.
+    </string>
+    <string name="reglas_juego2">Jugar las cartas</string>
+    <string name="reglas_juego2_text">El que va de mano echará al centro del tapete una de sus cartas (la que él quiera),
+        y los demás, de izquierda a derecha, deberán echar una más cada uno, la que ellos quieran, sin limitaciones u
+        obligaciones de ningún tipo respecto a cuál echar.
+    </string>
+    <string name="reglas_juego3">Recoger las bazas</string>
+    <string name="reglas_juego3_text">La baza se la llevará el jugador que hubiera echado la carta más alta del palo de triunfo,
+        y si no hay triunfos sobre el tapete, la carta más alta del palo de salida.
+        La jerarquía entre cartas de un mismo palo es la que sigue, de mayor a menor: As, tres, rey, caballo, sota, siete,
+        seis, cinco, cuatro, dos.
+        En las bazas sucesivas, dentro de una misma mano, el jugador que se ha llevado la última baza es el que empezará
+        lanzando la 1ª carta de la baza siguiente.
+        Antes de lanzar nuevamente las cartas para jugar una nueva baza, todos los jugadores tomarán una carta de encima del mazo,
+        empezando por el que ganó la baza anterior, de forma que siempre tengan tres cartas en la mano. Lógicamente,
+        conforme avance el juego en una mano, las cartas del mazo se acabarán y llegará un momento en que no habrá cartas para robar:
+        en las tres últimas bazas se jugará sólo con las cartas que tuvieran en la mano (dos en la penúltima y una en la última).
+        Cuando las cartas del mazo se acaban, el último jugador toma la carta que señala el palo de triunfo.
+    </string>
+    <string name="reglas_juego4">Puntuación por las bazas</string>
+    <string name="reglas_juego4_text">Una vez que se han completado todas las bazas de una mano,
+        se procederá al recuento de los puntos obtenidos por cada jugador en esa mano.
+        A estos efectos el valor de cada carta es el que sigue: As (11 puntos), Tres (10 puntos), Rey (4 puntos),
+        Caballo (3 puntos) y Sota (2 puntos). El resto de cartas no tienen valor puntuable.
+        El número total de puntos que suman las cartas de la baraja es 120.
+        El jugador que obtenga mayor cantidad de puntos en una mano, será el que la gane.
+        En caso de empate a puntos entre dos o más jugadores, se asignará como ganada la mano a cada uno de ellos.
+    </string>
+    <string name="reglas_juego5">Cambio de cartas</string>
+    <string name="reglas_juego5_text">Cuando un jugador tuviera en su mano durante el juego el siete del palo de triunfo,
+        podrá cambiarlo por la carta que pinte si ésta fuera una carta de valor (As, Tres, Rey, Caballo o Sota).
+        Este cambio podrá hacerse justo tras haber ganado una baza y antes de proceder a robar la carta correspondiente del mazo.
+        Este mismo cambio, y con las mismas reglas y limitaciones, podrán hacerlo los jugadores si tuvieran en su poder un dos y
+        quisieran cambiarlo por la carta que marque el triunfo si ésta fuera una carta sin valor (Cuatro, Cinco, Seis o Siete).
+    </string>
+    <string name="reglas_final">Final de la partida</string>
+    <string name="reglas_final_text">La partida finaliza cuando uno de los jugadores alcanza el número de manos ganadoras
+        pactado previamente, y si lo alcanzaran más de uno simultáneamente, la partida termina cuando
+        tal empate se rompa en sucesivas manos jugadas a tal fin.
+    </string>
+
+    <!--InstruccionesBrisca-->
+    <string name="title_activity_instrucciones_brisca">Instrucciones del juego</string>
+
+    <string name="instrucciones_1">Instruciones</string>
+
+    <!--Crear nueva partida-->
+    <string name="title_activity_crear_nueva_partida">Crear nueva partida</string>
+    <string name="mens_nombre_partida">Escribe el nombre de la partida</string>
+    <string name="boton_crear">Crear</string>
+
+    <!-- Unirse a nueva partida-->
+    <string name="title_activity_unirse_nueva_partida">Unirse a partida</string>
+    <string name="mens_nombre_unirse_partida">Elije la partida a la cuál deseas unirte</string>
+    <string name="boton_unirse">Unirse</string>
+
+    <!--Conectar-->
+    <string name="conect_enviar">Enviar</string>
+    <string name="conect_parar">Parar servidor</string>
+
+    <!--Partida-->
+    <string name="partida_titulo">Partida</string>
+    <string name="partida_jugador1">Jugador 1</string>
+    <string name="partida_jugador2">Jugador 2</string>
+    <string name="partida_mensajes">Mensajes</string>
+    <string name="partida_carta3j2">Carta 3 del jugador 2</string>
+    <string name="partida_carta2j2">Carta 2 del jugador 2</string>
+    <string name="partida_carta1j2">Carta 1 del jugador 2</string>
+    <string name="partida_carta3j1">Carta 3 del jugador 1</string>
+    <string name="partida_carta2j1">Carta 2 del jugador 1</string>
+    <string name="partida_carta1j1">Carta 1 del jugador 1</string>
+    <string name="partida_mazo">Mazo de cartas</string>
+    <string name="partida_pinta">Carta que pinta</string>
+    <string name="partida_espacio1">Espacio para que el jugador 1 coloque su carta</string>
+    <string name="partida_espacio2">Espacio para que el jugador 2 coloque su carta</string>
+
+    <!--Preferencias-->
+    <string name="ingles">Ingles</string>
+    <string name="espanol">Español</string>
+    <string name="ingles_abr">ENG</string>
+    <string name="espanol_abr">ESP</string>
+    <string name="pref_categoria1_title">Datos de Jugador</string>
+    <string name="pref_categoria2_title">Datos del Juego</string>
+    <string name="noInicializado">No inicializado</string>
+    <string name="pref_nombreusuario">Nombre de jugador</string>
+    <string name="pref_nombreusuario_summary">Cambiar el nombre de usuario</string>
+    <string name="pref_nombreusuario_dialog">Nombre</string>
+    <string name="pref_idioma_title">Idioma</string>
+    <string name="pref_idioma_summary">idioma del juego (aún no funciona)</string>
+    <string name="pref_idioma_dialog">Indicar Idioma</string>
+
+
+        <!--Instrucciones-->
+    <string name="instrucciones1">Desde esta pantalla podremos crear una nueva partida de brisca. Deberemos escribir un
+     nombre para esta partida y elegir el número de jugadores, que serán 2 o 4.</string>
+    <string name="instrucciones2">Aquí podremos unirnos a una partida creada anteriormente. Simplemente hay que selecionar
+        la partida en el menu desplegable y pulsar en entrar</string>
+    <string name="instrucciones3">En esta pantalla encontraremos estadísticas de las partidas jugadas como por ejemplo el
+     porcentaje de partidas ganadas.</string>
+    <string name="instrucciones5">En esta pantalla encontraremos las reglas de la brisca, como se juega, el valor de cada carta, etc.</string>
+    <string name="instrucciones6">Desde aquí podremos cambiar alguna opción del juego como el nombre de usuario.
+     Los cambios realizados quedarán almacenados</string>
+</resources>

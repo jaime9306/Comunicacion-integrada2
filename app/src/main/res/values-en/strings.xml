@@ -1,0 +1,128 @@
+<resources>
+    <string name="app_name">Brisca3.0</string>
+
+    <string name="titulo">Brisca3.0</string>
+    <string name="boton1">New game</string>
+    <string name="boton2">Join game</string>
+    <string name="boton3">Statistics</string>
+    <string name="boton4">Instructions</string>
+    <string name="boton5">Rules</string>
+    <string name="boton6">Preferences</string>
+    <string name="action_settings">Settings</string>
+    <string name="nombrePartida">Game Name</string>
+
+    <!--ReglasBrisca-->
+    <string name="title_activity_reglas_brisca">Briscas Rules</string>
+    <string name="reglas_descripcion">Description</string>
+    <string name="reglas_descripcion_text">It is a game of Spanish deck of 40 cards. The Brisca
+        belongs to the large family of card games Tute, games in question
+        go getting tricks , with a dominant pole or trump. Brisca in a variable number of players
+        faces arranged around the table. The recommended amount of players is 2 or 4 pairs.
+    </string>
+
+    <string name="reglas_objetivo">Game Objetives</string>
+    <string name="reglas_objetivo_text">The general objective of the game is to win the number of points / hands
+        initially agreed before the other players, and the specific goal to win each of those hands is
+        score as many points as possible with the cards won in each trick. We will have to try to take
+        a large number of tricks but tricks with cards from the highest score possible .
+    </string>
+
+    <string name="reglas_juego">Game Development</string>
+    <string name="reglas_juego1">The Match Start</string>
+    <string name="reglas_juego1_text">It is cast lots to see who is the dealer for the first time and who hand
+        (Which is placed to the right of the dealer).
+        In each hand the dealer will give cut the deck to the player on his left,
+        and then will distribute the cards to each player one by one and left to right.
+        When you have finished dealing cards that correspond to each player in that particular hand,
+        will raise the next visible leaving on deck throughout the hand, that letter will be the paint,
+        which mark the victory in that hand.
+        Each hand has several advantages, as many as the number obtained by dividing the number of letters
+        of the deck between the players involved. In short, an asset is the set of cards (one for each player)
+        throwing on the table players in their respective turn. Each time you complete an asset will be a player who wins,
+        it takes.
+    </string>
+    <string name="reglas_juego2">Play the Cards</string>
+    <string name="reglas_juego2_text">The hand that goes to the center of the mat cast one of his letters ( which he likes )
+        and the other , from left to right, they throw more each, which they want, without limitations or
+        obligations of any kind regarding which take .
+    </string>
+    <string name="reglas_juego3">Pick up the tricks</string>
+    <string name="reglas_juego3_text">The trick is obtained by the player who had thrown the highest card of the trump suit,
+        and if there is no trumps on the table, the highest card of the suit led.
+        The hierarchy between cards of the same suit is as follows, from highest to lowest: Ace, Three, King, Knight, Jack, seven,
+        six, five, four, two.
+        In successive assets within the same hand, the player who has taken the last trick is to start
+        launching the 1st letter of the next trick.
+        Before launching the cards to play a new trick again, all players take a card off the deck,
+        Starting for which he won the previous trick, so you always have three cards in hand. Logically,
+        As you complete the game in one hand, the cards in the deck will end and there will come a time when there will be card drawing:
+        in the last three tricks will be played only with the cards you have in hand (two in the penultimate and the last).
+        When the cards in the deck are finished, the last player takes the letter states the trump suit.
+    </string>
+    <string name="reglas_juego4">Scoring the tricks</string>
+    <string name="reglas_juego4_text">Once you have completed all the tricks of a hand,
+        we will proceed to count the points earned by each player in the hand.
+        For these purposes the value of each letter is as follows : Ace (11 points ) , Three ( 10 points), Rey (4 points )
+        Horse ( 3 points) and Sota ( 2 points). The remaining cards have no scoring value.
+        The total number of points you add the card deck is 120 .
+        The player with most points in one hand, which will win.
+        In case of a tie on points between two or more players will be allocated as won hands with each of them .
+    </string>
+    <string name="reglas_juego5">Changing Cards</string>
+    <string name="reglas_juego5_text">When a player has in his hand during the game seven of trumps ,
+        you can change it to the letter if it were a paint -value card (Ace, Three , Rey, Caballo or Sota ) .
+        This change can be made right after winning one trick and before proceeding to steal the corresponding card from the deck .
+        This same change , and the same rules and limitations, players may do so if they had in their possession two and
+        would change from the letter to mark the victory if it were a letter without value ( Four, Five, Six or Seven ) .
+    </string>
+    <string name="reglas_final">End of the Game</string>
+    <string name="reglas_final_text">The game ends when one player reaches the number of winning hands
+        previously agreed , and if more than one simultaneously reached , the game ends when
+        this tie is broken in successive hands played to this end.
+    </string>
+
+    <!--InstruccionesBrisca-->
+    <string name="title_activity_instrucciones_brisca">Game Instructions</string>
+
+    <string name="instrucciones_1">Instructions</string>
+
+    <!--Crear nueva partida-->
+    <string name="title_activity_crear_nueva_partida">Create new game</string>
+    <string name="mens_nombre_partida">Write the name of the game</string>
+
+    <!--Conectar-->
+    <string name="conect_enviar">Send</string>
+
+    <!--Partida-->
+    <string name="partida_titulo">Game</string>
+    <string name="partida_jugador1">Player 1</string>
+    <string name="partida_jugador2">Player 2</string>
+    <string name="partida_mensajes">Mensages</string>
+    <string name="partida_carta3j2">Card 3 of player 2</string>
+    <string name="partida_carta2j2">Card 2 del player 2</string>
+    <string name="partida_carta1j2">Card 1 del player 2</string>
+    <string name="partida_carta3j1">Card 3 del player 1</string>
+    <string name="partida_carta2j1">Card 2 del player 1</string>
+    <string name="partida_carta1j1">Card 1 del player 1</string>
+    <string name="partida_mazo">Deck of cards</string>
+    <string name="partida_pinta">Carta que pinta</string>
+    <string name="partida_espacio1">Space for player 1 place his card</string>
+    <string name="partida_espacio2">Space for player 2 place his card</string>
+
+    <!--Preferencias-->
+    <string name="ingles">English</string>
+    <string name="espanol">Spanish</string>
+    <string name="pref_categoria1_title">Player info</string>
+    <string name="pref_categoria2_title">Game info</string>
+    <string name="noInicializado">Not inicializated</string>
+    <string name="pref_nombreusuario">Player name</string>
+    <string name="pref_nombreusuario_summary">Change player name</string>
+    <string name="pref_nombreusuario_dialog">Name</string>
+    <string name="pref_idioma_title">Lenguage</string>
+    <string name="pref_idioma_summary">Game lenguage(not implemented jet)</string>
+    <string name="pref_idioma_dialog">Select lenguage</string>
+</resources>
+
+
+
+
