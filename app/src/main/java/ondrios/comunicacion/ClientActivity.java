@@ -109,7 +109,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                 break;
             case R.id.botonClient_enviar:
                 String mensaje = edit_entrada.getText().toString();
-                boton_enviar.setVisibility(View.GONE);
+                //boton_enviar.setVisibility(View.GONE);
                 cliente.enviaMensaje(mensaje);
                 break;
         }
