@@ -91,7 +91,7 @@
 
     <!--Crear nueva partida-->
     <string name="title_activity_crear_nueva_partida">Crear nueva partida</string>
-    <string name="mens_nombre_partida">Escribe el nombre de la partida</string>
+    <string name="mens_nombre_partida">Nombre de la partida</string>
     <string name="boton_crear">Crear</string>
 
     <!-- Unirse a nueva partida-->
