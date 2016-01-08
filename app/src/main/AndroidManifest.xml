@@ -47,7 +47,8 @@
         </activity>
         <activity
             android:name=".Interfaz"
-            android:label="@string/partida_titulo" >
+            android:label="@string/partida_titulo"
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
