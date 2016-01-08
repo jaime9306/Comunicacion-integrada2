@@ -86,7 +86,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                 String mensaje = edit_entrada.getText().toString();
                 Log.e(TAG, "Envia mensaje");
                 cliente.enviaMensaje(mensaje);
-                boton_enviar.setVisibility(View.GONE);
+                //boton_enviar.setVisibility(View.GONE);
                 break;
 
             default:
