@@ -102,8 +102,8 @@
         android:layout_toEndOf="@+id/c3j2" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="85dp"
         android:id="@+id/c1j2"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/partida_carta1j2"
@@ -113,8 +113,8 @@
         android:layout_toStartOf="@+id/c2j2" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="85dp"
         android:id="@+id/c2j2"
         android:layout_gravity="center_horizontal"
         android:contentDescription="@string/partida_carta2j2"
@@ -123,8 +123,8 @@
         android:layout_centerHorizontal="true" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="85dp"
         android:id="@+id/c3j2"
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/partida_carta3j2"
