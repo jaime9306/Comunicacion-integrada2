@@ -1,0 +1,36 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@drawable/background2"
+    >
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        tools:context="com.brisca.moviles.uva.brisca30.ReglasBrisca"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/graficas"
+            android:id="@+id/textView2"
+            android:textColor="@android:color/primary_text_dark"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal" />
+
+
+        <com.androidplot.xy.XYPlotZoomPan
+            android:id="@+id/mySimpleXYPlot2"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            />
+    </LinearLayout>
+</ScrollView>
