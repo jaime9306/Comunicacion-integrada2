@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button botonUnirPartida;
     Button botonEstadisticas;
     Button botonPreferencias;
+    Button botonGraficas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         botonPreferencias=(Button) findViewById(R.id.buttonPreferencias);
         botonPreferencias.setOnClickListener(this);
+
+        botonGraficas=(Button) findViewById(R.id.graficas);
+        botonGraficas.setOnClickListener(this);
     }
 
     @Override
@@ -100,6 +104,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.buttonPreferencias:
                 Intent intentPreferencias = new Intent(MainActivity.this,Preferencias.class);
                 startActivity(intentPreferencias);
+                break;
+
+            case R.id.graficas:
+                Intent intentGraficas = new Intent(MainActivity.this,GraficasPrueba.class);
+                startActivity(intentGraficas);
                 break;
 
             default:

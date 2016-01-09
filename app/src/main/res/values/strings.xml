@@ -148,4 +148,7 @@
     <string name="instrucciones5">En esta pantalla encontraremos las reglas de la brisca, como se juega, el valor de cada carta, etc.</string>
     <string name="instrucciones6">Desde aquí podremos cambiar alguna opción del juego como el nombre de usuario.
      Los cambios realizados quedarán almacenados</string>
+
+    <!-- graficas-->
+    <string name="graficas">Graficas</string>
 </resources>
