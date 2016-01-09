@@ -2,22 +2,16 @@ package ondrios.comunicacion;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.os.StrictMode;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import ondrios.comunicacion.Conection.Cliente.Client;
-import ondrios.comunicacion.Conection.Servidor.MyParcelableServer;
-import ondrios.comunicacion.Conection.Servidor.Server;
+import ondrios.comunicacion.Conexion.Cliente.Client;
+import ondrios.comunicacion.Conexion.Servidor.MyParcelableServer;
+import ondrios.comunicacion.Conexion.Servidor.Server;
 
 public class ServerActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -85,8 +79,8 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.botonServer_enviar:
                 String mensaje = edit_entrada.getText().toString();
                 Log.e(TAG, "Envia mensaje");
-                cliente.enviaMensaje(mensaje);
-                //boton_enviar.setVisibility(View.GONE);
+                cliente.enviaMensaje(mensaje,"mensaje");
+                boton_enviar.setVisibility(View.GONE);
                 break;
 
             default:

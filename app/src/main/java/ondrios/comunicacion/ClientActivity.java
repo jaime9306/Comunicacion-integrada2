@@ -3,7 +3,6 @@ package ondrios.comunicacion;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -15,8 +14,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ondrios.comunicacion.Conection.Cliente.Client;
-import ondrios.comunicacion.Conection.Cliente.MyParcelableClient;
+import ondrios.comunicacion.Conexion.Cliente.Client;
+import ondrios.comunicacion.Conexion.Cliente.MyParcelableClient;
 
 import static java.lang.Thread.sleep;
 
@@ -110,7 +109,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.botonClient_enviar:
                 String mensaje = edit_entrada.getText().toString();
                 //boton_enviar.setVisibility(View.GONE);
-                cliente.enviaMensaje(mensaje);
+                cliente.enviaMensaje(mensaje,"mensaje");
                 break;
         }
     }
@@ -123,6 +122,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         edit_entrada.setVisibility(View.VISIBLE);
         texto_entrada.setVisibility(View.VISIBLE);
         spinner.setVisibility(View.GONE);
+        setContentView(R.layout.activity_interfaz_juego);
     }
 
     public void muestraBotones(){
