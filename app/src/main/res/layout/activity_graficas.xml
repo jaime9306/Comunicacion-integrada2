@@ -1,7 +1,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:background="@drawable/gris"
+    android:background="@drawable/background2"
     >
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -20,7 +20,17 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/textView3" />
+            android:text="@string/graficas"
+            android:id="@+id/textView2"
+            android:textColor="@android:color/primary_text_dark"
+            android:textSize="30sp"
+            android:layout_gravity="center_horizontal" />
+
+
+        <com.androidplot.xy.XYPlotZoomPan
+            android:id="@+id/mySimpleXYPlot2"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            />
     </LinearLayout>
 </ScrollView>
