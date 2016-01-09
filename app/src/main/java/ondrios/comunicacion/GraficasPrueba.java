@@ -27,12 +27,12 @@ public class GraficasPrueba extends AppCompatActivity {
 
         mySimpleXYPlot = (XYPlot) findViewById(R.id.mySimpleXYPlot2);
 
-        Number[] series1Numbers = {1,65,2, 70,3, 50,4, 65,5, 62,6,60};
+        Number[] series1Numbers = {65, 70, 50, 65, 62,60};
 
         // Añadimos Línea Número UNO:
         XYSeries series1 = new SimpleXYSeries(
                 Arrays.asList(series1Numbers),  // Array de datos
-                SimpleXYSeries.ArrayFormat.XY_VALS_INTERLEAVED,
+                SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,
                 " "); // Nombre de la primera serie
         PointLabelFormatter p = new PointLabelFormatter(2);
 
