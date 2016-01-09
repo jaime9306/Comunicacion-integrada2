@@ -124,4 +124,11 @@ public class Partida {
     }
 
 
+    public Jugador[] getListajug() {
+        return listajug;
+    }
+
+    public int getNumJugadorMano() {
+        return numJugadorMano;
+    }
 }

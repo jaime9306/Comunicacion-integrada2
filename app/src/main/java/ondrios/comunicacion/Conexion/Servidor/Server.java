@@ -16,6 +16,7 @@ import java.util.ArrayList;
 
 import ondrios.comunicacion.Conexion.Mensaje;
 import ondrios.comunicacion.Conexion.NsdHelper;
+import ondrios.comunicacion.Juego.MotorJuego;
 import ondrios.comunicacion.ServerActivity;
 
 /**
@@ -24,6 +25,8 @@ import ondrios.comunicacion.ServerActivity;
 public class Server {
 
     private String TAG = "Servidor";
+
+    private final MotorJuego motor;
 
     private NsdRegister register;
     private ServerSocket serverSocket;
@@ -56,12 +59,18 @@ public class Server {
             Log.e(TAG, "Error al crear el ServerSocket: ", e);
             e.printStackTrace();
         }
+
         //Registra el servicio
         register=new NsdRegister(this,serviceName);
         register.registraServicio();
         Log.i(TAG, "Servcio registrado " + serviceName);
+
         //Crea una lista de clientes que se van a conectar al servidor
         clientes=new ArrayList<>();
+
+        //Crea el motor que va a llevar el juego
+        this.motor = new MotorJuego(this,nclientes,8);
+
         //Espera tantas peticiones como numero de usuarios se le pasen al constructor.
         for (int i =0; i<nclientes;i++) {
             RecibeClienteTarea recibe = new RecibeClienteTarea();
@@ -77,11 +86,21 @@ public class Server {
         Mensaje mensajeIdentificador = new Mensaje(socketCliente,Integer.toString(clientes.indexOf(socketCliente)),"identificador");
         enviaMensaje(mensajeIdentificador);
 
+        //Añade el jugador conectado al juego (El nombre es demomento el identificador)
+        motor.añadeJugador(Integer.toString(clientes.indexOf(socketCliente)));
+
         if (clientes.size() == nclientes) {
             //Elimina el servicio de la red. Ya no es necesario que este al empezar la partida
             register.quitaServicio();
+
+            //El motor inicia el juego
+            motor.inicia();
+
             //Selecciona que cliente es el turno
             this.turno = 0;
+
+            //Selecciona que cliente es el turno
+            this.turno = motor.getJugadorMano();
 
             ServerActivity sa = (ServerActivity) context;
             sa.notificaClientesCompletados();
@@ -90,13 +109,11 @@ public class Server {
             for (int i = 0; i<clientes.size();i++){
                 c=c+clientes.get(i).getInetAddress().getHostAddress()+" ";
             }
-            Log.e(TAG,"Clientes: "+c);
-            //Inicia las conversaciones
-            for (int i=0;i<clientes.size();i++) {
-                String datos = "Empieza la conversacion el cliente " + turno+" "+clientes.get(turno).getInetAddress().getHostAddress();
-                Mensaje mensaje = new Mensaje(clientes.get(i), datos, "repite");
-                enviaMensaje(mensaje);
-            }
+            Log.e(TAG, "Clientes: " + c);
+
+            //Empieza a tirar el jugador que es mano (Se podria enviar un mensaje a los demas para notificar quien empieza.
+            Mensaje mensajeTira = new Mensaje(clientes.get(turno),"null","tira");
+            enviaMensaje(mensajeTira);
         }
 
     }
@@ -123,6 +140,23 @@ public class Server {
                     tareaRecibe.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(turno));
                 }
                 break;
+            case "cartas": //Envia al cliente las cartas que le han toccado
+                //Formato del mensaje <<carta1>>:<<carta2>>:<<carta3>>
+                String datos = mensaje.getMensaje();
+                String [] d = datos.split("::");
+                int cliente = Integer.valueOf(d[0]);
+                Mensaje mensajeCartas = new Mensaje(clientes.get(cliente),d[1],"cartas");
+                enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCartas);
+                break;
+            case "pinte": //Envia a todos los clientes el pinte
+                for (int i = 0;i<nclientes;i++){
+                    mensaje.setSocket(clientes.get(i));
+                    enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
+                }
+                break;
+            case "tira": //Notifica al cliente que le toca el turno de tirar
+                //El cuerpo del mensaje es un string que pone "null"
+                enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
             case "apaga":
                 //Envia la señal de apagado al cliente
                 enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
@@ -256,9 +290,6 @@ public class Server {
         GETTERS Y SETTERS
      */
 
-    public ServerSocket getServerSocket(){
-        return serverSocket;
-    }
 
     public Context getContext(){
         return context;

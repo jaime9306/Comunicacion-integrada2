@@ -83,13 +83,13 @@ public class Client  {
         String [] d = datos.split("&");
         RecibeMensajeTarea recibeMensaje= new RecibeMensajeTarea();
         switch (d[0]){
-            case "identificador":
+            case "identificador": //Recibe el identificador que le ha dado el servidor
                 id = d[1];
                 Log.i(TAG,"Indentificador añadido "+id);
                 recibeMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 break;
 
-            case "repite":
+            case "repite":  //Publica el mensaje que ha repetido el servidor
                 String [] mensaje = d[1].split("::");
                 String turno = mensaje[0];
                 String cuerpoDelMensaje = mensaje[1];
@@ -115,6 +115,22 @@ public class Client  {
                     }
                     recibeMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 }
+                break;
+            case "cartas": //Publica las cartas que le ha dado el servidor
+                //Formato cartas, ej: o1:o2:o3
+                String [] cartas = d[1].split(":");
+                //Publica en la vista las cartas
+                Log.i(TAG,"Las cartas son: "+cartas[0]+" "+cartas[1]+" "+cartas[2]);
+                break;
+            case "pinte": //Publica el pinte que le ha dado el servidor
+                //Formato pinte, ej: o1
+                String pinte = d[1];
+                //Publica el pinte
+                Log.i(TAG,"El pinte es: "+pinte);
+                break;
+            case "tira": //Notificacion de que le toca tirar al cliete
+                //Te toca tirar
+                Log.i(TAG,"Te toca tirar");
                 break;
             case "apaga":
                 //No comprobado si null que algunas veces recibia null en este caso
@@ -145,9 +161,6 @@ public class Client  {
         }
     }
 
-    public void updateContext(Context context){
-        this.context=context;
-    }
 
     /* ***** TAREAS ****** */
 

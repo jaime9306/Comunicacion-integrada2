@@ -55,4 +55,12 @@ public class Jugador {
         mano[i] = null;
         return c;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public Carta[] getMano() {
+        return mano;
+    }
 }
