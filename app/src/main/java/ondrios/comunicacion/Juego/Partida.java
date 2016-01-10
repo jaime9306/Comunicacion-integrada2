@@ -131,4 +131,8 @@ public class Partida {
     public int getNumJugadorMano() {
         return numJugadorMano;
     }
+
+    public Equipo[] getEquipos() {
+        return equipos;
+    }
 }

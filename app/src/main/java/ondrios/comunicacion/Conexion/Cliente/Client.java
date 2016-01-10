@@ -172,7 +172,19 @@ public class Client  {
                 enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
                 recibeMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 break;
+            case "tira_carta": //Manda la posicion de la carta
+                EnviaMensajeTarea enviaCarta = new EnviaMensajeTarea();
+                RecibeMensajeTarea recibeMensajeCarta= new RecibeMensajeTarea();
+                Mensaje mensajeCarta = new Mensaje(socketServidor,datos,protocolo);
+                enviaCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCarta);
+                recibeMensajeCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                break;
         }
+    }
+
+    public void enviaCarta(int i){
+        //Mensaje mensaje = new Mensaje(socketServidor,Integer.toString(i),"tira_carta");
+        enviaMensaje(Integer.toString(i),"tira_carta");
     }
 
 

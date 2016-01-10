@@ -17,11 +17,18 @@ public class MotorJuego {
     private Server servidor;
     private Partida partida;
 
+    private int njugadores;
+    private ArrayList<Carta> baza;
+    private ArrayList<Carta> jugadaEq1;
+    private ArrayList<Carta> jugadaEq2;
+
     private Carta pinte;
 
     public MotorJuego(Server server, Partida partida){
         this.servidor = server;
         this.partida = partida;
+        this.njugadores=this.partida.getListajug().length;
+        this.baza=new ArrayList<>();
     }
 
     public void inicia(){
@@ -51,6 +58,33 @@ public class MotorJuego {
             servidor.enviaMensaje(m);
         }
     }
+
+    public int getTurno(){
+        return partida.getNumJugadorMano();
+    }
+
+    public void tiraCarta(int jugador, int carta){
+        Jugador [] listaJugadores = partida.getListajug();
+        Carta tirada = null;
+        for(int i = 0;i<listaJugadores.length;i++){
+            String nombre = listaJugadores[i].getNombre();
+            if (nombre.equals(Integer.toString(jugador))){
+               tirada=listaJugadores[i].echar(i);
+            }
+        }
+        baza.add(tirada);
+        Mensaje mensaje = new Mensaje(null,tirada.getPalo()+Integer.toString(tirada.getNumero()),"");
+        servidor.enviaMensaje(mensaje);
+        Equipo [] equipos = partida.getEquipos();
+        Equipo eq1=equipos[0];
+
+        if(baza.size()==njugadores){
+
+        }
+
+    }
+
+
 
 
 }

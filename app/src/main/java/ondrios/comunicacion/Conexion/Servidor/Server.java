@@ -124,14 +124,10 @@ public class Server {
             partida = new Partida(equipo0, equipo1, 8);
 
             motor = new MotorJuego(this, partida);
-            try {
-                sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             //El motor inicia el juego
             motor.inicia();
-
+            turno=motor.getTurno();
             //ESTO NO ENTIENDO MUY BIEN QUE HACE A SI QUE NO LO TOCO
             ServerActivity sa = (ServerActivity) context;
             sa.notificaClientesCompletados();
@@ -183,6 +179,10 @@ public class Server {
                 EnviaMensajeTarea enviaCartas = new EnviaMensajeTarea();
                 enviaCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCartas);
                 break;
+            case "muestra_carta":
+                //Envia la carta a todos los usuarios menos al del turno para que la  muestren
+
+                break;
             case "tira": //Notifica al cliente que le toca el turno de tirar
                 //El cuerpo del mensaje es un string que pone "null"
                 EnviaMensajeTarea enviaTira = new EnviaMensajeTarea();
@@ -213,6 +213,10 @@ public class Server {
                     mensaje=new Mensaje(clientes.get(i),d[1],"repite");
                     enviaMensaje(mensaje);
                 }
+                break;
+            case "tira_carta":
+                int jugador = turno-1;
+                motor.tiraCarta(jugador,Integer.valueOf(d[1]));
                 break;
             case "OK_apaga":
                 try {
