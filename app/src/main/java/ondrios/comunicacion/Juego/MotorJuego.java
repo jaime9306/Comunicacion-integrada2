@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import ondrios.comunicacion.Conexion.Mensaje;
 import ondrios.comunicacion.Conexion.Servidor.Server;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Created by Mario on 09/01/2016.
  */
@@ -105,9 +107,16 @@ public class MotorJuego {
                     partida.getEquipos()[1].añadeMonton(baza.get(1));
                 }
                 String juadorGanador = orden.get(baza.indexOf(ganadora));
-                Mensaje mensajeGanador = new Mensaje(null,juadorGanador,"ganador_baza");
+                //Mensaje mensajeGanador = new Mensaje(null,juadorGanador,"ganador_baza");
+
+                this.baza=new ArrayList<>();
+                this.orden= new ArrayList<>();
+                this.jugadaEq1= new ArrayList<>();
+                this.jugadaEq2= new ArrayList<>();
+
                 servidor.setTurno(Integer.valueOf(juadorGanador));
-                servidor.enviaMensaje(mensajeGanador);
+                //servidor.enviaMensaje(mensajeGanador);
+                roba();
             } else if(njugadores == 4){
                 Carta ganadora = partida.determinarCartaGanadora(baza.get(0),baza.get(1));
                 ganadora = partida.determinarCartaGanadora(ganadora ,baza.get(2));
@@ -126,14 +135,44 @@ public class MotorJuego {
                     partida.getEquipos()[1].añadeMonton(baza.get(3));
                 }
                 String juadorGanador = orden.get(baza.indexOf(ganadora));
-                Mensaje mensajeGanador = new Mensaje(null,juadorGanador,"ganador_baza");
+                //Mensaje mensajeGanador = new Mensaje(null,juadorGanador,"ganador_baza");
                 servidor.setTurno(Integer.valueOf(juadorGanador));
-                servidor.enviaMensaje(mensajeGanador);
+               // servidor.enviaMensaje(mensajeGanador);
+                roba();
             }
+
         }else{
             Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),"null","tira");
             servidor.enviaMensaje(mensajeTurno);
         }
+
+    }
+
+    public void roba(){
+        Jugador [] lista = partida.getListajug();
+        Carta [] cartasRobadas = new Carta [njugadores];
+        for (int i =0; i<njugadores;i++){
+            if (!partida.getBaraja().estaAcabada()){
+                Carta cartaRobada = partida.getBaraja().saca();
+                lista[i].robar(cartaRobada);
+                cartasRobadas[i]=cartaRobada;
+            }else {
+                Carta cartaRobada = pinte;
+                lista[i].robar(cartaRobada);
+                cartasRobadas[i]=cartaRobada;
+            }
+        }
+        for (int i =0; i<njugadores;i++){
+            Mensaje mensaje = new Mensaje(servidor.getClientes().get(i),cartasRobadas[i].getPalo()+cartasRobadas[i].getNumero()+"::"+servidor.getTurno(),"roba");
+            servidor.enviaMensaje(mensaje);
+        }
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        //Mensaje mensajeTira = new Mensaje(servidor.getClientes().get(servidor.getTurno()),"null","tira");
+        //servidor.enviaMensaje(mensajeTira);
 
     }
 

@@ -45,4 +45,8 @@ public class Baraja {
         return baraja.remove(0);
     }
 
+    public boolean estaAcabada(){
+        return baraja.size()==0;
+    }
+
 }

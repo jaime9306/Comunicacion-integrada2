@@ -149,16 +149,19 @@ public class Server {
 
         switch (mensaje.getProtocolo()){
             case "identificador":
+                duerme();
                 //Otorga un identificador al cliente
                 EnviaMensajeTarea enviaIdentificador = new EnviaMensajeTarea();
                 enviaIdentificador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
                 break;
             case "mensaje":
+                duerme();
                 //Mensaje directo al cliene
                 EnviaMensajeTarea enviaMensaje = new EnviaMensajeTarea();
                 enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
                 break;
             case "repite":
+                duerme();
                 //El formato del mensaje de este protocolo es <<turno>>::<<mensaje>>
                 String datosEmpieza = turno+"::"+mensaje.getMensaje();
                 mensaje.setMensaje(datosEmpieza);
@@ -171,24 +174,22 @@ public class Server {
                 }
                 break;
             case "cartas": //Envia al cliente las cartas y pinteque le han toccado
+                duerme();
                 //Formato del mensaje <<carta1>>:<<carta2>>:<<carta3>>::<<pinte>>
                 String datos = mensaje.getMensaje();
                 String [] d = datos.split("::");
                 int cliente = Integer.valueOf(d[0]);
                 Mensaje mensajeCartas = new Mensaje(clientes.get(cliente),d[1]+"::"+d[2],"cartas");
-                try {
-                    sleep(500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
                 EnviaMensajeTarea enviaCartas = new EnviaMensajeTarea();
                 enviaCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCartas);
 
-                    RecibeMensajeTarea tareaRecibeCartas = new RecibeMensajeTarea();
-                    tareaRecibeCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCartas.getSocket());
+                //    RecibeMensajeTarea tareaRecibeCartas = new RecibeMensajeTarea();
+                //    tareaRecibeCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCartas.getSocket());
 
                 break;
             case "muestra_carta":
+                duerme();
                 //Envia la carta a todos los usuarios menos al del turno para que la  muestren <<jugador>>::<<carta>>
                 String [] dmc = mensaje.getMensaje().split("::");
                 int jugador = Integer.valueOf(dmc[0]);
@@ -199,35 +200,43 @@ public class Server {
                         enviaMuestraCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeMuestraCarta);
                     }
                 }
-                for (int i = 0; i<clientes.size();i++){
-                    if (jugador!=i){
-                        RecibeMensajeTarea tareaRecibeMuestraCartas = new RecibeMensajeTarea();
-                        tareaRecibeMuestraCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(i));
-                    }
-                }
+                //for (int i = 0; i<clientes.size();i++){
+                  //  if (jugador!=i){
+                //    RecibeMensajeTarea tareaRecibeMuestraCartas = new RecibeMensajeTarea();
+                //      tareaRecibeMuestraCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(i));
+                  //  }
+                //}
                 break;
             case "tira": //Notifica al cliente que le toca el turno de tirar
+                duerme();
                 //El cuerpo del mensaje es un string que pone "null"
                 EnviaMensajeTarea enviaTira = new EnviaMensajeTarea();
                 enviaTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
-                //RecibeMensajeTarea tareaRecibeTira = new RecibeMensajeTarea();
-                //tareaRecibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje.getSocket());
+                RecibeMensajeTarea tareaRecibeTira = new RecibeMensajeTarea();
+                tareaRecibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje.getSocket());
                 break;
             case "ganador_baza":
+                duerme();
                 for (int i = 0; i<clientes.size();i++){
                     Mensaje mensajeMuestraGanador = new Mensaje(clientes.get(i),mensaje.getMensaje(),mensaje.getProtocolo());
                     EnviaMensajeTarea enviaMuestraGanador = new EnviaMensajeTarea();
-                    enviaMuestraGanador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
-                    RecibeMensajeTarea tareaRecibeMuestraGanador = new RecibeMensajeTarea();
-                    tareaRecibeMuestraGanador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(i));
+                    enviaMuestraGanador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeMuestraGanador);
                 }
-                try {
-                    sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                Mensaje mTira = new Mensaje(clientes.get(turno),"null","tira");
-                enviaMensaje(mTira);
+                duerme(500);
+                motor.roba();
+                //for (int i = 0; i<clientes.size();i++){
+                  //  RecibeMensajeTarea tareaRecibeMuestraGanador = new RecibeMensajeTarea();
+                    //tareaRecibeMuestraGanador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(i));
+                //}
+                break;
+            case "roba":
+                duerme();
+                //Otorga un identificador al cliente
+                EnviaMensajeTarea enviaRoba = new EnviaMensajeTarea();
+                enviaRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mensaje);
+
+                RecibeMensajeTarea tareaRecibeRoba = new RecibeMensajeTarea();
+                tareaRecibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(getTurno()));
                 break;
             case "apaga":
                 //Envia la señal de apagado al cliente
@@ -393,5 +402,20 @@ public class Server {
 
     public int getTurno() {
         return turno;
+    }
+
+    private void duerme(){
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+    private void duerme(int tiempo){
+        try {
+            sleep(tiempo);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

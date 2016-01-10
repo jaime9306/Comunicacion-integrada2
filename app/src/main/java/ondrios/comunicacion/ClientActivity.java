@@ -34,6 +34,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private TextView texto_entrada;
     private Spinner spinner;
     private boolean turno;
+    private int posVacia;
 
     protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4;
     private int modificarX=20;
@@ -225,6 +226,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                         v.setY(cartaFin.getY() + carta1.getHeight() / 2);
                         Drawable c = carta1.getBackground();
                         cliente.enviaCarta(0);
+                        posVacia=0;
                         turno=false;
                     } else {
                         v.setX(ini1.x);
@@ -259,8 +261,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
                             && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()&&turno){
                         v.setX(cartaFin.getX() + carta2.getWidth());
-                        v.setY(cartaFin.getY()+carta2.getHeight() / 2);
+                        v.setY(cartaFin.getY() + carta2.getHeight() / 2);
                         cliente.enviaCarta(1);
+                        posVacia=1;
                         turno = false;
                     } else {
                         v.setX(ini2.x);
@@ -297,6 +300,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                         v.setX(cartaFin.getX() + carta3.getWidth());
                         v.setY(cartaFin.getY()+carta3.getHeight()/2);
                         cliente.enviaCarta(2);
+                        posVacia=2;
                         turno=false;
                     } else {
                         v.setX(ini3.x);
@@ -422,11 +426,11 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
 
         turno.show();
     }
-    public void reparteCartas(String c, int pos){
+    public void reparteCartas(String c){
         carta4.setX(ini4.x);
         carta4.setY(ini4.y);
         carta4.setBackgroundResource(getCarta("reverso"));
-        switch (pos){
+        switch (posVacia){
             case 0:
                 carta1.setX(ini1.x);
                 carta1.setY(ini1.y);

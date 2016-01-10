@@ -153,9 +153,17 @@ public class Client  {
                     ca.notificaTurno();
                     ca.setTurno();
                 }
-                RecibeMensajeTarea recibeTira= new RecibeMensajeTarea();
-                recibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+               // RecibeMensajeTarea recibeTira= new RecibeMensajeTarea();
+                //recibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
 
+                break;
+            case "ganador_baza":
+                String jugador = d[1];
+
+                RecibeMensajeTarea recibeGanador= new RecibeMensajeTarea();
+                recibeGanador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+               // RecibeMensajeTarea recibeGanador2= new RecibeMensajeTarea();
+                //recibeGanador2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 break;
             case "muestra_carta":
                 String[] mens=d[1].split("::");
@@ -169,6 +177,29 @@ public class Client  {
                 }
                 RecibeMensajeTarea recibeMuestraCarta= new RecibeMensajeTarea();
                 recibeMuestraCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                break;
+            case "roba":
+                String [] mr = d[1].split("::");
+                String cartaRoba= mr[0];
+                String turnoRoba = mr[1];
+                if (contextID == 0) {
+                    ServerActivity sa = (ServerActivity) context;
+                    sa.reparteCartas(cartaRoba);
+                    if (turnoRoba.equals(id)){
+                        sa.notificaTurno();
+                        sa.setTurno();
+                    }
+                } else {
+                    ClientActivity ca = (ClientActivity) context;
+                    ca.reparteCartas(cartaRoba);
+                    if (turnoRoba.equals(id)) {
+                        ca.notificaTurno();
+                        ca.setTurno();
+                    }
+                }
+                RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
+                recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+
                 break;
             case "apaga":
                 //No comprobado si null que algunas veces recibia null en este caso

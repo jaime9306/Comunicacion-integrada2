@@ -135,4 +135,8 @@ public class Partida {
     public Equipo[] getEquipos() {
         return equipos;
     }
+
+    public Baraja getBaraja() {
+        return baraja;
+    }
 }
