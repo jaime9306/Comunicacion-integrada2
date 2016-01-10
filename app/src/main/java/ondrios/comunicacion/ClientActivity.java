@@ -33,12 +33,12 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private TextView texto_entrada;
     private Spinner spinner;
 
-    protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte;
+    protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4;
     private int modificarX=20;
     private int modificarY=20;
     private int margenX=2000;
     private int margenY=400;
-    private PointF ini1,ini2,ini3,fin;
+    private PointF ini1,ini2,ini3,fin,ini4;
 
 
     private MyParcelableClient parcelable=new MyParcelableClient();
@@ -143,9 +143,12 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta3.setOnTouchListener(handlerMover3);
         cartaFin=(ImageView)findViewById(R.id.c4j1);
         cartaPinte=(ImageView)findViewById(R.id.pinta);
+        carta4 = (ImageView) findViewById(R.id.c1j1);
         ini1=new PointF();
         ini2=new PointF();
         ini3=new PointF();
+        ini4=new PointF();
+        ini4.set(carta4.getX(),carta4.getY());
         fin=new PointF();
     }
 
@@ -216,7 +219,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
                             && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
                         v.setX(cartaFin.getX()+carta1.getWidth());
-                        v.setY(cartaFin.getY()+carta1.getHeight()/2);
+                        v.setY(cartaFin.getY() + carta1.getHeight() / 2);
+                        Drawable c = carta1.getBackground();
+                        cliente.enviaCarta(0);
                     } else {
                         v.setX(ini1.x);
                         v.setY(ini1.y);
@@ -249,8 +254,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                 case MotionEvent.ACTION_UP:
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
                             && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
-                        v.setX(cartaFin.getX()+carta2.getWidth());
-                        v.setY(cartaFin.getY()+carta2.getHeight()/2);
+                        v.setX(cartaFin.getX() + carta2.getWidth());
+                        v.setY(cartaFin.getY()+carta2.getHeight() / 2);
+                        cliente.enviaCarta(1);
                     } else {
                         v.setX(ini2.x);
                         v.setY(ini2.y);
@@ -283,8 +289,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                 case MotionEvent.ACTION_UP:
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
                             && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
-                        v.setX(cartaFin.getX()+carta3.getWidth());
+                        v.setX(cartaFin.getX() + carta3.getWidth());
                         v.setY(cartaFin.getY()+carta3.getHeight()/2);
+                        cliente.enviaCarta(2);
                     } else {
                         v.setX(ini3.x);
                         v.setY(ini3.y);
@@ -393,6 +400,35 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void setPinte(String c){
         cartaPinte.setBackgroundResource(getCarta(c));
+    }
+    public void tiraCartaContrario(String c){
+        ini4.set(carta4.getX(),carta4.getY());
+        carta4.setX(cartaFin.getX()+carta4.getWidth());
+        carta4.setY(cartaFin.getY()+carta4.getHeight());
+        carta4.setBackgroundResource(getCarta(c));
+    }
+    public void reparteCartas(String c, int pos){
+        carta4.setX(ini4.x);
+        carta4.setY(ini4.y);
+        carta4.setBackgroundResource(getCarta("reverso"));
+        switch (pos){
+            case 0:
+                carta1.setX(ini1.x);
+                carta1.setY(ini1.y);
+                setCarta1(c);
+                break;
+            case 1:
+                carta2.setX(ini2.x);
+                carta2.setY(ini2.y);
+                setCarta2(c);
+                break;
+            case 2:
+                carta3.setX(ini3.x);
+                carta3.setY(ini3.y);
+                setCarta3(c);
+                break;
+        }
+
     }
 
 
