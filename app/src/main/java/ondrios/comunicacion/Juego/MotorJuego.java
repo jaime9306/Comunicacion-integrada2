@@ -73,13 +73,23 @@ public class MotorJuego {
             }
         }
         baza.add(tirada);
-        Mensaje mensaje = new Mensaje(null,tirada.getPalo()+Integer.toString(tirada.getNumero()),"");
+        Mensaje mensaje = new Mensaje(null,Integer.toString(jugador)+"::"+tirada.getPalo()+Integer.toString(tirada.getNumero()),"muestra_carta");
         servidor.enviaMensaje(mensaje);
         Equipo [] equipos = partida.getEquipos();
-        Equipo eq1=equipos[0];
-
+        Equipo eq1 = equipos[0];
+        Equipo eq2 = equipos[1];
+        String nombre = Integer.toString(jugador);
+        for(int i = 0; i<eq1.jugadores.length;i++){
+            if(nombre.equals(eq1.jugadores[i])){
+                jugadaEq1.add(tirada);
+            }else if (nombre.equals(eq2.jugadores[i])){
+                jugadaEq2.add(tirada);
+            }
+        }
         if(baza.size()==njugadores){
-
+         if(njugadores==2){
+             Carta ganadora = partida.determinarCartaGanadora(baza.get(0),baza.get(1));
+         }
         }
 
     }

@@ -128,10 +128,10 @@ public class Client  {
                 recibeCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
-                    //sa.setCarta1(cartas[0]);
-                    //sa.setCarta2(cartas[1]);
-                    //sa.setCarta3(cartas[2]);
-                    //sa.setPinte(m[1]);
+                    sa.setCarta1(cartas[0]);
+                    sa.setCarta2(cartas[1]);
+                    sa.setCarta3(cartas[2]);
+                    sa.setPinte(m[1]);
                 } else {
                     ClientActivity ca = (ClientActivity) context;
                     ca.setCarta1(cartas[0]);
@@ -144,20 +144,21 @@ public class Client  {
             case "tira": //Notificacion de que le toca tirar al cliete
                 //Te toca tirar
                 Log.i(TAG, "Te toca tirar");
+                RecibeMensajeTarea recibeTira= new RecibeMensajeTarea();
+                recibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+
                 break;
             case "muestra_carta":
                 String[] mens=d[1].split("::");
                 String carta = mens[1];
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
-                    //sa.setCarta1(cartas[0]);
-                    //sa.setCarta2(cartas[1]);
-                    //sa.setCarta3(cartas[2]);
-                    //sa.setPinte(m[1]);
+                    sa.tiraCartaContrario(carta);
                 } else {
                     ClientActivity ca = (ClientActivity) context;
                     ca.tiraCartaContrario(carta);
                 }
+                break;
             case "apaga":
                 //No comprobado si null que algunas veces recibia null en este caso
                 enviaMensaje("null","OK_apaga");

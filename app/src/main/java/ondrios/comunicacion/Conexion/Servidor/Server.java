@@ -176,12 +176,29 @@ public class Server {
                 String [] d = datos.split("::");
                 int cliente = Integer.valueOf(d[0]);
                 Mensaje mensajeCartas = new Mensaje(clientes.get(cliente),d[1]+"::"+d[2],"cartas");
+                try {
+                    sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 EnviaMensajeTarea enviaCartas = new EnviaMensajeTarea();
                 enviaCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCartas);
+
+                    RecibeMensajeTarea tareaRecibeCartas = new RecibeMensajeTarea();
+                    tareaRecibeCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCartas.getSocket());
+
                 break;
             case "muestra_carta":
-                //Envia la carta a todos los usuarios menos al del turno para que la  muestren
-
+                //Envia la carta a todos los usuarios menos al del turno para que la  muestren <<jugador>>::<<carta>>
+                String [] dmc = mensaje.getMensaje().split("::");
+                int jugador = Integer.valueOf(dmc[0]);
+                for (int i = 0; i<clientes.size();i++){
+                    if (jugador!=i){
+                        Mensaje mensajeMuestraCarta = new Mensaje(clientes.get(i),mensaje.getMensaje(),mensaje.getProtocolo());
+                        EnviaMensajeTarea enviaMuestraCarta = new EnviaMensajeTarea();
+                        enviaMuestraCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeMuestraCarta);
+                    }
+                }
                 break;
             case "tira": //Notifica al cliente que le toca el turno de tirar
                 //El cuerpo del mensaje es un string que pone "null"
