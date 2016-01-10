@@ -1,10 +1,14 @@
 package ondrios.comunicacion;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.TextView;
 
 import com.androidplot.pie.PieChart;
 import com.androidplot.pie.PieRenderer;
@@ -22,7 +26,7 @@ import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public class GraficasPrueba extends AppCompatActivity {
-
+    TextView texto;
     private XYPlot mySimpleXYPlot;
     private PieChart myPie;
     @Override
@@ -33,7 +37,7 @@ public class GraficasPrueba extends AppCompatActivity {
 
         mySimpleXYPlot = (XYPlot) findViewById(R.id.mySimpleXYPlot2);
         Number[] series1Numbers = {65, 70, 50, 65, 62,60};
-        crearGraficaXY(series1Numbers,mySimpleXYPlot);
+        crearGraficaXY(series1Numbers, mySimpleXYPlot);
 
         myPie = (PieChart) findViewById(R.id.PieChart2);
         int ganados=10;
@@ -41,7 +45,13 @@ public class GraficasPrueba extends AppCompatActivity {
         crearGraficaPIE(ganados,"Ganados", perdidos,"Perdidos",myPie);
 
 
+
+
+
+
+
     }
+
 
     private void crearGraficaPIE(int n1,String t1, int n2,String t2, PieChart grafica) {
 
@@ -54,7 +64,7 @@ public class GraficasPrueba extends AppCompatActivity {
 
 
         PieRenderer pieRenderer = grafica.getRenderer(PieRenderer.class);
-        pieRenderer.setDonutSize((float) 0 / 100,   PieRenderer.DonutMode.PERCENT);
+        pieRenderer.setDonutSize((float) 0 / 100, PieRenderer.DonutMode.PERCENT);
     }
 
     public void crearGraficaXY(Number[] arrayNumeros,XYPlot grafica){
@@ -74,5 +84,16 @@ public class GraficasPrueba extends AppCompatActivity {
         grafica.addSeries(series1, series1Format);
     }
 
+    @Override
+    protected void onResume() {
+        // Recogemos las preferencias del sistema.
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(this);
 
+        String text = pref.getString("nombreUsuario", "Usuario");
+        texto = (TextView)findViewById(R.id.textPrueba);
+        texto.setText(text);
+
+        super.onResume();
+    }
 }

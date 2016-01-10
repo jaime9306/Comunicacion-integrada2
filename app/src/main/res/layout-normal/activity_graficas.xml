@@ -37,5 +37,14 @@
             android:layout_width="match_parent"
             android:layout_height="300dp" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:textColor="@android:color/primary_text_dark"
+            android:id="@+id/textPrueba"
+            android:layout_gravity="center_horizontal" />
+
+
     </LinearLayout>
 </ScrollView>
