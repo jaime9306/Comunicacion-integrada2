@@ -33,37 +33,36 @@ public class GraficasPrueba extends AppCompatActivity {
 
         mySimpleXYPlot = (XYPlot) findViewById(R.id.mySimpleXYPlot2);
         Number[] series1Numbers = {65, 70, 50, 65, 62,60};
-        crearGraficaXY(series1Numbers);
+        crearGraficaXY(series1Numbers,mySimpleXYPlot);
 
         myPie = (PieChart) findViewById(R.id.PieChart2);
         int ganados=10;
         int perdidos=25;
-        crearGraficaPIE(ganados, perdidos);
+        crearGraficaPIE(ganados,"Ganados", perdidos,"Perdidos",myPie);
 
 
     }
 
-    private void crearGraficaPIE(int ganados, int perdidos) {
-        myPie.getBackgroundPaint().setColor(Color.WHITE);
+    private void crearGraficaPIE(int ganados,String t1, int perdidos,String t2, PieChart grafica) {
 
-        Segment seg1 = new Segment("Ganados: "+ganados, ganados);
-        Segment seg2 = new Segment("Perdidos: "+perdidos, perdidos);
+        Segment seg1 = new Segment(t1+": "+ganados, ganados);
+        Segment seg2 = new Segment(t2+": "+perdidos, perdidos);
 
-        myPie.getBackgroundPaint().setColor(Color.green(7));
-        myPie.addSeries(seg2, new SegmentFormatter(Color.rgb(0, 100, 0), Color.BLACK, Color.BLACK, Color.BLACK));
-        myPie.addSeries(seg1, new SegmentFormatter(Color.rgb(150, 190, 150), Color.BLACK,Color.BLACK, Color.BLACK));
+        grafica.getBackgroundPaint().setColor(Color.TRANSPARENT);
+        grafica.addSeries(seg2, new SegmentFormatter(Color.rgb(0, 100, 0), Color.BLACK, Color.BLACK, Color.BLACK));
+        grafica.addSeries(seg1, new SegmentFormatter(Color.rgb(150, 190, 150), Color.BLACK,Color.BLACK, Color.BLACK));
 
 
-        PieRenderer pieRenderer = myPie.getRenderer(PieRenderer.class);
+        PieRenderer pieRenderer = grafica.getRenderer(PieRenderer.class);
         pieRenderer.setDonutSize((float) 0 / 100,   PieRenderer.DonutMode.PERCENT);
     }
 
-    public void crearGraficaXY(Number[] arrayNumeros){
+    public void crearGraficaXY(Number[] arrayNumeros,XYPlot grafica){
         // Añadimos Línea Número UNO:
         XYSeries series1 = new SimpleXYSeries(
                 Arrays.asList(arrayNumeros),  // Array de datos
                 SimpleXYSeries.ArrayFormat.Y_VALS_ONLY,
-                " "); // Nombre de la primera serie
+                "Puntuacion"); // Nombre de la primera serie
         PointLabelFormatter p = new PointLabelFormatter(2);
 
         LineAndPointFormatter series1Format = new LineAndPointFormatter(
@@ -71,10 +70,8 @@ public class GraficasPrueba extends AppCompatActivity {
                 Color.rgb(0, 100, 0),                   // Color del punto
                 Color.rgb(150, 190, 150),p);
 
-
-
-        mySimpleXYPlot.addSeries(series1, series1Format);
-
+        grafica.getLegendWidget().setVisible(false);
+        grafica.addSeries(series1, series1Format);
     }
 
 
