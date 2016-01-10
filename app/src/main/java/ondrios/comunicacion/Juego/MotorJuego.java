@@ -101,8 +101,8 @@ public class MotorJuego {
                     partida.getEquipos()[0].añadeMonton(baza.get(1));
 
                 }else if (jugadaEq2.contains(ganadora)){
-                    partida.getEquipos()[0].añadeMonton(baza.get(0));
-                    partida.getEquipos()[0].añadeMonton(baza.get(1));
+                    partida.getEquipos()[1].añadeMonton(baza.get(0));
+                    partida.getEquipos()[1].añadeMonton(baza.get(1));
                 }
                 String juadorGanador = orden.get(baza.indexOf(ganadora));
                 Mensaje mensajeGanador = new Mensaje(null,juadorGanador,"ganador_baza");
@@ -112,6 +112,23 @@ public class MotorJuego {
                 Carta ganadora = partida.determinarCartaGanadora(baza.get(0),baza.get(1));
                 ganadora = partida.determinarCartaGanadora(ganadora ,baza.get(2));
                 ganadora = partida.determinarCartaGanadora(ganadora ,baza.get(3));
+
+                if (jugadaEq1.contains(ganadora)){
+                    partida.getEquipos()[0].añadeMonton(baza.get(0));
+                    partida.getEquipos()[0].añadeMonton(baza.get(1));
+                    partida.getEquipos()[0].añadeMonton(baza.get(2));
+                    partida.getEquipos()[0].añadeMonton(baza.get(3));
+
+                }else if (jugadaEq2.contains(ganadora)){
+                    partida.getEquipos()[1].añadeMonton(baza.get(0));
+                    partida.getEquipos()[1].añadeMonton(baza.get(1));
+                    partida.getEquipos()[1].añadeMonton(baza.get(2));
+                    partida.getEquipos()[1].añadeMonton(baza.get(3));
+                }
+                String juadorGanador = orden.get(baza.indexOf(ganadora));
+                Mensaje mensajeGanador = new Mensaje(null,juadorGanador,"ganador_baza");
+                servidor.setTurno(Integer.valueOf(juadorGanador));
+                servidor.enviaMensaje(mensajeGanador);
             }
         }else{
             Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),"null","tira");
