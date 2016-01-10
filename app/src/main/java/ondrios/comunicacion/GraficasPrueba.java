@@ -43,10 +43,10 @@ public class GraficasPrueba extends AppCompatActivity {
 
     }
 
-    private void crearGraficaPIE(int ganados,String t1, int perdidos,String t2, PieChart grafica) {
+    private void crearGraficaPIE(int n1,String t1, int n2,String t2, PieChart grafica) {
 
-        Segment seg1 = new Segment(t1+": "+ganados, ganados);
-        Segment seg2 = new Segment(t2+": "+perdidos, perdidos);
+        Segment seg1 = new Segment(t1+": "+n1, n1);
+        Segment seg2 = new Segment(t2+": "+n2, n2);
 
         grafica.getBackgroundPaint().setColor(Color.TRANSPARENT);
         grafica.addSeries(seg2, new SegmentFormatter(Color.rgb(0, 100, 0), Color.BLACK, Color.BLACK, Color.BLACK));
