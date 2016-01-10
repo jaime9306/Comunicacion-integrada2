@@ -15,46 +15,20 @@ public class MotorJuego {
     private String TAG = "MotorJuego";
 
     private Server servidor;
-    private int numeroJugadores;
-    private int numeroJuegos;
-    private ArrayList<String> salaDeEspera;
     private Partida partida;
 
-    public MotorJuego(Server server, int numeroJugadores, int numeroJuegos){
-        this.servidor        = server;
-        this.numeroJugadores = numeroJugadores;
-        this.numeroJuegos    = numeroJuegos;
-        this.salaDeEspera    = new ArrayList<>();
-    }
-
-    public void añadeJugador(String nombre){
-        this.salaDeEspera.add(nombre);
+    public MotorJuego(Server server, Partida partida){
+        this.servidor = server;
+        this.partida = partida;
     }
 
     public void inicia(){
-        if(numeroJugadores==2){
-            Jugador jugador1 = new Jugador(salaDeEspera.get(0));
-            Jugador jugador2 = new Jugador(salaDeEspera.get(1));
-            Equipo equipo1   = new Equipo(jugador1);
-            Equipo equipo2   = new Equipo(jugador2);
-            partida          = new Partida(equipo1, equipo2, numeroJuegos);
-            partida.repartir();
-        }else if(numeroJugadores==4){
-            Jugador jugador1 = new Jugador(salaDeEspera.get(0));
-            Jugador jugador2 = new Jugador(salaDeEspera.get(1));
-            Jugador jugador3 = new Jugador(salaDeEspera.get(2));
-            Jugador jugador4 = new Jugador(salaDeEspera.get(3));
-            Equipo equipo1   = new Equipo(jugador1,jugador3);
-            Equipo equipo2   = new Equipo(jugador2,jugador4);
-            partida          = new Partida(equipo1, equipo2, numeroJuegos);
-            partida.repartir();
-        }
+        partida.repartoInicial();
+
         enviaCartas();
-        Carta pinte = partida.asignarTriunfo();
-        enviaPinte(pinte);
+
+        enviaPinte(partida.asignarTriunfo());
     }
-
-
 
     private void enviaCartas(){
         Jugador [] listaJugadores = partida.getListajug();
@@ -65,7 +39,7 @@ public class MotorJuego {
             Carta carta2= cartas[1];
             Carta carta3 = cartas[2];
             //Esta es la parte del null pointer exception con las cartas
-            Log.i(TAG,"Tamaño mano "+cartas.length+" "+carta1.getNumero()+carta2.getNumero()+carta3.getPalo());
+            Log.i(TAG,"Tamaño mano "+cartas.length+" "+carta1.getNumero()+carta2.getNumero()+carta3.getNumero());
             String cartasFormato=Integer.toString(cartas[0].getNumero())+
                     cartas[0].getPalo()+":"+
                     Integer.toString(cartas[1].getNumero())+
@@ -80,13 +54,5 @@ public class MotorJuego {
     private void enviaPinte(Carta pinte){
         Mensaje mensaje = new Mensaje(null,pinte.getNumero()+pinte.getPalo(),"pinte");
         servidor.enviaMensaje(mensaje);
-    }
-
-    public int getJugadorMano(){
-        //Esto solo es valido si se usan los nombres como identificador de clientes
-        //e identificador de turno
-        Jugador [] listaJugadores = partida.getListajug();
-        Jugador mano = listaJugadores[partida.getNumJugadorMano()];
-        return Integer.valueOf(mano.getNombre());
     }
 }

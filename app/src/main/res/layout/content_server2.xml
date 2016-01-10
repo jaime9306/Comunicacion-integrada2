@@ -34,7 +34,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="fill_parent"
+            android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/imageView_1vs1"
             android:layout_weight="1"
@@ -43,10 +43,11 @@
 
         <Space
             android:layout_width="50dp"
-            android:layout_height="20px" />
+            android:layout_height="20px"
+            android:layout_weight="1" />
 
         <ImageView
-            android:layout_width="fill_parent"
+            android:layout_width="150dp"
             android:layout_height="150dp"
             android:id="@+id/imageView_2vs2"
             android:layout_weight="1"
@@ -58,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/boton_crear"
-        android:id="@+id/boton_registrar"
+        android:id="@+id/boton_cre"
         android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

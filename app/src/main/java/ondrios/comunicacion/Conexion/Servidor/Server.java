@@ -16,7 +16,10 @@ import java.util.ArrayList;
 
 import ondrios.comunicacion.Conexion.Mensaje;
 import ondrios.comunicacion.Conexion.NsdHelper;
+import ondrios.comunicacion.Juego.Equipo;
+import ondrios.comunicacion.Juego.Jugador;
 import ondrios.comunicacion.Juego.MotorJuego;
+import ondrios.comunicacion.Juego.Partida;
 import ondrios.comunicacion.ServerActivity;
 
 /**
@@ -26,7 +29,10 @@ public class Server {
 
     private String TAG = "Servidor";
 
-    private final MotorJuego motor;
+    private MotorJuego motor;
+    private Partida partida;
+    private Equipo equipo0;
+    private Equipo equipo1;
 
     private NsdRegister register;
     private ServerSocket serverSocket;
@@ -41,8 +47,8 @@ public class Server {
     private Context context;
 
     /**
-     * Clase servidor. Se encarga de manejar las conexiones, llevar la lgica del juego y
-     * mandar a cada cliente los datos oportuno.
+     * Clase servidor. Se encarga de manejar las conexiones, llevar la logica del juego y
+     * mandar a cada cliente los datos oportunos.
      * @param context Contexto de la actividad donde se crea el servidor.
      * @param serviceName Nombre del servicio con el que se quiere registrar al servidor.
      * @param nclientes Numero de clientes que va a tener el servidor.
@@ -68,9 +74,6 @@ public class Server {
         //Crea una lista de clientes que se van a conectar al servidor
         clientes=new ArrayList<>();
 
-        //Crea el motor que va a llevar el juego
-        this.motor = new MotorJuego(this,nclientes,8);
-
         //Espera tantas peticiones como numero de usuarios se le pasen al constructor.
         for (int i =0; i<nclientes;i++) {
             RecibeClienteTarea recibe = new RecibeClienteTarea();
@@ -86,22 +89,42 @@ public class Server {
         Mensaje mensajeIdentificador = new Mensaje(socketCliente,Integer.toString(clientes.indexOf(socketCliente)),"identificador");
         enviaMensaje(mensajeIdentificador);
 
-        //Añade el jugador conectado al juego (El nombre es demomento el identificador)
-        motor.añadeJugador(Integer.toString(clientes.indexOf(socketCliente)));
-
         if (clientes.size() == nclientes) {
             //Elimina el servicio de la red. Ya no es necesario que este al empezar la partida
             register.quitaServicio();
 
+            //Crea los equipos dependiendo de si son de 2 o 4 jugadores (identificadores provisionales -> Socket.toString())
+            if(clientes.size() == 2){
+                //Crea Jugadores
+                Jugador jugador0 = new Jugador(clientes.get(0).toString());
+                Jugador jugador1 = new Jugador(clientes.get(1).toString());
+
+                //Crea Equipos
+                equipo0 = new Equipo(jugador0);
+                equipo1 = new Equipo(jugador1);
+            } else{
+                if(clientes.size() == 4){
+                    //Crea Jugadores
+                    Jugador jugador0 = new Jugador(clientes.get(0).toString());
+                    Jugador jugador1 = new Jugador(clientes.get(1).toString());
+                    Jugador jugador2 = new Jugador(clientes.get(2).toString());
+                    Jugador jugador3 = new Jugador(clientes.get(3).toString());
+
+                    //Crea Equpos
+                    equipo0 = new Equipo(jugador0, jugador2);
+                    equipo1 = new Equipo(jugador1, jugador3);
+                }
+            }
+
+            //Crea la partida a 8 juegos
+            partida = new Partida(equipo0, equipo1, 8);
+
+            motor = new MotorJuego(this, partida);
+
             //El motor inicia el juego
             motor.inicia();
 
-            //Selecciona que cliente es el turno
-            this.turno = 0;
-
-            //Selecciona que cliente es el turno
-            this.turno = motor.getJugadorMano();
-
+            //ESTO NO ENTIENDO MUY BIEN QUE HACE A SI QUE NO LO TOCO
             ServerActivity sa = (ServerActivity) context;
             sa.notificaClientesCompletados();
 

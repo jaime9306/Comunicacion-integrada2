@@ -43,7 +43,7 @@ public class Partida {
     /**
      * Reparte 3 cartas de la baraja a cada jugador de la partida
      */
-    public void repartir(){
+    public void repartoInicial(){
         int i, j;
 
         baraja.mezclar();
