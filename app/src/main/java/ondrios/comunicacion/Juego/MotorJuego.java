@@ -142,7 +142,7 @@ public class MotorJuego {
             }
 
         }else{
-            Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),"null","tira");
+            Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),Integer.toString(servidor.getTurno()),"tira");
             servidor.enviaMensaje(mensajeTurno);
         }
 

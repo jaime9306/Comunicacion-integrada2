@@ -139,7 +139,7 @@ public class Server {
             Log.i(TAG, "Clientes: " + c);
 
             //Empieza a tirar el jugador que es mano (Se podria enviar un mensaje a los demas para notificar quien empieza.
-            Mensaje mensajeTira = new Mensaje(clientes.get(turno),"null","tira");
+            Mensaje mensajeTira = new Mensaje(clientes.get(turno),Integer.toString(turno),"tira_inicial");
             enviaMensaje(mensajeTira);
         }
 
@@ -210,11 +210,22 @@ public class Server {
             case "tira": //Notifica al cliente que le toca el turno de tirar
                 duerme();
                 //El cuerpo del mensaje es un string que pone "null"
+                for (int i=0;i<nclientes;i++){
+                    Mensaje mensajeTira = new Mensaje(clientes.get(i),Integer.toString(turno),"tira");
+                    EnviaMensajeTarea enviaTiraInicial = new EnviaMensajeTarea();
+                    enviaTiraInicial.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeTira);
+                }
+                RecibeMensajeTarea tareaRecibeTiraIncial = new RecibeMensajeTarea();
+                tareaRecibeTiraIncial.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje.getSocket());
+                break;
+           /* case "tira": //Notifica al cliente que le toca el turno de tirar
+                duerme();
+                //El cuerpo del mensaje es un string que pone "null"
                 EnviaMensajeTarea enviaTira = new EnviaMensajeTarea();
                 enviaTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
                 RecibeMensajeTarea tareaRecibeTira = new RecibeMensajeTarea();
                 tareaRecibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje.getSocket());
-                break;
+                break;*/
             case "ganador_baza":
                 duerme();
                 for (int i = 0; i<clientes.size();i++){

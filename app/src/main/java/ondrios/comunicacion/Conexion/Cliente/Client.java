@@ -144,14 +144,21 @@ public class Client  {
             case "tira": //Notificacion de que le toca tirar al cliete
                 //Te toca tirar
                 Log.i(TAG, "Te toca tirar");
-                if (contextID == 0) {
-                    ServerActivity sa = (ServerActivity) context;
-                    sa.notificaTurno();
-                    sa.setTurno();
+                String lanzador = d[1];
+                if (lanzador.equals(id)){
+                    if (contextID == 0) {
+                        ServerActivity sa = (ServerActivity) context;
+                        sa.notificaTurno();
+                        sa.setTurno();
+                    } else {
+                        ClientActivity ca = (ClientActivity) context;
+                        ca.notificaTurno();
+                        ca.setTurno();
+                    }
+
                 } else {
-                    ClientActivity ca = (ClientActivity) context;
-                    ca.notificaTurno();
-                    ca.setTurno();
+                    RecibeMensajeTarea recibeTira= new RecibeMensajeTarea();
+                    recibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 }
                // RecibeMensajeTarea recibeTira= new RecibeMensajeTarea();
                 //recibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
