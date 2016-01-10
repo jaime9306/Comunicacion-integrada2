@@ -19,6 +19,7 @@ public class MotorJuego {
 
     private int njugadores;
     private ArrayList<Carta> baza;
+    private ArrayList<String> orden;
     private ArrayList<Carta> jugadaEq1;
     private ArrayList<Carta> jugadaEq2;
 
@@ -29,6 +30,9 @@ public class MotorJuego {
         this.partida = partida;
         this.njugadores=this.partida.getListajug().length;
         this.baza=new ArrayList<>();
+        this.orden= new ArrayList<>();
+        this.jugadaEq1= new ArrayList<>();
+        this.jugadaEq2= new ArrayList<>();
     }
 
     public void inicia(){
@@ -70,12 +74,14 @@ public class MotorJuego {
         for(int i = 0;i<listaJugadores.length;i++){
             String nombre = listaJugadores[i].getNombre();
             if (nombre.equals(Integer.toString(jugador))){
-               tirada=listaJugadores[i].echar(carta);
+                orden.add(nombre);
+                tirada=listaJugadores[i].echar(carta);
             }
         }
         baza.add(tirada);
         Mensaje mensaje = new Mensaje(null,Integer.toString(jugador)+"::"+tirada.getPalo()+Integer.toString(tirada.getNumero()),"muestra_carta");
         servidor.enviaMensaje(mensaje);
+        
         Equipo [] equipos = partida.getEquipos();
         Equipo eq1 = equipos[0];
         Equipo eq2 = equipos[1];
@@ -88,16 +94,28 @@ public class MotorJuego {
             }
         }
         if(baza.size()==njugadores){
-         if(njugadores==2){
-             Carta ganadora = partida.determinarCartaGanadora(baza.get(0),baza.get(1));
-         }
-            else{
-             if(njugadores == 4){
-                 Carta ganadora = partida.determinarCartaGanadora(baza.get(0),baza.get(1));
-                 ganadora = partida.determinarCartaGanadora(ganadora ,baza.get(2));
-                 ganadora = partida.determinarCartaGanadora(ganadora ,baza.get(3));
-             }
-         }
+            if(njugadores==2){
+                 Carta ganadora = partida.determinarCartaGanadora(baza.get(0), baza.get(1));
+                if (jugadaEq1.contains(ganadora)){
+                    partida.getEquipos()[0].añadeMonton(baza.get(0));
+                    partida.getEquipos()[0].añadeMonton(baza.get(1));
+
+                }else if (jugadaEq2.contains(ganadora)){
+                    partida.getEquipos()[0].añadeMonton(baza.get(0));
+                    partida.getEquipos()[0].añadeMonton(baza.get(1));
+                }
+                String juadorGanador = orden.get(baza.indexOf(ganadora));
+                Mensaje mensajeGanador = new Mensaje(null,juadorGanador,"ganador_baza");
+                servidor.setTurno(Integer.valueOf(juadorGanador));
+                servidor.enviaMensaje(mensajeGanador);
+            } else if(njugadores == 4){
+                Carta ganadora = partida.determinarCartaGanadora(baza.get(0),baza.get(1));
+                ganadora = partida.determinarCartaGanadora(ganadora ,baza.get(2));
+                ganadora = partida.determinarCartaGanadora(ganadora ,baza.get(3));
+            }
+        }else{
+            Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),"null","tira");
+            servidor.enviaMensaje(mensajeTurno);
         }
 
     }

@@ -199,11 +199,36 @@ public class Server {
                         enviaMuestraCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeMuestraCarta);
                     }
                 }
+                for (int i = 0; i<clientes.size();i++){
+                    if (jugador!=i){
+                        RecibeMensajeTarea tareaRecibeMuestraCartas = new RecibeMensajeTarea();
+                        tareaRecibeMuestraCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(i));
+                    }
+                }
                 break;
             case "tira": //Notifica al cliente que le toca el turno de tirar
                 //El cuerpo del mensaje es un string que pone "null"
                 EnviaMensajeTarea enviaTira = new EnviaMensajeTarea();
                 enviaTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
+                //RecibeMensajeTarea tareaRecibeTira = new RecibeMensajeTarea();
+                //tareaRecibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje.getSocket());
+                break;
+            case "ganador_baza":
+                for (int i = 0; i<clientes.size();i++){
+                    Mensaje mensajeMuestraGanador = new Mensaje(clientes.get(i),mensaje.getMensaje(),mensaje.getProtocolo());
+                    EnviaMensajeTarea enviaMuestraGanador = new EnviaMensajeTarea();
+                    enviaMuestraGanador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
+                    RecibeMensajeTarea tareaRecibeMuestraGanador = new RecibeMensajeTarea();
+                    tareaRecibeMuestraGanador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(i));
+                }
+                try {
+                    sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Mensaje mTira = new Mensaje(clientes.get(turno),"null","tira");
+                enviaMensaje(mTira);
+                break;
             case "apaga":
                 //Envia la señal de apagado al cliente
                 EnviaMensajeTarea enviaApaga = new EnviaMensajeTarea();
@@ -356,5 +381,17 @@ public class Server {
 
     public String getAddress(){
         return serverSocket.getInetAddress().getHostAddress();
+    }
+
+    public ArrayList<Socket> getClientes() {
+        return clientes;
+    }
+
+    public void setTurno(int turno) {
+        this.turno = turno;
+    }
+
+    public int getTurno() {
+        return turno;
     }
 }

@@ -167,6 +167,8 @@ public class Client  {
                     ClientActivity ca = (ClientActivity) context;
                     ca.tiraCartaContrario(carta);
                 }
+                RecibeMensajeTarea recibeMuestraCarta= new RecibeMensajeTarea();
+                recibeMuestraCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 break;
             case "apaga":
                 //No comprobado si null que algunas veces recibia null en este caso
