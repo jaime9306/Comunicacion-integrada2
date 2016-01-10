@@ -123,9 +123,22 @@ public class Client  {
                 String [] m = d[1].split("::");
                 String [] cartas = m[0].split(":");
                 //Publica en la vista las cartas
-                Log.i(TAG,"Las cartas son: "+cartas[0]+" "+cartas[1]+" "+cartas[2]+" y el pinte es "+m[1]);
+                Log.i(TAG, "Las cartas son: " + cartas[0] + " " + cartas[1] + " " + cartas[2] + " y el pinte es " + m[1]);
                 RecibeMensajeTarea recibeCartas= new RecibeMensajeTarea();
                 recibeCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                if (contextID == 0) {
+                    ServerActivity sa = (ServerActivity) context;
+                    //sa.setCarta1(cartas[0]);
+                    //sa.setCarta2(cartas[1]);
+                    //sa.setCarta3(cartas[2]);
+                    //sa.setPinte(m[1]);
+                } else {
+                    ClientActivity ca = (ClientActivity) context;
+                    ca.setCarta1(cartas[0]);
+                    ca.setCarta2(cartas[1]);
+                    ca.setCarta3(cartas[2]);
+                    ca.setPinte(m[1]);
+                }
 
                 break;
             case "tira": //Notificacion de que le toca tirar al cliete
