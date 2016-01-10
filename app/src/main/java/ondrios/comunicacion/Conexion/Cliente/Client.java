@@ -188,6 +188,9 @@ public class Client  {
                     if (turnoRoba.equals(id)){
                         sa.notificaTurno();
                         sa.setTurno();
+                    }else {
+                        RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
+                        recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                     }
                 } else {
                     ClientActivity ca = (ClientActivity) context;
@@ -195,10 +198,12 @@ public class Client  {
                     if (turnoRoba.equals(id)) {
                         ca.notificaTurno();
                         ca.setTurno();
+                    }else {
+                        RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
+                        recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                     }
                 }
-                RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
-                recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+
 
                 break;
             case "apaga":
