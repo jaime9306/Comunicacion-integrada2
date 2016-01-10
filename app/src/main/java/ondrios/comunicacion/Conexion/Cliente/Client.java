@@ -147,9 +147,11 @@ public class Client  {
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
                     sa.notificaTurno();
+                    sa.setTurno();
                 } else {
                     ClientActivity ca = (ClientActivity) context;
                     ca.notificaTurno();
+                    ca.setTurno();
                 }
                 RecibeMensajeTarea recibeTira= new RecibeMensajeTarea();
                 recibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);

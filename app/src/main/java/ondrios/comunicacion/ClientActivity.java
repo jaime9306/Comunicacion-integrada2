@@ -33,6 +33,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private TextView estado;
     private TextView texto_entrada;
     private Spinner spinner;
+    private boolean turno;
 
     protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4;
     private int modificarX=20;
@@ -151,6 +152,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         ini4=new PointF();
         ini4.set(carta4.getX(),carta4.getY());
         fin=new PointF();
+        turno=false;
     }
 
     public void muestraBotones(){
@@ -218,11 +220,12 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                     break;
                 case MotionEvent.ACTION_UP:
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
-                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
+                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()&&turno){
                         v.setX(cartaFin.getX() + carta1.getWidth());
                         v.setY(cartaFin.getY() + carta1.getHeight() / 2);
                         Drawable c = carta1.getBackground();
                         cliente.enviaCarta(0);
+                        turno=false;
                     } else {
                         v.setX(ini1.x);
                         v.setY(ini1.y);
@@ -254,10 +257,11 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                     break;
                 case MotionEvent.ACTION_UP:
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
-                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
+                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()&&turno){
                         v.setX(cartaFin.getX() + carta2.getWidth());
                         v.setY(cartaFin.getY()+carta2.getHeight() / 2);
                         cliente.enviaCarta(1);
+                        turno = false;
                     } else {
                         v.setX(ini2.x);
                         v.setY(ini2.y);
@@ -289,10 +293,11 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                     break;
                 case MotionEvent.ACTION_UP:
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
-                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
+                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight() && turno){
                         v.setX(cartaFin.getX() + carta3.getWidth());
                         v.setY(cartaFin.getY()+carta3.getHeight()/2);
                         cliente.enviaCarta(2);
+                        turno=false;
                     } else {
                         v.setX(ini3.x);
                         v.setY(ini3.y);
@@ -407,6 +412,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta4.setX(cartaFin.getX()+carta4.getWidth());
         carta4.setY(cartaFin.getY()+carta4.getHeight());
         carta4.setBackgroundResource(getCarta(c));
+    }
+    public void setTurno(){
+        this.turno=true;
     }
     public void notificaTurno(){
         Toast turno = Toast.makeText(getApplicationContext(),

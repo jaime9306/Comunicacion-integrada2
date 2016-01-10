@@ -35,6 +35,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     private int margenX=2000;
     private int margenY=400;
     private PointF ini1,ini2,ini3,fin,ini4;
+    private boolean turno;
 
     private MyParcelableServer parcelable=new MyParcelableServer();
 
@@ -145,11 +146,12 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                     break;
                 case MotionEvent.ACTION_UP:
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
-                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
+                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()&&turno){
                         v.setX(cartaFin.getX()+carta1.getWidth());
                         v.setY(cartaFin.getY() + carta1.getHeight() / 2);
                         Drawable c = carta1.getBackground();
                         cliente.enviaCarta(0);
+                        turno=false;
                     } else {
                         v.setX(ini1.x);
                         v.setY(ini1.y);
@@ -181,10 +183,11 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                     break;
                 case MotionEvent.ACTION_UP:
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
-                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
+                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()&&turno){
                         v.setX(cartaFin.getX() + carta2.getWidth());
                         v.setY(cartaFin.getY()+carta2.getHeight() / 2);
                         cliente.enviaCarta(1);
+                        turno=false;
                     } else {
                         v.setX(ini2.x);
                         v.setY(ini2.y);
@@ -216,10 +219,11 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                     break;
                 case MotionEvent.ACTION_UP:
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
-                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
+                            && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()&&turno){
                         v.setX(cartaFin.getX() + carta3.getWidth());
                         v.setY(cartaFin.getY()+carta3.getHeight()/2);
                         cliente.enviaCarta(2);
+                        turno=false;
                     } else {
                         v.setX(ini3.x);
                         v.setY(ini3.y);
@@ -364,7 +368,9 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
 
         turno.show();
     }
-
+    public void setTurno(){
+        turno=true;
+    }
     public void publicaMensaje(String mensaje){
         this.m=mensaje;
         texto_entrada.setText(m);
