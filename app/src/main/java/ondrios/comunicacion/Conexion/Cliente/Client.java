@@ -81,12 +81,13 @@ public class Client  {
 
     public void recibeMensaje(String datos){
         String [] d = datos.split("&");
-        RecibeMensajeTarea recibeMensaje= new RecibeMensajeTarea();
+
         switch (d[0]){
             case "identificador": //Recibe el identificador que le ha dado el servidor
                 id = d[1];
                 Log.i(TAG,"Indentificador añadido "+id);
-                recibeMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                RecibeMensajeTarea recibeIdentificador= new RecibeMensajeTarea();
+                recibeIdentificador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 break;
 
             case "repite":  //Publica el mensaje que ha repetido el servidor
@@ -113,24 +114,23 @@ public class Client  {
                         ClientActivity ca = (ClientActivity) context;
                         ca.publicaMensaje(cuerpoDelMensaje);
                     }
-                    recibeMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                    RecibeMensajeTarea recibeRepite= new RecibeMensajeTarea();
+                    recibeRepite.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 }
                 break;
             case "cartas": //Publica las cartas que le ha dado el servidor
                 //Formato cartas, ej: o1:o2:o3
-                String [] cartas = d[1].split(":");
+                String [] m = d[1].split("::");
+                String [] cartas = m[0].split(":");
                 //Publica en la vista las cartas
-                Log.i(TAG,"Las cartas son: "+cartas[0]+" "+cartas[1]+" "+cartas[2]);
-                break;
-            case "pinte": //Publica el pinte que le ha dado el servidor
-                //Formato pinte, ej: o1
-                String pinte = d[1];
-                //Publica el pinte
-                Log.i(TAG,"El pinte es: "+pinte);
+                Log.i(TAG,"Las cartas son: "+cartas[0]+" "+cartas[1]+" "+cartas[2]+" y el pinte es "+m[1]);
+                RecibeMensajeTarea recibeCartas= new RecibeMensajeTarea();
+                recibeCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                
                 break;
             case "tira": //Notificacion de que le toca tirar al cliete
                 //Te toca tirar
-                Log.i(TAG,"Te toca tirar");
+                Log.i(TAG, "Te toca tirar");
                 break;
             case "apaga":
                 //No comprobado si null que algunas veces recibia null en este caso
@@ -150,10 +150,11 @@ public class Client  {
     }
 
     public void enviaMensaje(String datos,String protocolo){
-        EnviaMensajeTarea enviaMensaje = new EnviaMensajeTarea();
-        RecibeMensajeTarea recibeMensaje= new RecibeMensajeTarea();
+
         switch (protocolo){
             case "mensaje":
+                EnviaMensajeTarea enviaMensaje = new EnviaMensajeTarea();
+                RecibeMensajeTarea recibeMensaje= new RecibeMensajeTarea();
                 Mensaje mensaje = new Mensaje(socketServidor,datos,protocolo);
                 enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
                 recibeMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);

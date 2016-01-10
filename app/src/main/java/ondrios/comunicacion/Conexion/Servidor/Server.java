@@ -22,6 +22,8 @@ import ondrios.comunicacion.Juego.MotorJuego;
 import ondrios.comunicacion.Juego.Partida;
 import ondrios.comunicacion.ServerActivity;
 
+import static java.lang.Thread.sleep;
+
 /**
  * Created by Mario on 29/12/2015.
  */
@@ -122,7 +124,11 @@ public class Server {
             partida = new Partida(equipo0, equipo1, 8);
 
             motor = new MotorJuego(this, partida);
-
+            try {
+                sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             //El motor inicia el juego
             motor.inicia();
 
@@ -134,7 +140,7 @@ public class Server {
             for (int i = 0; i<clientes.size();i++){
                 c=c+clientes.get(i).getInetAddress().getHostAddress()+" ";
             }
-            Log.e(TAG, "Clientes: " + c);
+            Log.i(TAG, "Clientes: " + c);
 
             //Empieza a tirar el jugador que es mano (Se podria enviar un mensaje a los demas para notificar quien empieza.
             Mensaje mensajeTira = new Mensaje(clientes.get(turno),"null","tira");
@@ -144,47 +150,47 @@ public class Server {
     }
 
     public void enviaMensaje(Mensaje mensaje){
-        EnviaMensajeTarea enviaMensaje = new EnviaMensajeTarea();
-        RecibeMensajeTarea tareaRecibe = new RecibeMensajeTarea();
+
         switch (mensaje.getProtocolo()){
             case "identificador":
                 //Otorga un identificador al cliente
-                enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
+                EnviaMensajeTarea enviaIdentificador = new EnviaMensajeTarea();
+                enviaIdentificador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
                 break;
             case "mensaje":
                 //Mensaje directo al cliene
+                EnviaMensajeTarea enviaMensaje = new EnviaMensajeTarea();
                 enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
                 break;
             case "repite":
                 //El formato del mensaje de este protocolo es <<turno>>::<<mensaje>>
                 String datosEmpieza = turno+"::"+mensaje.getMensaje();
                 mensaje.setMensaje(datosEmpieza);
-                enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
+                EnviaMensajeTarea enviaRepite = new EnviaMensajeTarea();
+                enviaRepite.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
                 //Se queda esperando la respuesta del cliente del que es turno.
                 if(mensaje.getSocket().equals(clientes.get(turno))) {
+                    RecibeMensajeTarea tareaRecibe = new RecibeMensajeTarea();
                     tareaRecibe.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(turno));
                 }
                 break;
-            case "cartas": //Envia al cliente las cartas que le han toccado
-                //Formato del mensaje <<carta1>>:<<carta2>>:<<carta3>>
+            case "cartas": //Envia al cliente las cartas y pinteque le han toccado
+                //Formato del mensaje <<carta1>>:<<carta2>>:<<carta3>>::<<pinte>>
                 String datos = mensaje.getMensaje();
                 String [] d = datos.split("::");
                 int cliente = Integer.valueOf(d[0]);
-                Mensaje mensajeCartas = new Mensaje(clientes.get(cliente),d[1],"cartas");
-                enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCartas);
-                break;
-            case "pinte": //Envia a todos los clientes el pinte
-                for (int i = 0;i<nclientes;i++){
-                    mensaje.setSocket(clientes.get(i));
-                    enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
-                }
+                Mensaje mensajeCartas = new Mensaje(clientes.get(cliente),d[1]+"::"+d[2],"cartas");
+                EnviaMensajeTarea enviaCartas = new EnviaMensajeTarea();
+                enviaCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCartas);
                 break;
             case "tira": //Notifica al cliente que le toca el turno de tirar
                 //El cuerpo del mensaje es un string que pone "null"
-                enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
+                EnviaMensajeTarea enviaTira = new EnviaMensajeTarea();
+                enviaTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
             case "apaga":
                 //Envia la señal de apagado al cliente
-                enviaMensaje.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
+                EnviaMensajeTarea enviaApaga = new EnviaMensajeTarea();
+                enviaApaga.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje);
                 break;
         }
     }
@@ -299,7 +305,7 @@ public class Server {
             String datos = protocolo + "&" + mensaje;
             if (apagado){this.cancel(true);}
             try {
-                Log.e(TAG, "Enviando mensaje a " + socket.getInetAddress().getHostAddress());
+                Log.e(TAG, "Enviando mensaje a " + socket.getInetAddress().getHostAddress()+" "+datos);
                 PrintWriter escritor = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
                 escritor.println(datos);
                 escritor.flush();
