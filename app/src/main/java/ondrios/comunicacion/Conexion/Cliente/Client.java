@@ -126,7 +126,7 @@ public class Client  {
                 Log.i(TAG,"Las cartas son: "+cartas[0]+" "+cartas[1]+" "+cartas[2]+" y el pinte es "+m[1]);
                 RecibeMensajeTarea recibeCartas= new RecibeMensajeTarea();
                 recibeCartas.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
-                
+
                 break;
             case "tira": //Notificacion de que le toca tirar al cliete
                 //Te toca tirar
