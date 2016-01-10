@@ -50,8 +50,8 @@ public class Partida {
 
         for(i = 0; i < 3; i++){
             for(j = 0; j < listajug.length; j++){
-                listajug[numJugadorMano].robar(baraja.saca());
-                numJugadorMano = (numJugadorMano++)%listajug.length;//vuelve a 0 cuando roba el
+                listajug[j].robar(baraja.saca());
+                //numJugadorMano = (numJugadorMano++)%listajug.length;//vuelve a 0 cuando roba el
                                                                     // ultimo jugador de la lista
             }
         }

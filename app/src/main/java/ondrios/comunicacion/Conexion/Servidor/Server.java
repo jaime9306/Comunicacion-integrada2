@@ -96,8 +96,10 @@ public class Server {
             //Crea los equipos dependiendo de si son de 2 o 4 jugadores (identificadores provisionales -> Socket.toString())
             if(clientes.size() == 2){
                 //Crea Jugadores
-                Jugador jugador0 = new Jugador(clientes.get(0).toString());
-                Jugador jugador1 = new Jugador(clientes.get(1).toString());
+                //Jugador jugador0 = new Jugador(clientes.get(0).toString());
+                //Jugador jugador1 = new Jugador(clientes.get(1).toString());
+                Jugador jugador0= new Jugador("0");
+                Jugador jugador1= new Jugador("1");
 
                 //Crea Equipos
                 equipo0 = new Equipo(jugador0);
