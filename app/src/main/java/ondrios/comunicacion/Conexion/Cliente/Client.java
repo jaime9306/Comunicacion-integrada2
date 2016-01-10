@@ -144,6 +144,13 @@ public class Client  {
             case "tira": //Notificacion de que le toca tirar al cliete
                 //Te toca tirar
                 Log.i(TAG, "Te toca tirar");
+                if (contextID == 0) {
+                    ServerActivity sa = (ServerActivity) context;
+                    sa.notificaTurno();
+                } else {
+                    ClientActivity ca = (ClientActivity) context;
+                    ca.notificaTurno();
+                }
                 RecibeMensajeTarea recibeTira= new RecibeMensajeTarea();
                 recibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
 

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import ondrios.comunicacion.Conexion.Cliente.Client;
 import ondrios.comunicacion.Conexion.Servidor.MyParcelableServer;
@@ -356,6 +357,12 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                 break;
         }
 
+    }
+    public void notificaTurno(){
+        Toast turno = Toast.makeText(getApplicationContext(),
+                "Es tu turno", Toast.LENGTH_SHORT);
+
+        turno.show();
     }
 
     public void publicaMensaje(String mensaje){

@@ -233,6 +233,9 @@ public class Server {
                 break;
             case "tira_carta":
                 int jugador = turno-1;
+                if(jugador==-1){
+                    jugador=nclientes-1;
+                }
                 motor.tiraCarta(jugador,Integer.valueOf(d[1]));
                 break;
             case "OK_apaga":

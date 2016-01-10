@@ -69,7 +69,7 @@ public class MotorJuego {
         for(int i = 0;i<listaJugadores.length;i++){
             String nombre = listaJugadores[i].getNombre();
             if (nombre.equals(Integer.toString(jugador))){
-               tirada=listaJugadores[i].echar(i);
+               tirada=listaJugadores[i].echar(carta);
             }
         }
         baza.add(tirada);

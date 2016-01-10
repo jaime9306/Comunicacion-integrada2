@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -218,7 +219,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                 case MotionEvent.ACTION_UP:
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
                             && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()){
-                        v.setX(cartaFin.getX()+carta1.getWidth());
+                        v.setX(cartaFin.getX() + carta1.getWidth());
                         v.setY(cartaFin.getY() + carta1.getHeight() / 2);
                         Drawable c = carta1.getBackground();
                         cliente.enviaCarta(0);
@@ -406,6 +407,12 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta4.setX(cartaFin.getX()+carta4.getWidth());
         carta4.setY(cartaFin.getY()+carta4.getHeight());
         carta4.setBackgroundResource(getCarta(c));
+    }
+    public void notificaTurno(){
+        Toast turno = Toast.makeText(getApplicationContext(),
+                "Es tu turno", Toast.LENGTH_SHORT);
+
+        turno.show();
     }
     public void reparteCartas(String c, int pos){
         carta4.setX(ini4.x);
