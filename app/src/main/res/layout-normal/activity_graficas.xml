@@ -32,5 +32,10 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
         />
+        <com.androidplot.pie.PieChart
+            android:id="@+id/PieChart2"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
+
     </LinearLayout>
 </ScrollView>

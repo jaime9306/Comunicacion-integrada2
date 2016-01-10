@@ -46,6 +46,7 @@ public class MotorJuego {
             Carta carta1= cartas[0];
             Carta carta2= cartas[1];
             Carta carta3 = cartas[2];
+            Log.i(TAG,"Tamaño mano "+cartas.length);
             //Esta es la parte del null pointer exception con las cartas
             Log.i(TAG,"Tamaño mano "+cartas.length+" "+carta1.getNumero()+carta2.getNumero()+carta3.getNumero());
             String cartasFormato=cartas[0].getPalo()+Integer.toString(cartas[0].getNumero())+":"+
