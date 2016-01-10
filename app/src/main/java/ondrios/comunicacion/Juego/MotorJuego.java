@@ -91,6 +91,13 @@ public class MotorJuego {
          if(njugadores==2){
              Carta ganadora = partida.determinarCartaGanadora(baza.get(0),baza.get(1));
          }
+            else{
+             if(njugadores == 4){
+                 Carta ganadora = partida.determinarCartaGanadora(baza.get(0),baza.get(1));
+                 ganadora = partida.determinarCartaGanadora(ganadora ,baza.get(2));
+                 ganadora = partida.determinarCartaGanadora(ganadora ,baza.get(3));
+             }
+         }
         }
 
     }
