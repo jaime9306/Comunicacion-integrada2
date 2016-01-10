@@ -139,7 +139,7 @@ public class Server {
             Log.i(TAG, "Clientes: " + c);
 
             //Empieza a tirar el jugador que es mano (Se podria enviar un mensaje a los demas para notificar quien empieza.
-            Mensaje mensajeTira = new Mensaje(clientes.get(turno),Integer.toString(turno),"tira_inicial");
+            Mensaje mensajeTira = new Mensaje(clientes.get(turno),Integer.toString(turno),"tira");
             enviaMensaje(mensajeTira);
         }
 
