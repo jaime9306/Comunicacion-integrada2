@@ -355,6 +355,9 @@ public class Client  {
                     if(contextID==1){
                         ClientActivity c = (ClientActivity)context;
                         c.notificaApaga();
+                    }else{
+                        ServerActivity s = (ServerActivity)context;
+                        s.notificaApaga();
                     }
                     Log.i(TAG,"Desconectado");
                 } catch (IOException e) {
