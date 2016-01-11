@@ -238,17 +238,36 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
         }}
 
     private void borrarDatos() {
-
-
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,
+                "brisca", null, 1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+        db.execSQL("DELETE FROM partidas;");
+        db.close();
+        Intent intentBD = new Intent(Estadisticas.this,Estadisticas.class);
+        startActivity(intentBD);
     }
     private void script() {
         AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,
                 "brisca", null, 1);
         SQLiteDatabase db = admin.getWritableDatabase();
         Long tiempo=System.currentTimeMillis();
-
-        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+Long.toString(tiempo)+",60,60,60);", null);
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",60,60,60);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",66,66,60);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",70,70,60);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",70,70,160);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",70,70,60);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",75,75,160);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",30,60,60);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",45,75,60);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",70,70,160);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",80,80,160);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",40,40,60);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",45,45,50);");
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",68,68,60);");
         db.close();
+
+        Intent intentBD = new Intent(Estadisticas.this,Estadisticas.class);
+        startActivity(intentBD);
     }
 
 
