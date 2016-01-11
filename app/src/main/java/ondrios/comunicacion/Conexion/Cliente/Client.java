@@ -182,38 +182,11 @@ public class Client  {
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
                     sa.tiraCartaContrario(carta);
-                    if(quedan<=3){
-                        switch (quedan){
-                            case 3:
-                                sa.eliminaUna();
-                                quedan--;
-                                break;
-                            case 2:
-                                sa.eliminaDos();
-                                quedan--;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
 
                 } else {
                     ClientActivity ca = (ClientActivity) context;
                     ca.tiraCartaContrario(carta);
-                    if(quedan<=3){
-                        switch (quedan){
-                            case 3:
-                                ca.eliminaUna();
-                                quedan--;
-                                break;
-                            case 2:
-                                ca.eliminaDos();
-                                quedan--;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
+
                 }
                 RecibeMensajeTarea recibeMuestraCarta= new RecibeMensajeTarea();
                 recibeMuestraCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
@@ -280,6 +253,18 @@ public class Client  {
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
                     sa.recogeSinMazo();
+                    if(quedan<=3){
+                        switch (quedan){
+                            case 3:
+                                sa.eliminaUna();
+                                break;
+                            case 2:
+                                sa.eliminaDos();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     if (turnoRoban.equals(id)){
                         sa.notificaTurno();
                         sa.setTurno();
@@ -292,6 +277,18 @@ public class Client  {
                 } else {
                     ClientActivity ca = (ClientActivity) context;
                     ca.recogeSinMazo();
+                    if(quedan<=3){
+                        switch (quedan){
+                            case 3:
+                                ca.eliminaUna();
+                                break;
+                            case 2:
+                                ca.eliminaDos();
+                                break;
+                            default:
+                                break;
+                        }
+                    }
                     if (turnoRoban.equals(id)) {
                         ca.notificaTurno();
                         ca.setTurno();
