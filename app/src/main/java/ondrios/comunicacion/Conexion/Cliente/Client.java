@@ -31,7 +31,6 @@ public class Client  {
     private int contextID;
 
     private NsdFinder finder;
-    private boolean hasTirado;
     private Socket socketServidor;
 
     private String id;
@@ -42,7 +41,6 @@ public class Client  {
         this.contextID = id;
         this.finder = new NsdFinder(this);
         this.finder.iniciaBusqueda();
-        hasTirado=false;
     }
 
     public Client (Context context, int port, int id){
@@ -146,8 +144,6 @@ public class Client  {
                 break;
             case "tira": //Notificacion de que le toca tirar al cliete
                 //Te toca tirar
-
-
                 Log.i(TAG, "Te toca tirar");
                 String lanzador = d[1];
                 if (lanzador.equals(id)){
@@ -155,41 +151,20 @@ public class Client  {
                         ServerActivity sa = (ServerActivity) context;
                         sa.notificaTurno();
                         sa.setTurno();
-                        hasTirado=true;
+                        if(quedan<3){
+                            sa.recogeSinMazo();
+                        }
                     } else {
                         ClientActivity ca = (ClientActivity) context;
                         ca.notificaTurno();
                         ca.setTurno();
-                        hasTirado=true;
+                        if(quedan<3){
+                            ca.recogeSinMazo();
+                        }
                     }
 
                 } else {
-                    if(hasTirado) {
-                        switch (quedan) {
-                            case 2:
-                                if (contextID == 0) {
-                                    ServerActivity sa = (ServerActivity) context;
-                                    sa.eliminaUna();
-                                } else {
-                                    ClientActivity ca = (ClientActivity) context;
-                                    ca.eliminaUna();
-                                }
-                                quedan--;
-                                break;
-                            case 1:
-                                if (contextID == 0) {
-                                    ServerActivity sa = (ServerActivity) context;
-                                    sa.eliminaDos();
-                                } else {
-                                    ClientActivity ca = (ClientActivity) context;
-                                    ca.eliminaDos();
-                                }
-                                quedan--;
-                                break;
-                            default:
-                                break;
-                        }
-                    }
+
                     RecibeMensajeTarea recibeTira= new RecibeMensajeTarea();
                     recibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 }
@@ -211,9 +186,34 @@ public class Client  {
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
                     sa.tiraCartaContrario(carta);
+
                 } else {
                     ClientActivity ca = (ClientActivity) context;
                     ca.tiraCartaContrario(carta);
+                }
+                switch(quedan){
+                    case 2:
+                        if (contextID == 0) {
+                            ServerActivity sa = (ServerActivity) context;
+                            sa.eliminaUna();
+                        } else {
+                            ClientActivity ca = (ClientActivity) context;
+                            ca.eliminaUna();
+                        }
+                        quedan--;
+                        break;
+                    case 1:
+                        if (contextID == 0) {
+                            ServerActivity sa = (ServerActivity) context;
+                            sa.eliminaDos();
+                        } else {
+                            ClientActivity ca = (ClientActivity) context;
+                            ca.eliminaDos();
+                        }
+                        quedan--;
+                        break;
+                    default:
+                        break;
                 }
                 RecibeMensajeTarea recibeMuestraCarta= new RecibeMensajeTarea();
                 recibeMuestraCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);

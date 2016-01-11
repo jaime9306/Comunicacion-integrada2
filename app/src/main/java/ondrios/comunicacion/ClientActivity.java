@@ -415,6 +415,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void eliminaUna(){
         carta6.setVisibility(View.INVISIBLE);
+
+    }
+    public void recogeSinMazo(){
         switch (posVacia){
             case 0:
                 carta1.setVisibility(View.INVISIBLE);
@@ -429,17 +432,6 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void eliminaDos(){
         carta5.setVisibility(View.INVISIBLE);
-        switch (posVacia){
-            case 0:
-                carta1.setVisibility(View.INVISIBLE);
-                break;
-            case 1:
-                carta2.setVisibility(View.INVISIBLE);
-                break;
-            case 2:
-                carta3.setVisibility(View.INVISIBLE);
-                break;
-        }
     }
     public void reparteCartas(String c){
 

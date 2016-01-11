@@ -414,6 +414,9 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void eliminaUna(){
         carta6.setVisibility(View.INVISIBLE);
+
+    }
+    public void recogeSinMazo(){
         switch (posVacia){
             case 0:
                 carta1.setVisibility(View.INVISIBLE);
@@ -428,17 +431,6 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void eliminaDos(){
         carta5.setVisibility(View.INVISIBLE);
-        switch (posVacia){
-            case 0:
-                carta1.setVisibility(View.INVISIBLE);
-                break;
-            case 1:
-                carta2.setVisibility(View.INVISIBLE);
-                break;
-            case 2:
-                carta3.setVisibility(View.INVISIBLE);
-                break;
-        }
     }
     public void notificaTurno(){
         Toast turno = Toast.makeText(getApplicationContext(),
