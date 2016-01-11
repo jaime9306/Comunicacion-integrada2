@@ -254,7 +254,7 @@ public class Client  {
                     }
                 } else {
                     ClientActivity ca = (ClientActivity) context;
-                    ca.reparteCartas(cartaRobaPinte);
+                    ca.desaparecePinte(cartaRobaPinte);
                     if (turnoRobaPinte.equals(id)) {
                         ca.notificaTurno();
                         ca.setTurno();
