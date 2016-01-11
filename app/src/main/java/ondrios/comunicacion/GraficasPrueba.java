@@ -2,12 +2,16 @@ package ondrios.comunicacion;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.androidplot.pie.PieChart;
@@ -23,7 +27,12 @@ import com.androidplot.xy.*;
 
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.Iterator;
+
+import ondrios.comunicacion.BD.AdminSQLiteOpenHelper;
 
 public class GraficasPrueba extends AppCompatActivity {
     TextView texto;
@@ -35,19 +44,13 @@ public class GraficasPrueba extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graficas);
 
-        mySimpleXYPlot = (XYPlot) findViewById(R.id.mySimpleXYPlot2);
-        Number[] series1Numbers = {65, 70, 50, 65, 62,60};
-        crearGraficaXY(series1Numbers, mySimpleXYPlot);
+        ver();
+
 
         myPie = (PieChart) findViewById(R.id.PieChart2);
         int ganados=10;
         int perdidos=25;
         crearGraficaPIE(ganados,"Ganados", perdidos,"Perdidos",myPie);
-
-
-
-
-
 
 
     }
@@ -95,5 +98,39 @@ public class GraficasPrueba extends AppCompatActivity {
         texto.setText(text);
 
         super.onResume();
+    }
+
+    public void ver(){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,
+                "brisca", null, 1);
+        SQLiteDatabase bd = admin.getReadableDatabase();
+
+        Cursor cur= bd.rawQuery("select puntEquipo from partidas", null);
+        int total = cur.getCount();
+        int media=0;
+        ArrayList puntuaciones=new ArrayList();
+        while (cur.moveToNext()){
+            Log.i("PutaID", Integer.toString(cur.getInt(0)));
+
+
+            puntuaciones.add(cur.getInt(0));
+         media+=cur.getInt(0);
+        }
+        if(total!=0) {
+            media /= total;
+        }
+        Number[] puntos=new Number[puntuaciones.size()];
+        Iterator it = puntuaciones.iterator();
+        int i=0;
+        while(it.hasNext()){
+            puntos[i]=(Number)it.next();
+            Log.i("Puta",puntos[i].toString());
+            i++;
+        }
+
+        bd.close();
+        mySimpleXYPlot = (XYPlot) findViewById(R.id.mySimpleXYPlot2);
+        crearGraficaXY(puntos, mySimpleXYPlot);
+
     }
 }
