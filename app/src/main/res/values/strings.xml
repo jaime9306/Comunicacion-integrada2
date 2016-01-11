@@ -128,6 +128,8 @@
     <string name="puntuacionPer">La puntuación del perdedor ha sido de:</string>
     <string name="final_partida">La partida ha finalizado</string>
     <string name="volver">Volver</string>
+    <string name="hasGanado">Has ganado</string>
+    <string name="hasPerdido">Has perdido</string>
 
     <!--Preferencias-->
     <string name="ingles">Ingles</string>

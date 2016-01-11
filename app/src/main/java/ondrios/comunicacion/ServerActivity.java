@@ -470,7 +470,12 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void notificaFinal(String[] datos){
         Intent finalPartida = new Intent(ServerActivity.this,FinPartidaActivity.class);
-        finalPartida.putExtra("ganador",datos);
+        finalPartida.putExtra("ganador", datos);
+        if(cliente.getIdentificador().equals(datos[0])) {
+            finalPartida.putExtra("quien", "true");
+        } else {
+            finalPartida.putExtra("quien", "false");
+        }
         startActivity(finalPartida);
         finish();
     }

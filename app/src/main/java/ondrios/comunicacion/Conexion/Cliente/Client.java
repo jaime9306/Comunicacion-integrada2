@@ -496,7 +496,9 @@ public class Client  {
             return null;
         }
     }
-
+    public String getIdentificador(){
+        return id;
+    }
     public Context getContext() {
         return context;
     }
