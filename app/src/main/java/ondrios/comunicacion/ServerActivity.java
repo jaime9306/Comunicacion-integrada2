@@ -155,7 +155,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
-            PointF StartPT =;
+            PointF StartPT;
             int eid = event.getAction();
             switch(eid) {
                 case MotionEvent.ACTION_MOVE:
