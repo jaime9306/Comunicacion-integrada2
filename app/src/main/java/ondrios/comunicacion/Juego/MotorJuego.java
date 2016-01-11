@@ -190,17 +190,18 @@ public class MotorJuego {
                     cartasRobadas[i] = cartaRobada;
                 }
             }
+            //Envia un mensaje a todos los jugadores de su carta robada
+            for (int i =0; i<njugadores;i++){
+                // Mensaje para todos los clientes. El formato del cuerpo: <<carta robada palo-numero>>::<<turno del que tira despues de robar>>
+                Mensaje mensaje = new Mensaje(servidor.getClientes().get(i),cartasRobadas[i].getPalo()+cartasRobadas[i].getNumero()+"::"+servidor.getTurno(),"roba");
+                servidor.enviaMensaje(mensaje);
+            }
         } else{ //Si la baraja está acabada solo puede tirar
             Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),Integer.toString(servidor.getTurno()),"tira");
             servidor.enviaMensaje(mensajeTurno);
         }
 
-        //Envia un mensaje a todos los jugadores de su carta robada
-        for (int i =0; i<njugadores;i++){
-            // Mensaje para todos los clientes. El formato del cuerpo: <<carta robada palo-numero>>::<<turno del que tira despues de robar>>
-            Mensaje mensaje = new Mensaje(servidor.getClientes().get(i),cartasRobadas[i].getPalo()+cartasRobadas[i].getNumero()+"::"+servidor.getTurno(),"roba");
-            servidor.enviaMensaje(mensaje);
-        }
+
     }
 
 }

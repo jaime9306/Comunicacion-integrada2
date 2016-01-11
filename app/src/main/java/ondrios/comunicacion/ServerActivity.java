@@ -33,6 +33,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     private int nJugadores=2;
 
     protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4;
+    protected ImageButton cartaMonton;
     private int modificarX=20;
     private int modificarY=20;
     private int margenX=2000;
@@ -122,6 +123,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         cartaFin=(ImageView)findViewById(R.id.c4j1);
         cartaPinte=(ImageView)findViewById(R.id.pinta);
         carta4 = (ImageView) findViewById(R.id.c1j1);
+        cartaMonton = (ImageButton) findViewById(R.id.mazo);
         ini1=new PointF();
         ini2=new PointF();
         ini3=new PointF();
@@ -349,6 +351,36 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     public void reparteCartas(String c){
 
         switch (posVacia){
+            case 0:
+                carta1.setX(ini1.x);
+                carta1.setY(ini1.y);
+                setCarta1(c);
+                break;
+            case 1:
+                carta2.setX(ini2.x);
+                carta2.setY(ini2.y);
+                setCarta2(c);
+                break;
+            case 2:
+                carta3.setX(ini3.x);
+                carta3.setY(ini3.y);
+                setCarta3(c);
+                break;
+        }
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        carta4.setX(ini4.x);
+        carta4.setY(ini4.y);
+        carta4.setBackgroundResource(getCarta("reverso"));
+
+    }
+    public void desaparecePinte(String c){
+        cartaPinte.setVisibility(View.INVISIBLE);
+        cartaMonton.setVisibility(View.INVISIBLE);
+        switch (posVacia) {
             case 0:
                 carta1.setX(ini1.x);
                 carta1.setY(ini1.y);
