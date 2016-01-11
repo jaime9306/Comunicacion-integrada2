@@ -1,4 +1,6 @@
 <resources>
+    <string name="title_activity_server">ServerActivity</string>
+    <string name="title_activity_client">ClientActivity</string>
     <string name="app_name">Brisca3.0</string>
 
     <string name="titulo">Brisca3.0</string>
@@ -118,9 +120,28 @@
     <string name="pref_nombreusuario">Player name</string>
     <string name="pref_nombreusuario_summary">Change player name</string>
     <string name="pref_nombreusuario_dialog">Name</string>
-    <string name="pref_idioma_title">Lenguage</string>
-    <string name="pref_idioma_summary">Game lenguage(not implemented jet)</string>
-    <string name="pref_idioma_dialog">Select lenguage</string>
+
+    <!--Instrucciones-->
+    <string name="instrucciones1">From this screen we can create a new game of brisca. We should write a name for the game
+        and choose the number of players, that would be 2 or 4,by touching the icon that represents the wised number of players.
+        Once the game is over, the winner and its points will be shown and you could return to the main menu.
+        If during the game you push the backwards key the app will close the conexion of both players.</string>
+    <string name="instrucciones2">Here we can join to a previously created game.You just have to select the game in the menu and push enter.</string>
+    <string name="instrucciones3">In this screen we will found the statistics of the played games as the number of won games.</string>
+    <string name="instrucciones5">In this screen we will found the rules of brisca, how do you play,the value of each card, etc.</string>
+    <string name="instrucciones6">From here we can change some options of the game as the name of user. The change done here will be stored.</string>
+
+    <!-- Estadísticas-->
+    <string name="nombreUsuario">Name of user: </string>
+    <string name="PuntuacionMedia">Average score: </string>
+    <string name="Puntuaciones">Score records</string>
+    <string name="PartidasJugadas">Number of played games: </string>
+    <string name="Resultados">Results of the games</string>
+    <string name="DuracionMedia">Average length: </string>
+    <string name="Duraciones">Length record</string>
+    <string name="PuntosEquipo">Team points obtained</string>
+    <string name="DatosPrueba">Proof data</string>
+    <string name="BorrarDatos">Erase data</string>
 </resources>
 
 
