@@ -1,6 +1,7 @@
 package ondrios.comunicacion;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,6 +13,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.androidplot.pie.PieChart;
@@ -34,16 +36,20 @@ import java.util.Iterator;
 
 import ondrios.comunicacion.BD.AdminSQLiteOpenHelper;
 
-public class Estadisticas extends AppCompatActivity {
-    TextView nombreUsuario;
-    TextView puntuacionMedia;
-    TextView numeroPartidasJugadas;
-    TextView duracionMedia;
+public class Estadisticas extends AppCompatActivity implements View.OnClickListener{
+    private TextView nombreUsuario;
+    private TextView puntuacionMedia;
+    private TextView numeroPartidasJugadas;
+    private TextView duracionMedia;
 
     private XYPlot historialPuntuaciones;
     private XYPlot historialDuracion;
     private PieChart porcentajeResultados;
     private PieChart porcentajePuntos;
+
+    private Button botonSript;
+    private Button botonBorrar;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -61,6 +67,12 @@ public class Estadisticas extends AppCompatActivity {
         porcentajeResultados = (PieChart) findViewById(R.id.PieChart2);
         porcentajePuntos = (PieChart) findViewById(R.id.PieChart3);
 
+        botonBorrar = (Button) findViewById(R.id.boton_borrarDatos);
+        botonSript = (Button) findViewById(R.id.boton_datosPrueba);
+
+        botonBorrar.setOnClickListener(this);
+        botonSript.setOnClickListener(this);
+
         ver();
 
 
@@ -77,8 +89,8 @@ public class Estadisticas extends AppCompatActivity {
 
         grafica.getBackgroundPaint().setColor(Color.TRANSPARENT);
         grafica.addSeries(seg2, new SegmentFormatter(Color.rgb(0, 100, 0), Color.BLACK, Color.BLACK, Color.BLACK));
-        grafica.addSeries(seg1, new SegmentFormatter(Color.rgb(150, 190, 150), Color.BLACK,Color.BLACK, Color.BLACK));
-        grafica.addSeries(seg3, new SegmentFormatter(Color.rgb(20, 50, 20), Color.BLACK,Color.BLACK, Color.BLACK));
+        grafica.addSeries(seg1, new SegmentFormatter(Color.rgb(150, 190, 150), Color.BLACK, Color.BLACK, Color.BLACK));
+        grafica.addSeries(seg3, new SegmentFormatter(Color.rgb(20, 50, 20), Color.BLACK, Color.BLACK, Color.BLACK));
 
         PieRenderer pieRenderer = grafica.getRenderer(PieRenderer.class);
         pieRenderer.setDonutSize((float) 0 / 100, PieRenderer.DonutMode.PERCENT);
@@ -212,4 +224,32 @@ public class Estadisticas extends AppCompatActivity {
 
         super.onResume();
     }
+    public void onClick(View v) {
+        /*Para cada boton de la actividad se inicia la actividad correspondiente a ese boton*/
+        switch (v.getId()) {
+            case R.id.boton_borrarDatos:
+                borrarDatos();
+                break;
+
+            case R.id.boton_datosPrueba:
+                script();
+                break;
+
+        }}
+
+    private void borrarDatos() {
+
+
+    }
+    private void script() {
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,
+                "brisca", null, 1);
+        SQLiteDatabase db = admin.getWritableDatabase();
+        Long tiempo=System.currentTimeMillis();
+
+        db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+Long.toString(tiempo)+",60,60,60);", null);
+        db.close();
+    }
+
+
 }
