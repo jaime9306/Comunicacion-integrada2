@@ -151,7 +151,9 @@
 
     <!--Instrucciones-->
     <string name="instrucciones1">Desde esta pantalla podremos crear una nueva partida de brisca. Deberemos escribir un
-     nombre para esta partida y elegir el número de jugadores, que serán 2 o 4.</string>
+     nombre para esta partida y elegir el número de jugadores, que serán 2 o 4 pulsando el icono que represente el número de jugadores deseado.
+    Una vez finalizada la partida, se mostrará el ganador y los puntos y se podrá volver al menú principal.
+    Si durante el juego se pulsa la tecla de atrás se cierra la conexión de los dos jugadores.</string>
     <string name="instrucciones2">Aquí podremos unirnos a una partida creada anteriormente. Simplemente hay que selecionar
         la partida en el menu desplegable y pulsar en entrar</string>
     <string name="instrucciones3">En esta pantalla encontraremos estadísticas de las partidas jugadas como por ejemplo el
