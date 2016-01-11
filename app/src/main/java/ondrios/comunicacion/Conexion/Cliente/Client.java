@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import ondrios.comunicacion.ClientActivity;
 import ondrios.comunicacion.Conexion.Mensaje;
 import ondrios.comunicacion.Conexion.NsdHelper;
+import ondrios.comunicacion.Conexion.Servidor.Server;
 import ondrios.comunicacion.ServerActivity;
 
 import static java.lang.Thread.sleep;
@@ -303,6 +304,33 @@ public class Client  {
                         recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                     }
                 }
+                break;
+            case "fin_partida":
+                String [] datosFin = d[1].split("::");
+
+                if(contextID == 0){
+                    enviaMensaje("null", "OK_apaga");
+                    try {
+                        socketServidor.close();
+                        ServerActivity sa = (ServerActivity) context;
+                        sa.notificaFinal(datosFin);
+                        Log.i(TAG, "Desconectado");
+                    } catch (IOException e) {
+                        Log.e(TAG, "Error al cerrar el socket servidor", e);
+                    }
+                } else {
+                    enviaMensaje("null", "OK_apaga");
+                    try {
+                        socketServidor.close();
+                        ClientActivity c = (ClientActivity) context;
+                        c.notificaFinal(datosFin);
+                        Log.i(TAG, "Desconectado");
+                    } catch (IOException e) {
+                        Log.e(TAG, "Error al cerrar el socket servidor", e);
+                    }
+                }
+
+
                 break;
             case "apaga":
                 //No comprobado si null que algunas veces recibia null en este caso
