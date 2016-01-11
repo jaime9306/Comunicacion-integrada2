@@ -153,7 +153,7 @@ public class Client  {
                             ClientActivity ca = (ClientActivity) context;
                             ca.eliminaUna();
                         }
-
+                        quedan--;
                         break;
                     case 1:
                         if (contextID == 0) {
@@ -163,8 +163,12 @@ public class Client  {
                             ClientActivity ca = (ClientActivity) context;
                             ca.eliminaDos();
                         }
+                        quedan--;
+                        break;
+                    default:
                         break;
                 }
+
                 Log.i(TAG, "Te toca tirar");
                 String lanzador = d[1];
                 if (lanzador.equals(id)){
