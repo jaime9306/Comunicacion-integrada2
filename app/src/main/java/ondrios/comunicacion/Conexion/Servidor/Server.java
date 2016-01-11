@@ -267,7 +267,7 @@ public class Server {
                 EnviaMensajeTarea enviaFin = new EnviaMensajeTarea();
                 enviaFin.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mensaje);
                 RecibeMensajeTarea tareaRecibeFin = new RecibeMensajeTarea();
-                tareaRecibeFin.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(getTurno()));
+                tareaRecibeFin.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensaje.getSocket());
                 break;
             case "apaga":
                 //Envia la señal de apagado al cliente
