@@ -18,21 +18,21 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre de Usuario:"
+            android:text="@string/nombreUsuario"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/Usuario" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Puntuación media:"
+            android:text="@string/PuntuacionMedia"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/Media"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Historial de puntuaciones"
+            android:text="@string/Puntuaciones"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/Historial"/>
@@ -47,14 +47,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Número de partidas jugadas:"
+            android:text="@string/PartidasJugadas"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/NumeroPartidas"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Resultados de las partidas"
+            android:text="@string/Resultados"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/Resultados"/>
@@ -67,14 +67,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Duración media(segundos):"
+            android:text="@string/DuracionMedia"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/DuracionMedia"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Historial de la duración de las partidas"
+            android:text="@string/Duraciones"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/HistorialDuracion"/>
@@ -88,7 +88,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Puntos del equipo conseguidos"
+            android:text="@string/PuntosEquipo"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/PorcentajePuntosEquipo"/>
@@ -101,8 +101,7 @@
         <Button
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Datos de prueba"
-
+            android:text="@string/DatosPrueba"
             android:background="@drawable/botonconectar"
             android:textStyle="bold"
             android:id="@+id/boton_datosPrueba"
@@ -113,7 +112,7 @@
         <Button
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Borrar datos"
+            android:text="@string/BorrarDatos"
             android:layout_margin="20sp"
             android:background="@drawable/botonconectar"
             android:textStyle="bold"

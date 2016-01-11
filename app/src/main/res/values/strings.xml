@@ -13,6 +13,7 @@
     <string name="action_settings">Ajustes</string>
     <string name="nombrePartida">Nombre de la Partida</string>
 
+
     <!--ReglasBrisca-->
     <string name="title_activity_reglas_brisca">Reglas de la Brisca</string>
     <string name="reglas_descripcion">Descripción</string>
@@ -158,6 +159,15 @@
     <string name="instrucciones6">Desde aquí podremos cambiar alguna opción del juego como el nombre de usuario.
      Los cambios realizados quedarán almacenados</string>
 
-    <!-- graficas-->
-    <string name="graficas">Graficas</string>
+    <!-- Estadísticas-->
+    <string name="nombreUsuario">Nombre de usuario: </string>
+    <string name="PuntuacionMedia">Puntuación media: </string>
+    <string name="Puntuaciones">Historial de puntuaciones</string>
+    <string name="PartidasJugadas">Número de partidas jugadas: </string>
+    <string name="Resultados">Resultados de las partidas</string>
+    <string name="DuracionMedia">Duración media(segundos): </string>
+    <string name="Duraciones">Historial de la duración de las partidas</string>
+    <string name="PuntosEquipo">Puntos del equipo conseguidos</string>
+    <string name="DatosPrueba">Datos de prueba</string>
+    <string name="BorrarDatos">Borrar datos</string>
 </resources>

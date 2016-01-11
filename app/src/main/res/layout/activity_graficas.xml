@@ -15,24 +15,25 @@
         tools:context="com.brisca.moviles.uva.brisca30.ReglasBrisca"
         >
 
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Nombre de Usuario:"
+            android:text="@string/nombreUsuario"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/Usuario" />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Puntuación media:"
+            android:text="@string/PuntuacionMedia"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/Media"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Historial de puntuaciones"
+            android:text="@string/Puntuaciones"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/Historial"/>
@@ -47,14 +48,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Número de partidas jugadas:"
+            android:text="@string/PartidasJugadas"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/NumeroPartidas"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Resultados de las partidas"
+            android:text="@string/Resultados"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/Resultados"/>
@@ -67,14 +68,14 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Duración media(segundos):"
+            android:text="@string/DuracionMedia"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/DuracionMedia"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Historial de la duración de las partidas"
+            android:text="@string/Duraciones"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/HistorialDuracion"/>
@@ -88,7 +89,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Puntos del equipo conseguidos"
+            android:text="@string/PuntosEquipo"
             android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
             android:id="@+id/PorcentajePuntosEquipo"/>
@@ -97,6 +98,28 @@
             android:id="@+id/PieChart3"
             android:layout_width="match_parent"
             android:layout_height="300dp" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/DatosPrueba"
+            android:background="@drawable/botonconectar"
+            android:textStyle="bold"
+            android:id="@+id/boton_datosPrueba"
+            android:textSize="20sp"
+            android:layout_margin="20sp"
+            android:layout_gravity="center_horizontal"
+            />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="@string/BorrarDatos"
+            android:layout_margin="20sp"
+            android:background="@drawable/botonconectar"
+            android:textStyle="bold"
+            android:id="@+id/boton_borrarDatos"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"/>
 
     </LinearLayout>
 </ScrollView>
