@@ -262,7 +262,13 @@ public class Server {
                     tareaRecibeRobaPinte.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(getTurno()));
                 }
                 break;
-
+            case "fin_partida":
+                //Otorga un identificador al cliente
+                EnviaMensajeTarea enviaFin = new EnviaMensajeTarea();
+                enviaFin.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mensaje);
+                RecibeMensajeTarea tareaRecibeFin = new RecibeMensajeTarea();
+                tareaRecibeFin.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(getTurno()));
+                break;
             case "apaga":
                 //Envia la señal de apagado al cliente
                 EnviaMensajeTarea enviaApaga = new EnviaMensajeTarea();

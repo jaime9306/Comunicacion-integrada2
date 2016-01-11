@@ -75,4 +75,8 @@ public class Equipo {
     public void añadeMonton(Carta carta){
         monton.meter(carta);
     }
+
+    public Monton getMonton() {
+        return monton;
+    }
 }

@@ -209,9 +209,44 @@ public class MotorJuego {
                 }
             }
         } else if(!vacia){ //Si la baraja está acabada solo puede tirar
-            Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),Integer.toString(servidor.getTurno()),"roba_null");
-            servidor.enviaMensaje(mensajeTurno);
+            for(int i = 0;i<servidor.getClientes().size();i++) {
+                Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(i), Integer.toString(servidor.getTurno()), "roba_null");
+                servidor.enviaMensaje(mensajeTurno);
+            }
         }else {
+            Equipo [] equipos = partida.getEquipos();
+            Monton monton0 = equipos[0].getMonton();
+            Monton monton1 = equipos[1].getMonton();
+
+            int i, puntuacion0, puntuacion1;
+            String ganador;
+
+
+            //Ganador equipo0
+            if(monton0.contar() > monton1.contar()){
+                ganador = lista[0].getNombre();
+                for (int j = 0; j<servidor.getClientes().size();j++) {
+                    Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+monton0.contar(),"fin_partida");
+                    servidor.enviaMensaje(mensaje);
+                }
+            } else{
+                //Ganador equipo1
+                if(monton0.contar() < monton1.contar()){
+                    ganador = lista[1].getNombre();
+                    for (int j = 0; j<servidor.getClientes().size();j++) {
+                        Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+monton1.contar(),"fin_partida");
+                        servidor.enviaMensaje(mensaje);
+                    }
+                  //Empate
+                } else{
+                    ganador = "Empate";
+                    for (int j = 0; j<servidor.getClientes().size();j++) {
+                        Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+"60","fin_partida");
+                        servidor.enviaMensaje(mensaje);
+                    }
+                }
+            }
+
         }
 
 
