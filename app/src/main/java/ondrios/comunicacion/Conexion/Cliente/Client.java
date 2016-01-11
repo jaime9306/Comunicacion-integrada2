@@ -151,16 +151,12 @@ public class Client  {
                         ServerActivity sa = (ServerActivity) context;
                         sa.notificaTurno();
                         sa.setTurno();
-                        if(quedan<3){
-                            sa.recogeSinMazo();
-                        }
+
                     } else {
                         ClientActivity ca = (ClientActivity) context;
                         ca.notificaTurno();
                         ca.setTurno();
-                        if(quedan<3){
-                            ca.recogeSinMazo();
-                        }
+
                     }
 
                 } else {
@@ -186,34 +182,34 @@ public class Client  {
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
                     sa.tiraCartaContrario(carta);
+                    if(quedan<=3){
+                        switch (quedan){
+                            case 3:
+                                sa.eliminaUna();
+                                quedan--;
+                                break;
+                            case 2:
+                                sa.eliminaDos();
+                                quedan--;
+                                break;
+                        }
+                    }
 
                 } else {
                     ClientActivity ca = (ClientActivity) context;
                     ca.tiraCartaContrario(carta);
-                }
-                switch(quedan){
-                    case 2:
-                        if (contextID == 0) {
-                            ServerActivity sa = (ServerActivity) context;
-                            sa.eliminaUna();
-                        } else {
-                            ClientActivity ca = (ClientActivity) context;
-                            ca.eliminaUna();
+                    if(quedan<=3){
+                        switch (quedan){
+                            case 3:
+                                ca.eliminaUna();
+                                quedan--;
+                                break;
+                            case 2:
+                                ca.eliminaDos();
+                                quedan--;
+                                break;
                         }
-                        quedan--;
-                        break;
-                    case 1:
-                        if (contextID == 0) {
-                            ServerActivity sa = (ServerActivity) context;
-                            sa.eliminaDos();
-                        } else {
-                            ClientActivity ca = (ClientActivity) context;
-                            ca.eliminaDos();
-                        }
-                        quedan--;
-                        break;
-                    default:
-                        break;
+                    }
                 }
                 RecibeMensajeTarea recibeMuestraCarta= new RecibeMensajeTarea();
                 recibeMuestraCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
@@ -248,7 +244,7 @@ public class Client  {
                 String [] mrp = d[1].split("::");
                 String cartaRobaPinte= mrp[0];
                 String turnoRobaPinte = mrp[1];
-                quedan=2;
+                quedan=3;
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
                     sa.desaparecePinte(cartaRobaPinte);
@@ -265,6 +261,32 @@ public class Client  {
                     if (turnoRobaPinte.equals(id)) {
                         ca.notificaTurno();
                         ca.setTurno();
+                    }else {
+                        RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
+                        recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                    }
+                }
+                break;
+            case "roba_null":
+                String [] mrn = d[1].split("::");
+
+                String turnoRoban = mrn[1];
+                if (contextID == 0) {
+                    ServerActivity sa = (ServerActivity) context;
+                    if (turnoRoban.equals(id)){
+                        sa.notificaTurno();
+                        sa.setTurno();
+                        sa.recogeSinMazo();
+                    }else {
+                        RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
+                        recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                    }
+                } else {
+                    ClientActivity ca = (ClientActivity) context;
+                    if (turnoRoban.equals(id)) {
+                        ca.notificaTurno();
+                        ca.setTurno();
+                        ca.recogeSinMazo();
                     }else {
                         RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
                         recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
