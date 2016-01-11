@@ -438,6 +438,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         }
         carta4.setX(ini4.x);
         carta4.setY(ini4.y);
+        carta4.setBackgroundResource(getCarta("reverso"));
     }
     public void eliminaDos(){
         carta5.setVisibility(View.INVISIBLE);
