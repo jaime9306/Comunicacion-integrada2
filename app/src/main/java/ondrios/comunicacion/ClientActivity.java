@@ -23,7 +23,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import ondrios.comunicacion.Conexion.Cliente.Client;
-import ondrios.comunicacion.Conexion.Cliente.MyParcelableClient;
 
 import static java.lang.Thread.sleep;
 
@@ -49,7 +48,6 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     protected TextView textoTurno,cartasRestantes;
 
 
-    private MyParcelableClient parcelable=new MyParcelableClient();
     private Client cliente;
     private String m;
     private ArrayList<String> lista;
@@ -179,36 +177,14 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         startActivity(intent);
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState){
-        super.onSaveInstanceState(outState);
 
-        parcelable.setCliente(cliente);
-        parcelable.setM(m);
-        parcelable.setLista(lista);
-        parcelable.setServicioSeleccionado(servicioSeleccionado);
-        parcelable.setPrimeravez(primeravez);
 
-        outState.putParcelable("Parce", parcelable);
-    }
 
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState){
-        super.onRestoreInstanceState(savedInstanceState);
-
-        parcelable=savedInstanceState.getParcelable("Parce");
-        cliente=parcelable.getCliente();
-        m=parcelable.getM();
-        lista=parcelable.getLista();
-        servicioSeleccionado=parcelable.getServicioSeleccionado();
-        primeravez=parcelable.getPrimeravez();
-
-    }
     View.OnTouchListener handlerMover1 = new View.OnTouchListener(){
         PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
-            PointF StartPT = new PointF();
+            PointF StartPT;
             int eid = event.getAction();
             switch(eid) {
                 case MotionEvent.ACTION_MOVE:
@@ -227,7 +203,6 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                             && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()&&turno){
                         v.setX(cartaFin.getX() + carta1.getWidth());
                         v.setY(cartaFin.getY() + carta1.getHeight() / 2);
-                        Drawable c = carta1.getBackground();
                         cliente.enviaCarta(0);
                         posVacia=0;
                         turno=false;
@@ -247,7 +222,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
-            PointF StartPT = new PointF();
+            PointF StartPT;
             int eid = event.getAction();
             switch(eid) {
                 case MotionEvent.ACTION_MOVE:
@@ -285,7 +260,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
-            PointF StartPT = new PointF();
+            PointF StartPT;
             int eid = event.getAction();
             switch(eid) {
                 case MotionEvent.ACTION_MOVE:

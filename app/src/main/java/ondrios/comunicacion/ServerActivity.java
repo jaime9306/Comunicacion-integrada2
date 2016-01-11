@@ -19,7 +19,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import ondrios.comunicacion.Conexion.Cliente.Client;
-import ondrios.comunicacion.Conexion.Servidor.MyParcelableServer;
 import ondrios.comunicacion.Conexion.Servidor.Server;
 
 import static java.lang.Thread.sleep;
@@ -46,7 +45,6 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     private PointF ini1,ini2,ini3,fin,ini4;
     private boolean turno;
 
-    private MyParcelableServer parcelable=new MyParcelableServer();
 
     private Server servidor;
     private Client cliente;
@@ -488,29 +486,6 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
 
     public void muestraBotones(){
         //boton_enviar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState){
-        super.onSaveInstanceState(outState);
-
-        parcelable.setCliente(cliente);
-        parcelable.setM(m);
-        parcelable.setServidor(servidor);
-
-
-        outState.putParcelable("Parce", parcelable);
-    }
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState){
-        super.onRestoreInstanceState(savedInstanceState);
-
-        parcelable=savedInstanceState.getParcelable("Parce");
-        cliente=parcelable.getCliente();
-        m=parcelable.getM();
-        servidor=parcelable.getServidor();
-
     }
 
     @Override

@@ -109,6 +109,7 @@ public class MotorJuego {
         }
 
         //Envia la carta que ha tirado
+        assert tirada != null;
         Mensaje mensaje = new Mensaje(null,Integer.toString(jugador)+"::"+tirada.getPalo()+Integer.toString(tirada.getNumero()),"muestra_carta");
         servidor.enviaMensaje(mensaje);
 
