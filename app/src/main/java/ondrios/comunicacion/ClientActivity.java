@@ -36,6 +36,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private Spinner spinner;
     private boolean turno;
     private int posVacia;
+    private Long tiempoInicio,tiempoFinal;
 
     protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4,carta5,carta6;
     protected ImageButton cartaMonton;
@@ -122,6 +123,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
 
     public void notificaServidorEncontrado(){
         //Cambia al chat
+        tiempoInicio = System.currentTimeMillis();
         boton_entrar.setVisibility(View.GONE);
         //entrada_nombre.setVisibility(View.GONE);
         estado.setVisibility(View.GONE);
@@ -514,7 +516,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
 
     }
     public void notificaFinal(String[] datos){
+        tiempoFinal=System.currentTimeMillis();
         Intent finalPartida = new Intent(ClientActivity.this,FinPartidaActivity.class);
+        finalPartida.putExtra("duracion",tiempoFinal-tiempoInicio);
         finalPartida.putExtra("ganador", datos);
         if(cliente.getIdentificador().equals(datos[0])) {
             finalPartida.putExtra("quien", "true");
