@@ -99,5 +99,29 @@
             android:layout_width="match_parent"
             android:layout_height="300dp" />
 
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Datos de prueba"
+
+            android:background="@drawable/botonconectar"
+            android:textStyle="bold"
+            android:id="@+id/boton_datosPrueba"
+            android:textSize="20sp"
+            android:layout_margin="20sp"
+            android:layout_gravity="center_horizontal"
+            />
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Borrar datos"
+            android:layout_margin="20sp"
+            android:background="@drawable/botonconectar"
+            android:textStyle="bold"
+            android:id="@+id/boton_borrarDatos"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            />
+
     </LinearLayout>
 </ScrollView>
