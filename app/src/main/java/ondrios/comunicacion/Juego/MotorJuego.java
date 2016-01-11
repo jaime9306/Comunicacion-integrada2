@@ -8,7 +8,8 @@ import ondrios.comunicacion.Conexion.Mensaje;
 import ondrios.comunicacion.Conexion.Servidor.Server;
 
 /**
- * Created by Mario on 09/01/2016.
+ * Clase que se encarga de toda la loogica del juego. Se relaciona con la clase servidor para enviar
+ * mensajes a los clientes en funcion del estado interno del juego.
  */
 public class MotorJuego {
 

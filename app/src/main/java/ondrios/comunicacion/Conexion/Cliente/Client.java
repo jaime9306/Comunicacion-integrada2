@@ -102,6 +102,7 @@ public class Client  {
         recibeId.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,socketServidor);
     }
 
+    
     private void recibeMensaje(String datos){
         String [] d = datos.split("&");
 
@@ -113,34 +114,6 @@ public class Client  {
                 recibeIdentificador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 break;
 
-            case "repite":  //Publica el mensaje que ha repetido el servidor
-                String [] mensaje = d[1].split("::");
-                String turno = mensaje[0];
-                String cuerpoDelMensaje = mensaje[1];
-                if (turno.equals(this.id)) {
-                    //Notifica a la vista del mensaje si ademas es su turno muestra los botones para mandar mensaje
-                    if (contextID == 0) {
-                        ServerActivity sa = (ServerActivity) context;
-                        sa.publicaMensaje(cuerpoDelMensaje);
-                        sa.muestraBotones();
-                    } else {
-                        ClientActivity ca = (ClientActivity) context;
-                        ca.publicaMensaje(cuerpoDelMensaje);
-                        ca.muestraBotones();
-                    }
-                } else {
-                    //Si no solo muestra el mensaje y espera la recepcion de nuevos
-                    if (contextID == 0) {
-                        ServerActivity sa = (ServerActivity) context;
-                        sa.publicaMensaje(cuerpoDelMensaje);
-                    } else {
-                        ClientActivity ca = (ClientActivity) context;
-                        ca.publicaMensaje(cuerpoDelMensaje);
-                    }
-                    RecibeMensajeTarea recibeRepite= new RecibeMensajeTarea();
-                    recibeRepite.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
-                }
-                break;
             case "cartas": //Publica las cartas que le ha dado el servidor
                 //Formato cartas, ej: o1:o2:o3
                 String [] m = d[1].split("::");

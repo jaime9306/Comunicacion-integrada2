@@ -23,7 +23,8 @@ import ondrios.comunicacion.ServerActivity;
 import static java.lang.Thread.sleep;
 
 /**
- * Created by Mario on 29/12/2015.
+ * Clase servidor, se encarga de enviar y recibir los mensajes del los clientes. La clase servidor lleva
+ * la logica del juego.
  */
 public class Server {
 
