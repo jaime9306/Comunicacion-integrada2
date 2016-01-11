@@ -138,9 +138,10 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/turno"
-        android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/c1j2"
-        android:layout_toStartOf="@+id/c1j2" />
+        android:textColor="#ffffff"
+        android:layout_above="@+id/nomJugador2"
+        android:layout_toRightOf="@+id/nomJuador1"
+        android:layout_toEndOf="@+id/nomJuador1" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
