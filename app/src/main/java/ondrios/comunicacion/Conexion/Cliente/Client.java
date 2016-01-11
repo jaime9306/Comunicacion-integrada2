@@ -268,9 +268,7 @@ public class Client  {
                 }
                 break;
             case "roba_null":
-                String [] mrn = d[1].split("::");
-
-                String turnoRoban = mrn[1];
+                String turnoRoban = d[1];
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
                     if (turnoRoban.equals(id)){
