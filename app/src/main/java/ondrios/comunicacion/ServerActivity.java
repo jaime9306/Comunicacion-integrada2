@@ -18,6 +18,8 @@ import ondrios.comunicacion.Conexion.Cliente.Client;
 import ondrios.comunicacion.Conexion.Servidor.MyParcelableServer;
 import ondrios.comunicacion.Conexion.Servidor.Server;
 
+import static java.lang.Thread.sleep;
+
 public class ServerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button boton_registrar;
@@ -344,9 +346,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         carta4.setBackgroundResource(getCarta(c));
     }
     public void reparteCartas(String c){
-        carta4.setX(ini4.x);
-        carta4.setY(ini4.y);
-        carta4.setBackgroundResource(getCarta("reverso"));
+
         switch (posVacia){
             case 0:
                 carta1.setX(ini1.x);
@@ -364,6 +364,14 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                 setCarta3(c);
                 break;
         }
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        carta4.setX(ini4.x);
+        carta4.setY(ini4.y);
+        carta4.setBackgroundResource(getCarta("reverso"));
 
     }
     public void notificaTurno(){

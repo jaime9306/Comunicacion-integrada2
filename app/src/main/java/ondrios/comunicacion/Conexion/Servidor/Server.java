@@ -235,9 +235,12 @@ public class Server {
                 //Otorga un identificador al cliente
                 EnviaMensajeTarea enviaRoba = new EnviaMensajeTarea();
                 enviaRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mensaje);
+                String [] mr = mensaje.getMensaje().split("::");
 
-                RecibeMensajeTarea tareaRecibeRoba = new RecibeMensajeTarea();
-                tareaRecibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(getTurno()));
+                if (clientes.indexOf(mensaje.getSocket())==turno){
+                    RecibeMensajeTarea tareaRecibeRoba = new RecibeMensajeTarea();
+                    tareaRecibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(getTurno()));
+                }
                 break;
 
             case "apaga":
@@ -338,6 +341,7 @@ public class Server {
             Socket socket = params[0];
             if (apagado){this.cancel(true);}
             try {
+                Log.e(TAG,"Esperando mensaje de "+socket.getInetAddress().getHostAddress());
                 BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 return lector.readLine();
             } catch (IOException e) {

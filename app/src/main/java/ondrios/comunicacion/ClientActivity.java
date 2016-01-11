@@ -427,9 +427,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         turno.show();
     }
     public void reparteCartas(String c){
-        carta4.setX(ini4.x);
-        carta4.setY(ini4.y);
-        carta4.setBackgroundResource(getCarta("reverso"));
+
         switch (posVacia){
             case 0:
                 carta1.setX(ini1.x);
@@ -447,7 +445,14 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                 setCarta3(c);
                 break;
         }
-
+        try {
+            sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        carta4.setX(ini4.x);
+        carta4.setY(ini4.y);
+        carta4.setBackgroundResource(getCarta("reverso"));
     }
 
 
