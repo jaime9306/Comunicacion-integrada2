@@ -18,8 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import ondrios.comunicacion.Conexion.Cliente.Client;
 import ondrios.comunicacion.Conexion.Servidor.MyParcelableServer;
 import ondrios.comunicacion.Conexion.Servidor.Server;

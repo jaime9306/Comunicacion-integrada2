@@ -19,14 +19,11 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import java.security.KeyException;
 import java.util.ArrayList;
 
 import ondrios.comunicacion.Conexion.Cliente.Client;
 import ondrios.comunicacion.Conexion.Cliente.MyParcelableClient;
-import ondrios.comunicacion.Conexion.Mensaje;
 
 import static java.lang.Thread.sleep;
 
@@ -55,7 +52,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private MyParcelableClient parcelable=new MyParcelableClient();
     private Client cliente;
     private String m;
-    private ArrayList<String> lista= new ArrayList();
+    private ArrayList<String> lista;
     private String servicioSeleccionado;
 
     private int primeravez=0;
@@ -90,7 +87,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     public void addServices(ArrayList lista){
         spinner = (Spinner) findViewById(R.id.spinner);
 
-        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lista);
+        ArrayAdapter<String> adaptador = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, lista);
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adaptador);
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

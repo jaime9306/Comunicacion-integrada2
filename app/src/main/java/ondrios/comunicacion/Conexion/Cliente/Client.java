@@ -15,8 +15,6 @@ import java.util.ArrayList;
 
 import ondrios.comunicacion.ClientActivity;
 import ondrios.comunicacion.Conexion.Mensaje;
-import ondrios.comunicacion.Conexion.NsdHelper;
-import ondrios.comunicacion.Conexion.Servidor.Server;
 import ondrios.comunicacion.ServerActivity;
 
 import static java.lang.Thread.sleep;
@@ -26,7 +24,7 @@ import static java.lang.Thread.sleep;
  */
 public class Client  {
 
-    private String TAG = "Client";
+    private final String TAG = "Client";
 
     private Context context;
     private int contextID;

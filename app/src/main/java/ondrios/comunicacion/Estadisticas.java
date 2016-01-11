@@ -20,7 +20,6 @@ import com.androidplot.pie.PieRenderer;
 import com.androidplot.pie.Segment;
 import com.androidplot.pie.SegmentFormatter;
 
-import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.*;
 
 
@@ -209,10 +208,9 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
             i++;
         }
         int a=0;
-        Iterator it2 = duraciones.iterator();
-        while(it2.hasNext()){
-            numberDuraciones[a]=(Number)it2.next();
-            numberDuracionesM[a]=mediaDuraciones;
+        for (Object duracione : duraciones) {
+            numberDuraciones[a] = (Number) duracione;
+            numberDuracionesM[a] = mediaDuraciones;
             a++;
         }
 

@@ -9,13 +9,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
 import ondrios.comunicacion.Conexion.Mensaje;
-import ondrios.comunicacion.Conexion.NsdHelper;
 import ondrios.comunicacion.Juego.Equipo;
 import ondrios.comunicacion.Juego.Jugador;
 import ondrios.comunicacion.Juego.MotorJuego;

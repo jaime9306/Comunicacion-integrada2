@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import ondrios.comunicacion.Conexion.Mensaje;
 import ondrios.comunicacion.Conexion.Servidor.Server;
 
-import static java.lang.Thread.sleep;
-
 /**
  * Created by Mario on 09/01/2016.
  */
@@ -49,14 +47,14 @@ public class MotorJuego {
     private void enviaCartas(){
         Jugador [] listaJugadores = partida.getListajug();
         ArrayList<Mensaje> mensajes = new ArrayList <>();
-        for(int i = 0;i<listaJugadores.length;i++){
-            String nombre = listaJugadores[i].getNombre();
-            Carta[] cartas = listaJugadores[i].getMano();
+        for (Jugador listaJugadore : listaJugadores) {
+            String nombre = listaJugadore.getNombre();
+            Carta[] cartas = listaJugadore.getMano();
 
-            String cartasFormato=cartas[0].getPalo()+Integer.toString(cartas[0].getNumero())+":"+
-                    cartas[1].getPalo()+Integer.toString(cartas[1].getNumero())+":"+
-                    cartas[2].getPalo()+Integer.toString(cartas[2].getNumero());
-            Mensaje mensaje = new Mensaje(null,nombre+"::"+cartasFormato+"::"+pinte.getPalo()+pinte.getNumero(),"cartas");
+            String cartasFormato = cartas[0].getPalo() + Integer.toString(cartas[0].getNumero()) + ":" +
+                    cartas[1].getPalo() + Integer.toString(cartas[1].getNumero()) + ":" +
+                    cartas[2].getPalo() + Integer.toString(cartas[2].getNumero());
+            Mensaje mensaje = new Mensaje(null, nombre + "::" + cartasFormato + "::" + pinte.getPalo() + pinte.getNumero(), "cartas");
             mensajes.add(mensaje);
         }
         for(Mensaje m: mensajes){
@@ -84,11 +82,11 @@ public class MotorJuego {
         Carta tirada = null;
 
         //Busca el jugador que ha tirado y le hace echar la carta.
-        for(int i = 0;i<listaJugadores.length;i++){
-            String nombre = listaJugadores[i].getNombre();
-            if (nombre.equals(Integer.toString(jugador))){
+        for (Jugador listaJugadore : listaJugadores) {
+            String nombre = listaJugadore.getNombre();
+            if (nombre.equals(Integer.toString(jugador))) {
                 orden.add(nombre);
-                tirada = listaJugadores[i].echar(carta);
+                tirada = listaJugadore.echar(carta);
             }
         }
 
