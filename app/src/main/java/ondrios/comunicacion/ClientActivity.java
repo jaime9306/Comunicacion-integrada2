@@ -512,6 +512,12 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta4.setBackgroundResource(getCarta("reverso"));
 
     }
+    public void notificaFinal(String[] datos){
+        Intent finalPartida = new Intent(ClientActivity.this,FinPartidaActivity.class);
+        finalPartida.putExtra("ganador",datos);
+        startActivity(finalPartida);
+        finish();
+    }
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){

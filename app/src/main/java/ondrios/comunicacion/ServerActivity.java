@@ -468,6 +468,12 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         //texto_entrada.setText(m);
         //edit_entrada.setText("");
     }
+    public void notificaFinal(String[] datos){
+        Intent finalPartida = new Intent(ServerActivity.this,FinPartidaActivity.class);
+        finalPartida.putExtra("ganador",datos);
+        startActivity(finalPartida);
+        finish();
+    }
 
     public void muestraBotones(){
         //boton_enviar.setVisibility(View.VISIBLE);

@@ -123,6 +123,11 @@
     <string name="partida_espacio2">Espacio para que el jugador 2 coloque su carta</string>
     <string name="tu_turno">Tu turno</string>
     <string name="su_turno">Su turno</string>
+    <string name="ganador">Ganador</string>
+    <string name="puntuacion">La puntuación del ganador ha sido de:</string>
+    <string name="puntuacionPer">La puntuación del perdedor ha sido de:</string>
+    <string name="final_partida">La partida ha finalizado</string>
+    <string name="volver">Volver</string>
 
     <!--Preferencias-->
     <string name="ingles">Ingles</string>
@@ -140,7 +145,7 @@
     <string name="pref_idioma_dialog">Indicar Idioma</string>
 
 
-        <!--Instrucciones-->
+    <!--Instrucciones-->
     <string name="instrucciones1">Desde esta pantalla podremos crear una nueva partida de brisca. Deberemos escribir un
      nombre para esta partida y elegir el número de jugadores, que serán 2 o 4.</string>
     <string name="instrucciones2">Aquí podremos unirnos a una partida creada anteriormente. Simplemente hay que selecionar
