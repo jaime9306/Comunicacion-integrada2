@@ -41,6 +41,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private int margenX=2000;
     private int margenY=400;
     private PointF ini1,ini2,ini3,fin,ini4;
+    protected TextView textoTurno;
 
 
     private MyParcelableClient parcelable=new MyParcelableClient();
@@ -140,6 +141,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         ini4=new PointF();
         ini4.set(carta4.getX(),carta4.getY());
         fin=new PointF();
+        textoTurno=(TextView)findViewById(R.id.turno);
         turno=false;
     }
 
@@ -409,9 +411,14 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void notificaTurno(){
         Toast turno = Toast.makeText(getApplicationContext(),
-                "Es tu turno", Toast.LENGTH_SHORT);
+                getString(R.string.tu_turno), Toast.LENGTH_SHORT);
 
         turno.show();
+        textoTurno.setText(getString(R.string.tu_turno));
+
+    }
+    public void notificaTurnoEl(){
+        textoTurno.setText(getString(R.string.su_turno));
     }
     public void eliminaUna(){
         carta6.setVisibility(View.INVISIBLE);

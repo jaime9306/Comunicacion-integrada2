@@ -121,6 +121,8 @@
     <string name="partida_pinta">Carta que pinta</string>
     <string name="partida_espacio1">Espacio para que el jugador 1 coloque su carta</string>
     <string name="partida_espacio2">Espacio para que el jugador 2 coloque su carta</string>
+    <string name="tu_turno">Es tu turno</string>
+    <string name="su_turno">Le toca tirar a él</string>
 
     <!--Preferencias-->
     <string name="ingles">Ingles</string>

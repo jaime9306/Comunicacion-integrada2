@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import ondrios.comunicacion.Conexion.Cliente.Client;
 import ondrios.comunicacion.Conexion.Servidor.MyParcelableServer;
 import ondrios.comunicacion.Conexion.Servidor.Server;
@@ -34,6 +36,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
 
     protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4,carta5,carta6;
     protected ImageButton cartaMonton;
+    protected TextView textoTurno;
     private int modificarX=20;
     private int modificarY=20;
     private int margenX=2000;
@@ -134,6 +137,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         ini3=new PointF();
         ini4=new PointF();
         ini4.set(carta4.getX(),carta4.getY());
+        textoTurno=(TextView)findViewById(R.id.turno);
         fin=new PointF();
     }
 
@@ -434,9 +438,14 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void notificaTurno(){
         Toast turno = Toast.makeText(getApplicationContext(),
-                "Es tu turno", Toast.LENGTH_SHORT);
+                getString(R.string.tu_turno) , Toast.LENGTH_SHORT);
 
         turno.show();
+        textoTurno.setText(getString(R.string.tu_turno));
+
+    }
+    public void notificaTurnoEl(){
+        textoTurno.setText(getString(R.string.su_turno));
     }
     public void setTurno(){
         turno=true;
