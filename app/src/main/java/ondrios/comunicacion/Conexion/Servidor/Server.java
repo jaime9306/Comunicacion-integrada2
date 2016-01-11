@@ -242,6 +242,16 @@ public class Server {
                 }
                 break;
 
+            case "roba_null":
+                //Otorga un identificador al cliente
+                EnviaMensajeTarea enviaRobaNull = new EnviaMensajeTarea();
+                enviaRobaNull.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mensaje);
+
+                if (clientes.indexOf(mensaje.getSocket())==turno){
+                    RecibeMensajeTarea tareaRecibeRobaPinte = new RecibeMensajeTarea();
+                    tareaRecibeRobaPinte.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(getTurno()));
+                }
+                break;
             case "roba_pinte":
                 //Otorga un identificador al cliente
                 EnviaMensajeTarea enviaRobaPinte = new EnviaMensajeTarea();

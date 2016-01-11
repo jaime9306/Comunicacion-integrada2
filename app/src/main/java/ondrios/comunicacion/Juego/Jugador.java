@@ -63,4 +63,8 @@ public class Jugador {
     public Carta[] getMano() {
         return mano;
     }
+
+    public boolean manoVacia(){
+        return mano[0]==null&&mano[1]==null&mano[2]==null;
+    }
 }

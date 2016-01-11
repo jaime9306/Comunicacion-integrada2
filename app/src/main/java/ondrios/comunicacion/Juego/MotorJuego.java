@@ -174,6 +174,10 @@ public class MotorJuego {
 
         Jugador [] lista = partida.getListajug();
         Carta [] cartasRobadas = new Carta [njugadores];
+        boolean vacia = true;
+        for(int i =0; i<njugadores;i++){
+            vacia = vacia && lista[i].manoVacia();
+        }
 
         if(!partida.getBaraja().estaAcabada()){
 
@@ -204,9 +208,10 @@ public class MotorJuego {
                     servidor.enviaMensaje(mensaje);
                 }
             }
-        } else{ //Si la baraja está acabada solo puede tirar
-            Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),Integer.toString(servidor.getTurno()),"tira");
+        } else if(!vacia){ //Si la baraja está acabada solo puede tirar
+            Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),Integer.toString(servidor.getTurno()),"roba_null");
             servidor.enviaMensaje(mensajeTurno);
+        }else {
         }
 
 
