@@ -28,11 +28,8 @@ import static java.lang.Thread.sleep;
 public class ClientActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button boton_entrar;
-    private Button boton_enviar;
     private EditText entrada_nombre;
-    private EditText edit_entrada;
     private TextView estado;
-    private TextView texto_entrada;
     private Spinner spinner;
     private boolean turno;
     private int posVacia;
@@ -63,19 +60,10 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
 
 
         boton_entrar   = (Button) findViewById(R.id.boton_entrar);
-        //entrada_nombre = (EditText) findViewById(R.id.editText_nombre);
         estado         = (TextView) findViewById(R.id.textView_estado);
 
-        boton_enviar  = (Button) findViewById(R.id.botonClient_enviar);
-        edit_entrada  = (EditText) findViewById(R.id.editTextClient_entrada);
-        texto_entrada = (TextView) findViewById(R.id.textViewClient_entrada);
-
         boton_entrar.setOnClickListener(this);
-        boton_enviar.setOnClickListener(this);
 
-        boton_enviar.setVisibility(View.GONE);
-        edit_entrada.setVisibility(View.GONE);
-        texto_entrada.setVisibility(View.GONE);
 
         if(primeravez==0) {
 
@@ -123,11 +111,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                     cliente.conectar(servicioSeleccionado);
                 }
                 break;
-            case R.id.botonClient_enviar:
-                String mensaje = edit_entrada.getText().toString();
-                //boton_enviar.setVisibility(View.GONE);
-                cliente.enviaMensaje(mensaje,"mensaje");
-                break;
+
         }
     }
 
@@ -136,8 +120,6 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         boton_entrar.setVisibility(View.GONE);
         //entrada_nombre.setVisibility(View.GONE);
         estado.setVisibility(View.GONE);
-        edit_entrada.setVisibility(View.VISIBLE);
-        texto_entrada.setVisibility(View.VISIBLE);
         spinner.setVisibility(View.GONE);
         setContentView(R.layout.activity_interfaz_juego);
         carta1 = (ImageView) findViewById(R.id.c1j2);
@@ -149,8 +131,8 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         cartaFin=(ImageView)findViewById(R.id.c4j1);
         cartaPinte=(ImageView)findViewById(R.id.pinta);
         carta4 = (ImageView) findViewById(R.id.c1j1);
-        carta5 = (ImageView) findViewById(R.id.c1j2);
-        carta6 = (ImageView) findViewById(R.id.c1j3);
+        carta5 = (ImageView) findViewById(R.id.c2j1);
+        carta6 = (ImageView) findViewById(R.id.c3j1);
         cartaMonton=(ImageButton)findViewById(R.id.mazo);
         ini1=new PointF();
         ini2=new PointF();
@@ -162,13 +144,13 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void muestraBotones(){
-        boton_enviar.setVisibility(View.VISIBLE);
+        //boton_enviar.setVisibility(View.VISIBLE);
     }
 
     public void publicaMensaje(String mensaje){
         this.m=mensaje;
-        texto_entrada.setText(m);
-        edit_entrada.setText("");
+        //texto_entrada.setText(m);
+        //edit_entrada.setText("");
     }
 
     public void notificaFalloServicio(){

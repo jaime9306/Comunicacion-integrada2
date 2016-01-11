@@ -72,47 +72,5 @@
             android:layout_gravity="center_horizontal"
             />
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/editTextServer_entrada"
-            />
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:ems="10"
-            android:id="@+id/editText_nusuarios"
-            />
-
-        <Button
-            android:layout_width="349dp"
-            android:layout_height="wrap_content"
-            android:text="Enviar"
-            android:id="@+id/botonServer_enviar"
-            />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="No registrado"
-            android:id="@+id/textView_estado"
-            />
-
-        <Button
-            android:layout_width="354dp"
-            android:layout_height="wrap_content"
-            android:text="Parar servidor"
-            android:id="@+id/boton_parar" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="New Text"
-            android:id="@+id/textViewServer_entrada"
-
-            android:layout_weight="0.75" />
     </LinearLayout>
 </LinearLayout>
