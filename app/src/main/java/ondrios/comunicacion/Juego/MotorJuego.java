@@ -218,33 +218,37 @@ public class MotorJuego {
             Monton monton0 = equipos[0].getMonton();
             Monton monton1 = equipos[1].getMonton();
 
-            int i, puntuacion0, puntuacion1;
+            int i;
+            int puntuacion0 = 0;
+            int puntuacion1 = 0;
             String ganador;
 
+            puntuacion0 = monton0.contar();
+            puntuacion1 = monton1.contar();
 
             //Ganador equipo0
             if(monton0.contar() > monton1.contar()){
-                Log.d("Monton0: ",Integer.toString(monton0.contar()));
-                Log.d("Monton1: ",Integer.toString(monton1.contar()));
+                Log.d("Monton0: ",Integer.toString(puntuacion0));
+                Log.d("Monton1: ",Integer.toString(puntuacion1));
                 ganador = lista[0].getNombre();
                 for (int j = 0; j<servidor.getClientes().size();j++) {
-                    Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+monton0.contar(),"fin_partida");
+                    Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+puntuacion0,"fin_partida");
                     servidor.enviaMensaje(mensaje);
                 }
             } else{
                 //Ganador equipo1
                 if(monton0.contar() < monton1.contar()){
-                    Log.d("Monton0: ",Integer.toString(monton0.contar()));
-                    Log.d("Monton1: ",Integer.toString(monton1.contar()));
+                    Log.d("Monton0: ",Integer.toString(puntuacion0));
+                    Log.d("Monton1: ",Integer.toString(puntuacion1));
                     ganador = lista[1].getNombre();
                     for (int j = 0; j<servidor.getClientes().size();j++) {
-                        Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+monton1.contar(),"fin_partida");
+                        Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+puntuacion1,"fin_partida");
                         servidor.enviaMensaje(mensaje);
                     }
                   //Empate
                 } else{
-                    Log.d("Monton0: ",Integer.toString(monton0.contar()));
-                    Log.d("Monton1: ",Integer.toString(monton1.contar()));
+                    Log.d("Monton0: ",Integer.toString(puntuacion0));
+                    Log.d("Monton1: ",Integer.toString(puntuacion1));
                     ganador = "Empate";
                     for (int j = 0; j<servidor.getClientes().size();j++) {
                         Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+"60","fin_partida");
