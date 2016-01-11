@@ -21,7 +21,6 @@ public class FinPartidaActivity extends AppCompatActivity implements View.OnClic
         Long duracionPartida=getIntent().getLongExtra("duracion",0);
         String quien = getIntent().getStringExtra("quien");
         boolean hasGanadoV = Boolean.parseBoolean(quien);
-        String ganador = datos[0];
         int puntuacionG = Integer.parseInt(datos[1]);
         int puntuacionP = 120-puntuacionG;
         tperdedor=(TextView)findViewById(R.id.textPerdedor);
@@ -58,6 +57,7 @@ public class FinPartidaActivity extends AppCompatActivity implements View.OnClic
         switch (v.getId()) {
             case R.id.boton_volver:
                 Intent principal = new Intent(FinPartidaActivity.this, MainActivity.class);
+                startActivity(principal);
                 finish();
                 break;
         }
