@@ -149,8 +149,8 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         cartaFin=(ImageView)findViewById(R.id.c4j1);
         cartaPinte=(ImageView)findViewById(R.id.pinta);
         carta4 = (ImageView) findViewById(R.id.c1j1);
-        carta5 = (ImageView) findViewById(R.id.c1j2);
-        carta6 = (ImageView) findViewById(R.id.c1j3);
+        carta5 = (ImageView) findViewById(R.id.c2j1);
+        carta6 = (ImageView) findViewById(R.id.c3j1);
         cartaMonton=(ImageButton)findViewById(R.id.mazo);
         ini1=new PointF();
         ini2=new PointF();
