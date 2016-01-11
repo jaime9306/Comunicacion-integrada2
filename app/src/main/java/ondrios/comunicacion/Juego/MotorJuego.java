@@ -43,18 +43,16 @@ public class MotorJuego {
         enviaCartas();
     }
 
+    /**
+     * Envia las cartas iniciales a cada jugador.
+     */
     private void enviaCartas(){
         Jugador [] listaJugadores = partida.getListajug();
         ArrayList<Mensaje> mensajes = new ArrayList <>();
         for(int i = 0;i<listaJugadores.length;i++){
             String nombre = listaJugadores[i].getNombre();
             Carta[] cartas = listaJugadores[i].getMano();
-            Carta carta1= cartas[0];
-            Carta carta2= cartas[1];
-            Carta carta3 = cartas[2];
-            Log.i(TAG,"Tamaño mano "+cartas.length);
-            //Esta es la parte del null pointer exception con las cartas
-            Log.i(TAG,"Tamaño mano "+cartas.length+" "+carta1.getNumero()+carta2.getNumero()+carta3.getNumero());
+
             String cartasFormato=cartas[0].getPalo()+Integer.toString(cartas[0].getNumero())+":"+
                     cartas[1].getPalo()+Integer.toString(cartas[1].getNumero())+":"+
                     cartas[2].getPalo()+Integer.toString(cartas[2].getNumero());
@@ -66,28 +64,44 @@ public class MotorJuego {
         }
     }
 
+    /**
+     * Devuelve el turno interno de la partida
+     * @return turno.
+     */
     public int getTurno(){
         return partida.getNumJugadorMano();
     }
 
+    /**
+     * Actualiza el estado interno del juego en funcion del jugador que ha tirado y su posicion de la
+     * mano que ha tirado.
+     * @param jugador Jugador que tira
+     * @param carta Posicion de la carta en la mano, que tira.
+     */
     public void tiraCarta(int jugador, int carta){
+
         Jugador [] listaJugadores = partida.getListajug();
         Carta tirada = null;
+
+        //Busca el jugador que ha tirado y le hace echar la carta.
         for(int i = 0;i<listaJugadores.length;i++){
             String nombre = listaJugadores[i].getNombre();
             if (nombre.equals(Integer.toString(jugador))){
                 orden.add(nombre);
-                tirada=listaJugadores[i].echar(carta);
+                tirada = listaJugadores[i].echar(carta);
             }
         }
+
+        //Guarda la carta tirada en la baza
         baza.add(tirada);
-        Mensaje mensaje = new Mensaje(null,Integer.toString(jugador)+"::"+tirada.getPalo()+Integer.toString(tirada.getNumero()),"muestra_carta");
-        servidor.enviaMensaje(mensaje);
-        
+
         Equipo [] equipos = partida.getEquipos();
-        Equipo eq1 = equipos[0];
-        Equipo eq2 = equipos[1];
-        String nombre = Integer.toString(jugador);
+        Equipo eq1        = equipos[0];
+        Equipo eq2        = equipos[1];
+        String nombre     = Integer.toString(jugador);
+
+        // Guarda la carta tirada del jugador en la jugada de cada equipo para luego saber de que
+        // equipo es la carta ganadora.
         for(int i = 0; i<eq1.jugadores.length;i++){
             if(nombre.equals(eq1.jugadores[i])){
                 jugadaEq1.add(tirada);
@@ -95,6 +109,12 @@ public class MotorJuego {
                 jugadaEq2.add(tirada);
             }
         }
+
+        //Envia la carta que ha tirado
+        Mensaje mensaje = new Mensaje(null,Integer.toString(jugador)+"::"+tirada.getPalo()+Integer.toString(tirada.getNumero()),"muestra_carta");
+        servidor.enviaMensaje(mensaje);
+
+        //Si ya han tirado todos resuelve el ganador de la baza.
         if(baza.size()==njugadores){
             if(njugadores==2){
                  Carta ganadora = partida.determinarCartaGanadora(baza.get(0), baza.get(1));
@@ -107,7 +127,7 @@ public class MotorJuego {
                     partida.getEquipos()[1].añadeMonton(baza.get(1));
                 }
                 String juadorGanador = orden.get(baza.indexOf(ganadora));
-                //Mensaje mensajeGanador = new Mensaje(null,juadorGanador,"ganador_baza");
+                Log.i(TAG,"Jugador ganador "+juadorGanador);
 
                 this.baza=new ArrayList<>();
                 this.orden= new ArrayList<>();
@@ -115,8 +135,8 @@ public class MotorJuego {
                 this.jugadaEq2= new ArrayList<>();
 
                 servidor.setTurno(Integer.valueOf(juadorGanador));
-                //servidor.enviaMensaje(mensajeGanador);
                 roba();
+
             } else if(njugadores == 4){
                 Carta ganadora = partida.determinarCartaGanadora(baza.get(0),baza.get(1));
                 ganadora = partida.determinarCartaGanadora(ganadora ,baza.get(2));
@@ -135,48 +155,45 @@ public class MotorJuego {
                     partida.getEquipos()[1].añadeMonton(baza.get(3));
                 }
                 String juadorGanador = orden.get(baza.indexOf(ganadora));
-                //Mensaje mensajeGanador = new Mensaje(null,juadorGanador,"ganador_baza");
+                Log.i(TAG,"Jugador ganador "+juadorGanador);
                 servidor.setTurno(Integer.valueOf(juadorGanador));
-               // servidor.enviaMensaje(mensajeGanador);
                 roba();
             }
 
-        }else{
+        }else{ // Si no manda al siguiente jugador tirar.
             Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),Integer.toString(servidor.getTurno()),"tira");
             servidor.enviaMensaje(mensajeTurno);
         }
 
     }
 
+    /**
+     * Roba una carta para cada jugador y se la manda.
+     */
     public void roba(){
+
         Jugador [] lista = partida.getListajug();
         Carta [] cartasRobadas = new Carta [njugadores];
+
+        //Para cada jugador roba una carta
         for (int i =0; i<njugadores;i++){
+            // Si la baraja no esta acabada la saca de la baraja
             if (!partida.getBaraja().estaAcabada()){
                 Carta cartaRobada = partida.getBaraja().saca();
                 lista[i].robar(cartaRobada);
-                cartasRobadas[i]=cartaRobada;
-            }else {
+                cartasRobadas[i] = cartaRobada;
+            }else { // Si esta acabada coge la del pinte.
                 Carta cartaRobada = pinte;
                 lista[i].robar(cartaRobada);
-                cartasRobadas[i]=cartaRobada;
+                cartasRobadas[i] = cartaRobada;
             }
         }
+        //Envia un mensaje a todos los jugadores de su carta robada
         for (int i =0; i<njugadores;i++){
+            // Mensaje para todos los clientes. El formato del cuerpo: <<carta robada palo-numero>>::<<turno del que tira despues de robar>>
             Mensaje mensaje = new Mensaje(servidor.getClientes().get(i),cartasRobadas[i].getPalo()+cartasRobadas[i].getNumero()+"::"+servidor.getTurno(),"roba");
             servidor.enviaMensaje(mensaje);
         }
-        try {
-            sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        //Mensaje mensajeTira = new Mensaje(servidor.getClientes().get(servidor.getTurno()),"null","tira");
-        //servidor.enviaMensaje(mensajeTira);
-
     }
-
-
-
 
 }
