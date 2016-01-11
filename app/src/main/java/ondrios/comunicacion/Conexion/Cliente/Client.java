@@ -37,16 +37,21 @@ public class Client  {
     private String id;
     private int quedan=99999;
 
+    /**
+     * Constructor de la clase cliente. Inicia
+     * @param context
+     * @param id
+     */
     public Client (Context context, int id){
-        this.context=context;
+        this.context   =context;
         this.contextID = id;
-        this.finder = new NsdFinder(this);
+        this.finder    = new NsdFinder(this);
         this.finder.iniciaBusqueda();
     }
 
     public Client (Context context, int port, int id){
-        this.context=context;
-        this.contextID = id;
+        this.context     = context;
+        this.contextID   = id;
         NsdServiceInfo n = new NsdServiceInfo();
         n.setHost(null);
         n.setPort(port);
