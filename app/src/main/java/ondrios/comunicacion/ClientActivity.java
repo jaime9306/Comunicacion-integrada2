@@ -110,8 +110,8 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.boton_entrar:
                 //String serviceName=entrada_nombre.getText().toString();
                 //cliente = new Client(this, serviceName, id);
-                if (servicioSeleccionado.equals("Selecciona una...")){
-                    estado.setText("Debes selecionar una");
+                if (servicioSeleccionado.equals(getString(R.string.selecciona_partida))){
+                    estado.setText(getString(R.string.debes_seleccionar));
                 }else {
                     cliente.conectar(servicioSeleccionado);
                 }
@@ -168,7 +168,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void notificaFalloServicio(){
-        estado.setText("No se ha encontrado el servicio.");
+        estado.setText(getString(R.string.no_encontrado_servicio));
 
     }
 

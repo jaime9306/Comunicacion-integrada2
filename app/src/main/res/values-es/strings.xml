@@ -1,4 +1,6 @@
 <resources>
+    <string name="title_activity_server">ServerActivity</string>
+    <string name="title_activity_client">ClientActivity</string>
     <string name="app_name">Brisca 3.0</string>
     <!--Main-->
     <string name="titulo">Brisca3.0</string>
@@ -10,6 +12,7 @@
     <string name="boton6">Preferencias</string>
     <string name="action_settings">Ajustes</string>
     <string name="nombrePartida">Nombre de la Partida</string>
+
 
     <!--ReglasBrisca-->
     <string name="title_activity_reglas_brisca">Reglas de la Brisca</string>
@@ -89,13 +92,21 @@
 
     <!--Crear nueva partida-->
     <string name="title_activity_crear_nueva_partida">Crear nueva partida</string>
-    <string name="mens_nombre_partida">Escribe el nombre de la partida</string>
+    <string name="mens_nombre_partida">Nombre de la partida</string>
     <string name="boton_crear">Crear</string>
-
+    <string name="selecciona_partida">Selecciona una...</string>
+    <string name="debes_seleccionar">Debes selecionar una</string>
+    <string name="no_encontrado_servicio">No se ha encontrado el servicio.</string>
+    <string name="esperando_jugadores">Esperando jugadores...</string>
+    <string name="unovsuno">Has elegido 1 vs 1</string>
+    <string name="dosvsdos">Has elegido 2 vs 2</string>
     <!-- Unirse a nueva partida-->
     <string name="title_activity_unirse_nueva_partida">Unirse a partida</string>
     <string name="mens_nombre_unirse_partida">Elije la partida a la cuál deseas unirte</string>
     <string name="boton_unirse">Unirse</string>
+    <string name="no_buscado">No buscado</string>
+    <string name="entrar">Entrar</string>
+    <string name="seleccionar_partida">Selecciona una partida</string>
 
     <!--Conectar-->
     <string name="conect_enviar">Enviar</string>
@@ -116,10 +127,22 @@
     <string name="partida_pinta">Carta que pinta</string>
     <string name="partida_espacio1">Espacio para que el jugador 1 coloque su carta</string>
     <string name="partida_espacio2">Espacio para que el jugador 2 coloque su carta</string>
+    <string name="tu_turno">Tu turno</string>
+    <string name="su_turno">Turno rival</string>
+    <string name="ganador">Ganador</string>
+    <string name="puntuacion">La puntuación del ganador ha sido de:</string>
+    <string name="puntuacionPer">La puntuación del perdedor ha sido de:</string>
+    <string name="final_partida">La partida ha finalizado</string>
+    <string name="volver">Volver</string>
+    <string name="hasGanado">Has ganado</string>
+    <string name="hasPerdido">Has perdido</string>
+    <string name="oponente">Oponente</string>
 
     <!--Preferencias-->
-    <string name="ingles">Inglés</string>
+    <string name="ingles">Ingles</string>
     <string name="espanol">Español</string>
+    <string name="ingles_abr">ENG</string>
+    <string name="espanol_abr">ESP</string>
     <string name="pref_categoria1_title">Datos de Jugador</string>
     <string name="pref_categoria2_title">Datos del Juego</string>
     <string name="noInicializado">No inicializado</string>
@@ -129,4 +152,30 @@
     <string name="pref_idioma_title">Idioma</string>
     <string name="pref_idioma_summary">idioma del juego (aún no funciona)</string>
     <string name="pref_idioma_dialog">Indicar Idioma</string>
+
+
+    <!--Instrucciones-->
+    <string name="instrucciones1">Desde esta pantalla podremos crear una nueva partida de brisca. Deberemos escribir un
+     nombre para esta partida y elegir el número de jugadores, que serán 2 o 4 pulsando el icono que represente el número de jugadores deseado.
+    Una vez finalizada la partida, se mostrará el ganador y los puntos y se podrá volver al menú principal.
+    Si durante el juego se pulsa la tecla de atrás se cierra la conexión de los dos jugadores.</string>
+    <string name="instrucciones2">Aquí podremos unirnos a una partida creada anteriormente. Simplemente hay que selecionar
+        la partida en el menu desplegable y pulsar en entrar</string>
+    <string name="instrucciones3">En esta pantalla encontraremos estadísticas de las partidas jugadas como por ejemplo el
+     porcentaje de partidas ganadas.</string>
+    <string name="instrucciones5">En esta pantalla encontraremos las reglas de la brisca, como se juega, el valor de cada carta, etc.</string>
+    <string name="instrucciones6">Desde aquí podremos cambiar alguna opción del juego como el nombre de usuario.
+     Los cambios realizados quedarán almacenados</string>
+
+    <!-- Estadísticas-->
+    <string name="nombreUsuario">Nombre de usuario: </string>
+    <string name="PuntuacionMedia">Puntuación media: </string>
+    <string name="Puntuaciones">Historial de puntuaciones</string>
+    <string name="PartidasJugadas">Número de partidas jugadas: </string>
+    <string name="Resultados">Resultados de las partidas</string>
+    <string name="DuracionMedia">Duración media(segundos): </string>
+    <string name="Duraciones">Historial de la duración de las partidas</string>
+    <string name="PuntosEquipo">Puntos del equipo conseguidos</string>
+    <string name="DatosPrueba">Datos de prueba</string>
+    <string name="BorrarDatos">Borrar datos</string>
 </resources>

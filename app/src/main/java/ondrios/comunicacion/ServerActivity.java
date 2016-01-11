@@ -84,7 +84,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
             case R.id.boton_registrar:
                 String serviceName = entrada_nombre.getText().toString();
                 servidor = new Server(this,serviceName,nJugadores);
-                titulo.setText("Esperando jugadores...");
+                titulo.setText(getString(R.string.esperando_jugadores));
                 vs1.setEnabled(false);
                 vs2.setEnabled(false);
                 entrada_nombre.setEnabled(false);
@@ -98,7 +98,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                 vs1.setBackgroundResource(R.drawable.ico1vs1);
                 vs2.setBackgroundResource(R.drawable.ico2vs2gris);
                 Toast v1 = Toast.makeText(getApplicationContext(),
-                        "Has elegido 1 vs 1", Toast.LENGTH_SHORT);
+                        getString(R.string.unovsuno), Toast.LENGTH_SHORT);
                 v1.show();
 
                 break;
@@ -107,7 +107,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                 vs1.setBackgroundResource(R.drawable.ico1vs1gris);
                 vs2.setBackgroundResource(R.drawable.ico2vs2);
                 Toast v2 = Toast.makeText(getApplicationContext(),
-                        "Has elegido 2 vs 2", Toast.LENGTH_SHORT);
+                        getString(R.string.dosvsdos), Toast.LENGTH_SHORT);
                 v2.show();
                 break;
 
@@ -476,7 +476,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     public void notificaFinal(String[] datos){
         tiempoFinal=System.currentTimeMillis();
         Intent finalPartida = new Intent(ServerActivity.this,FinPartidaActivity.class);
-        finalPartida.putExtra("duracion",tiempoFinal-tiempoInicio);
+        finalPartida.putExtra("duracion", tiempoFinal - tiempoInicio);
         finalPartida.putExtra("ganador", datos);
         if(cliente.getIdentificador().equals(datos[0])) {
             finalPartida.putExtra("quien", "true");
