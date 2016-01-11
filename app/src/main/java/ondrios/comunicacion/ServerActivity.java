@@ -138,6 +138,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         ini4=new PointF();
         ini4.set(carta4.getX(),carta4.getY());
         textoTurno=(TextView)findViewById(R.id.turno);
+        textoTurno.setText(getString(R.string.su_turno));
         fin=new PointF();
     }
 
@@ -168,6 +169,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                         cliente.enviaCarta(0);
                         posVacia=0;
                         turno=false;
+                        notificaTurnoEl();
                     } else {
                         v.setX(ini1.x);
                         v.setY(ini1.y);
@@ -205,6 +207,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                         cliente.enviaCarta(1);
                         posVacia=1;
                         turno=false;
+                        notificaTurnoEl();
                     } else {
                         v.setX(ini2.x);
                         v.setY(ini2.y);
@@ -238,10 +241,11 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                     if(v.getX()>cartaFin.getX() && v.getX()<cartaFin.getX()+cartaFin.getWidth()
                             && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()&&turno){
                         v.setX(cartaFin.getX() + carta3.getWidth());
-                        v.setY(cartaFin.getY() + carta3.getHeight()/2);
+                        v.setY(cartaFin.getY() + carta3.getHeight() / 2);
                         cliente.enviaCarta(2);
                         posVacia=2;
                         turno=false;
+                        notificaTurnoEl();
                     } else {
                         v.setX(ini3.x);
                         v.setY(ini3.y);
@@ -432,15 +436,13 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                 carta3.setVisibility(View.INVISIBLE);
                 break;
         }
+        carta4.setX(ini4.x);
+        carta4.setY(ini4.y);
     }
     public void eliminaDos(){
         carta5.setVisibility(View.INVISIBLE);
     }
     public void notificaTurno(){
-        Toast turno = Toast.makeText(getApplicationContext(),
-                getString(R.string.tu_turno) , Toast.LENGTH_SHORT);
-
-        turno.show();
         textoTurno.setText(getString(R.string.tu_turno));
 
     }
