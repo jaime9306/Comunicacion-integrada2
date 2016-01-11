@@ -45,9 +45,6 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
     private PieChart porcentajeResultados;
     private PieChart porcentajePuntos;
 
-    private Button botonSript;
-    private Button botonBorrar;
-
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -65,8 +62,8 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
         porcentajeResultados = (PieChart) findViewById(R.id.PieChart2);
         porcentajePuntos = (PieChart) findViewById(R.id.PieChart3);
 
-        botonBorrar = (Button) findViewById(R.id.boton_borrarDatos);
-        botonSript = (Button) findViewById(R.id.boton_datosPrueba);
+        Button botonBorrar = (Button) findViewById(R.id.boton_borrarDatos);
+        Button botonSript = (Button) findViewById(R.id.boton_datosPrueba);
 
         botonBorrar.setOnClickListener(this);
         botonSript.setOnClickListener(this);

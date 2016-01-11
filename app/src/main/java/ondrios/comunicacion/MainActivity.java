@@ -12,12 +12,6 @@ import android.widget.Button;
  */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button botonReglas;
-    private Button botonInstrucciones;
-    private Button botonCrearPartida;
-    private Button botonUnirPartida;
-    private Button botonEstadisticas;
-    private Button botonPreferencias;
 
 
     @Override
@@ -25,22 +19,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        botonReglas=(Button) findViewById(R.id.buttonReglas);
+        Button botonReglas = (Button) findViewById(R.id.buttonReglas);
         botonReglas.setOnClickListener(this);
 
-        botonInstrucciones=(Button) findViewById(R.id.buttonInstrucciones);
+        Button botonInstrucciones = (Button) findViewById(R.id.buttonInstrucciones);
         botonInstrucciones.setOnClickListener(this);
 
-        botonCrearPartida=(Button) findViewById(R.id.buttonCrearPartida);
+        Button botonCrearPartida = (Button) findViewById(R.id.buttonCrearPartida);
         botonCrearPartida.setOnClickListener(this);
 
-        botonUnirPartida=(Button) findViewById(R.id.buttonUnirPartida);
+        Button botonUnirPartida = (Button) findViewById(R.id.buttonUnirPartida);
         botonUnirPartida.setOnClickListener(this);
 
-        botonEstadisticas=(Button) findViewById(R.id.buttonEstadisticas);
+        Button botonEstadisticas = (Button) findViewById(R.id.buttonEstadisticas);
         botonEstadisticas.setOnClickListener(this);
 
-        botonPreferencias=(Button) findViewById(R.id.buttonPreferencias);
+        Button botonPreferencias = (Button) findViewById(R.id.buttonPreferencias);
         botonPreferencias.setOnClickListener(this);
 
 

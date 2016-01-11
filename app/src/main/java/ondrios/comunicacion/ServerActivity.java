@@ -25,8 +25,8 @@ import static java.lang.Thread.sleep;
 public class ServerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button boton_registrar;
-    private TextView titulo,oponente,propio;
-    private Long tiempoInicio,tiempoFinal;
+    private TextView titulo;
+    private Long tiempoInicio;
     private EditText entrada_nombre;
 
     private ImageButton vs1;
@@ -52,10 +52,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     private boolean turno;
 
 
-    private Server servidor;
     private Client cliente;
-
-    private final int id = 0; //Indica que es la actividad servidor
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,13 +82,14 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
 
             case R.id.boton_registrar:
                 String serviceName = entrada_nombre.getText().toString();
-                servidor = new Server(this,serviceName,nJugadores);
+                Server servidor = new Server(this, serviceName, nJugadores);
                 titulo.setText(getString(R.string.esperando_jugadores));
                 vs1.setEnabled(false);
                 vs2.setEnabled(false);
                 entrada_nombre.setEnabled(false);
                 boton_registrar.setVisibility(View.INVISIBLE);
-                cliente = new Client(this, servidor.getPort(),id);
+                int id = 0;
+                cliente = new Client(this, servidor.getPort(), id);
                 break;
 
 
@@ -136,8 +134,8 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         carta5 = (ImageView) findViewById(R.id.c2j1);
         carta6 = (ImageView) findViewById(R.id.c3j1);
         cartaMonton = (ImageButton) findViewById(R.id.mazo);
-        oponente = (TextView)findViewById(R.id.nomJuador1);
-        propio = (TextView)findViewById(R.id.nomJugador2);
+        TextView oponente = (TextView) findViewById(R.id.nomJuador1);
+        TextView propio = (TextView) findViewById(R.id.nomJugador2);
         oponente.setText(getString(R.string.oponente));
         propio.setText(textJug1);
         ini1=new PointF();
@@ -470,7 +468,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void notificaFinal(String[] datos){
-        tiempoFinal=System.currentTimeMillis();
+        Long tiempoFinal = System.currentTimeMillis();
         Intent finalPartida = new Intent(ServerActivity.this,FinPartidaActivity.class);
         finalPartida.putExtra("duracion", tiempoFinal - tiempoInicio);
         finalPartida.putExtra("ganador", datos);

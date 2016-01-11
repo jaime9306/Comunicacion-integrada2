@@ -31,7 +31,6 @@ public class Server {
     private final String TAG = "Servidor";
 
     private MotorJuego motor;
-    private Partida partida;
     private Equipo equipo0;
     private Equipo equipo1;
 
@@ -118,7 +117,7 @@ public class Server {
             }
 
             //Crea la partida
-            partida = new Partida(equipo0, equipo1);
+            Partida partida = new Partida(equipo0, equipo1);
 
             motor = new MotorJuego(this, partida);
 

@@ -11,10 +11,6 @@ import android.widget.TextView;
 import ondrios.comunicacion.BD.AdminSQLiteOpenHelper;
 
 public class FinPartidaActivity extends AppCompatActivity implements View.OnClickListener {
-    private TextView tperdedor;
-    private TextView tganador;
-    private TextView hasGanado;
-    private Button volver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,13 +21,13 @@ public class FinPartidaActivity extends AppCompatActivity implements View.OnClic
         boolean hasGanadoV = Boolean.parseBoolean(quien);
         int puntuacionG = Integer.parseInt(datos[1]);
         int puntuacionP = 120-puntuacionG;
-        tperdedor=(TextView)findViewById(R.id.textPerdedor);
-        tganador=(TextView) findViewById(R.id.textGanador);
-        tperdedor.setText(getString(R.string.puntuacionPer)+ " "+Integer.toString(puntuacionP));
-        tganador.setText(getString(R.string.puntuacion)+ " "+Integer.toString(puntuacionG));
-        volver=(Button)findViewById(R.id.boton_volver);
+        TextView tperdedor = (TextView) findViewById(R.id.textPerdedor);
+        TextView tganador = (TextView) findViewById(R.id.textGanador);
+        tperdedor.setText(getString(R.string.puntuacionPer) + " " + Integer.toString(puntuacionP));
+        tganador.setText(getString(R.string.puntuacion) + " " + Integer.toString(puntuacionG));
+        Button volver = (Button) findViewById(R.id.boton_volver);
         volver.setOnClickListener(this);
-        hasGanado=(TextView)findViewById(R.id.textoGanado);
+        TextView hasGanado = (TextView) findViewById(R.id.textoGanado);
         if(hasGanadoV){
             hasGanado.setText(getString(R.string.hasGanado));
             guardarDatos(duracionPartida,puntuacionG,puntuacionG);

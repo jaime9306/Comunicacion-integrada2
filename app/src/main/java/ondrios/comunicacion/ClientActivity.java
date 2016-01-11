@@ -31,8 +31,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private Spinner spinner;
     private boolean turno;
     private int posVacia;
-    private TextView oponente,propio;
-    private Long tiempoInicio,tiempoFinal;
+    private Long tiempoInicio;
     private String textJug1;
 
     private ImageView carta1;
@@ -52,12 +51,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
 
 
     private Client cliente;
-    private ArrayList<String> lista;
     private String servicioSeleccionado;
 
     private int primeravez=0;
-    private final String TAG="ClientActivity";
-    private final int id = 1; //Indica que es la actividad cliente
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,8 +70,10 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         if(primeravez==0) {
 
 
+            int id = 1;
             cliente = new Client(this, id);
-            lista = cliente.getServiciosDisponibles();
+            ArrayList<String> lista = cliente.getServiciosDisponibles();
+            String TAG = "ClientActivity";
             Log.i(TAG, "TAmaño " + lista.size());
             lista.add(0, "Selecciona una...");
             addServices(lista);
@@ -133,8 +131,8 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta3 = (ImageView) findViewById(R.id.c3j2);
         carta3.setOnTouchListener(handlerMover3);
         cartaFin=(ImageView)findViewById(R.id.c4j1);
-        oponente = (TextView)findViewById(R.id.nomJuador1);
-        propio = (TextView)findViewById(R.id.nomJugador2);
+        TextView oponente = (TextView) findViewById(R.id.nomJuador1);
+        TextView propio = (TextView) findViewById(R.id.nomJugador2);
         oponente.setText(getString(R.string.oponente));
         propio.setText(textJug1);
         cartaPinte=(ImageView)findViewById(R.id.pinta);
@@ -483,9 +481,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
 
     }
     public void notificaFinal(String[] datos){
-        tiempoFinal=System.currentTimeMillis();
+        Long tiempoFinal = System.currentTimeMillis();
         Intent finalPartida = new Intent(ClientActivity.this,FinPartidaActivity.class);
-        finalPartida.putExtra("duracion",tiempoFinal-tiempoInicio);
+        finalPartida.putExtra("duracion", tiempoFinal -tiempoInicio);
         finalPartida.putExtra("ganador", datos);
         if(cliente.getIdentificador().equals(datos[0])) {
             finalPartida.putExtra("quien", "true");

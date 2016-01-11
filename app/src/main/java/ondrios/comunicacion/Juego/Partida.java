@@ -8,7 +8,6 @@ public class Partida {
     private Baraja baraja;
     private final Equipo[] equipos = new Equipo[2];
     private Jugador[] listajug;
-    private int tamEq;
     private String paloTriunfo;
     private int numJugadorMano;
 
@@ -23,8 +22,8 @@ public class Partida {
             equipos[0] = eq1;
             equipos[1] = eq2;
             baraja = new Baraja();
-            tamEq = eq1.getTamEquipo();
-            listajug = new Jugador[2*tamEq];
+            int tamEq = eq1.getTamEquipo();
+            listajug = new Jugador[2* tamEq];
 
             //Array con la lista de jugadores alternados por equipos
             for(int i = 0; i < tamEq; i++){
@@ -33,7 +32,7 @@ public class Partida {
             }
 
             //Asigna aleatoriamente el jugador mano
-            numJugadorMano = (int) Math.floor(Math.random()*tamEq*2);
+            numJugadorMano = (int) Math.floor(Math.random()* tamEq *2);
         }
     }
 

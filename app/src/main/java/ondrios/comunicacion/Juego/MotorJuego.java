@@ -13,8 +13,6 @@ import ondrios.comunicacion.Conexion.Servidor.Server;
  */
 public class MotorJuego {
 
-    private final String TAG = "MotorJuego";
-
     private final Server servidor;
     private final Partida partida;
 
@@ -116,6 +114,7 @@ public class MotorJuego {
 
         //Si ya han tirado todos resuelve el ganador de la baza.
         if(baza.size()==njugadores){
+            String TAG = "MotorJuego";
             if(njugadores==2){
                  Carta ganadora = partida.determinarCartaGanadora(baza.get(0), baza.get(1));
                 if (jugadaEq1.contains(ganadora)){

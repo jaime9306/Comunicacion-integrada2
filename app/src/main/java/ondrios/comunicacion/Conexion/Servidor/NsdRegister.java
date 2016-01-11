@@ -10,8 +10,6 @@ import ondrios.comunicacion.Conexion.NsdHelper;
  */
 class NsdRegister {
 
-    private final String TAG = "NsdRegister";
-
     private NsdHelper nsdHelper;
     private final String servicename;
     private final Server server;
@@ -34,6 +32,7 @@ class NsdRegister {
         nsdHelper = new NsdHelper(server.getContext(),servicename);
         nsdHelper.initializeRegistrationListener();
         nsdHelper.registerService(server.getPort());
+        String TAG = "NsdRegister";
         Log.e(TAG, "Servidor registrado. Nombre del servicio: " + servicename);
     }
 

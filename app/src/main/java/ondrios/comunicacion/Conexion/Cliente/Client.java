@@ -25,8 +25,6 @@ import static java.lang.Thread.sleep;
  */
 public class Client  {
 
-    private final String TAG = "Client";
-
     private final Context context;
     private final int contextID;
 
@@ -105,7 +103,7 @@ public class Client  {
     
     private void recibeMensaje(String datos){
         String [] d = datos.split("&");
-
+        String TAG = "Client";
         switch (d[0]){
             case "identificador": //Recibe el identificador que le ha dado el servidor
                 id = d[1];
