@@ -155,7 +155,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
-            PointF StartPT = new PointF();
+            PointF StartPT =;
             int eid = event.getAction();
             switch(eid) {
                 case MotionEvent.ACTION_MOVE:
@@ -174,7 +174,6 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                             && v.getY()>cartaFin.getY() && v.getY()<cartaFin.getY()+cartaFin.getHeight()&&turno){
                         v.setX(cartaFin.getX()+carta1.getWidth());
                         v.setY(cartaFin.getY() + carta1.getHeight() / 2);
-                        Drawable c = carta1.getBackground();
                         cliente.enviaCarta(0);
                         posVacia=0;
                         turno=false;
@@ -194,7 +193,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
-            PointF StartPT = new PointF();
+            PointF StartPT;
             int eid = event.getAction();
             switch(eid) {
                 case MotionEvent.ACTION_MOVE:
@@ -232,7 +231,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
-            PointF StartPT = new PointF();
+            PointF StartPT;
             int eid = event.getAction();
             switch(eid) {
                 case MotionEvent.ACTION_MOVE:

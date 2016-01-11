@@ -219,9 +219,8 @@ public class MotorJuego {
             Monton monton0 = equipos[0].getMonton();
             Monton monton1 = equipos[1].getMonton();
 
-            int i;
-            int puntuacion0 = 0;
-            int puntuacion1 = 0;
+            int puntuacion0;
+            int puntuacion1;
             String ganador;
 
             puntuacion0 = monton0.contar();
