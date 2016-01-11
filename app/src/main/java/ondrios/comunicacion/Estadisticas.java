@@ -1,6 +1,6 @@
 package ondrios.comunicacion;
 
-import android.content.Context;
+
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -10,8 +10,7 @@ import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 
 import android.graphics.Color;
-import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -20,22 +19,22 @@ import com.androidplot.pie.PieChart;
 import com.androidplot.pie.PieRenderer;
 import com.androidplot.pie.Segment;
 import com.androidplot.pie.SegmentFormatter;
-import com.androidplot.ui.SizeLayoutType;
-import com.androidplot.ui.SizeMetrics;
+
 import com.androidplot.xy.SimpleXYSeries;
 import com.androidplot.xy.*;
 
 
 
-
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+
 import java.util.Iterator;
 
 import ondrios.comunicacion.BD.AdminSQLiteOpenHelper;
 
+/**
+ * Es el activity desde el cuál podremos observar los valores almacenados en la base de datos.
+ */
 public class Estadisticas extends AppCompatActivity implements View.OnClickListener{
     private TextView nombreUsuario;
     private TextView puntuacionMedia;
@@ -265,7 +264,7 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
 
         }}
 
-    /**
+    /*
      * Borra todos los datos almacenados
      */
     private void borrarDatos() {
@@ -278,7 +277,7 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
         startActivity(intentBD);
     }
 
-    /**
+    /*
      * Puebla la base de datos con valores de prueba
      */
     private void script() {
