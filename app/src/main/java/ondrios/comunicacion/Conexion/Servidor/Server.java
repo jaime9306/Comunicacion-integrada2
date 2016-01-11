@@ -235,11 +235,21 @@ public class Server {
                 //Otorga un identificador al cliente
                 EnviaMensajeTarea enviaRoba = new EnviaMensajeTarea();
                 enviaRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mensaje);
-                String [] mr = mensaje.getMensaje().split("::");
 
                 if (clientes.indexOf(mensaje.getSocket())==turno){
                     RecibeMensajeTarea tareaRecibeRoba = new RecibeMensajeTarea();
                     tareaRecibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(getTurno()));
+                }
+                break;
+
+            case "roba_pinte":
+                //Otorga un identificador al cliente
+                EnviaMensajeTarea enviaRobaPinte = new EnviaMensajeTarea();
+                enviaRobaPinte.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mensaje);
+
+                if (clientes.indexOf(mensaje.getSocket())==turno){
+                    RecibeMensajeTarea tareaRecibeRobaPinte = new RecibeMensajeTarea();
+                    tareaRecibeRobaPinte.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,clientes.get(getTurno()));
                 }
                 break;
 
