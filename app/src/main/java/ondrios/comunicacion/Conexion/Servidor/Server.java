@@ -242,6 +242,7 @@ public class Server {
                 break;
 
             case "roba_null":
+                duerme(300);
                 //Otorga un identificador al cliente
                 EnviaMensajeTarea enviaRobaNull = new EnviaMensajeTarea();
                 enviaRobaNull.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mensaje);
@@ -252,6 +253,7 @@ public class Server {
                 }
                 break;
             case "roba_pinte":
+                duerme(300);
                 //Otorga un identificador al cliente
                 EnviaMensajeTarea enviaRobaPinte = new EnviaMensajeTarea();
                 enviaRobaPinte.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mensaje);
@@ -334,14 +336,14 @@ public class Server {
         protected Socket doInBackground(ServerSocket... params) {
             try {
                 ServerSocket mServerSocket = params[0];
-                Log.i(TAG,"Esparando conexion");
+                Log.i(TAG, "Esparando conexion");
                 Socket socketCliente = mServerSocket.accept();
                 Log.i(TAG, "Cliente conectado");
                 return socketCliente;
             } catch (IOException e) {
-                Log.i(TAG,"ERROR: Error al conectar cliente",e);
+                Log.i(TAG, "ERROR: Error al conectar cliente",e);
             } catch (Exception e){
-                Log.i(TAG,"ERROR: Error inesperado",e);
+                Log.i(TAG, "ERROR: Error inesperado",e);
             }
             return null;
         }
@@ -364,7 +366,7 @@ public class Server {
             Socket socket = params[0];
             if (apagado){this.cancel(true);}
             try {
-                Log.i(TAG,"Esperando mensaje de "+socket.getInetAddress().getHostAddress());
+                Log.i(TAG, "Esperando mensaje de " + socket.getInetAddress().getHostAddress());
                 BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 return lector.readLine();
             } catch (IOException e) {
