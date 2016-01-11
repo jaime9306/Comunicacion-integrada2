@@ -80,7 +80,7 @@
         android:layout_width="81dp"
         android:layout_height="116dp"
         android:id="@+id/pinta"
-        android:rotation="90"
+        android:rotation="270"
 
         android:layout_gravity="center_vertical"
         android:contentDescription="@string/partida_pinta"
