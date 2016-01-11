@@ -8,7 +8,6 @@ public class Partida {
     private Baraja baraja;
     private Equipo[] equipos = new Equipo[2];
     private Jugador[] listajug;
-    private int juegos;
     private int tamEq;
     private String paloTriunfo;
     private int numJugadorMano;
@@ -18,13 +17,11 @@ public class Partida {
      * El número de integrantes del equipo debe ser el mismo.
      * @param eq1 representa uno de los equipos de la partida
      * @param eq2 representa uno de los equipos de la partida
-     * @param jue representa el número de juegos a los que se va a jugar la partida
      */
-    public Partida(Equipo eq1, Equipo eq2, int jue){
+    public Partida(Equipo eq1, Equipo eq2){
         if(eq1.getTamEquipo() == eq2.getTamEquipo()) {
             equipos[0] = eq1;
             equipos[1] = eq2;
-            juegos = jue;
             baraja = new Baraja();
             tamEq = eq1.getTamEquipo();
             listajug = new Jugador[2*tamEq];
