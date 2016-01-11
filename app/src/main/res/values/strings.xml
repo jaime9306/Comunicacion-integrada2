@@ -1,7 +1,7 @@
 <resources>
     <string name="title_activity_server">ServerActivity</string>
     <string name="title_activity_client">ClientActivity</string>
-    <string name="app_name">Brisca 3.0</string>
+    <string name="app_name">Cluster10</string>
     <!--Main-->
     <string name="boton1">Crear partida</string>
     <string name="boton2">Unirse a partida</string>

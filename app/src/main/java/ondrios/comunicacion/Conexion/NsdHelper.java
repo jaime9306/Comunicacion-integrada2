@@ -37,7 +37,7 @@ public class NsdHelper {
 
     private final String TAG = "NsdHelper";
     private String mServiceName;
-    private final ArrayList<String> partidas= new ArrayList();
+    private final ArrayList<String> partidas= new ArrayList<>();
 
     private NsdServiceInfo mService;
 

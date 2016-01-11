@@ -167,8 +167,8 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
         int total = cur.getCount();
         int media=0;
         int mediaDuraciones=0;
-        ArrayList puntuaciones=new ArrayList();
-        ArrayList duraciones=new ArrayList();
+        ArrayList<Integer> puntuaciones = new ArrayList<>();
+        ArrayList<Integer> duraciones = new ArrayList<>();
         int puntosPropios=0;
         int puntosEquipos=0;
         while (cur.moveToNext()){
