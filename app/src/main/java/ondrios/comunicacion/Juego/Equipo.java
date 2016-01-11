@@ -1,10 +1,9 @@
 package ondrios.comunicacion.Juego;
 
-/* Implementa un equipo de la partida que puede ser de uno, dos o tres jugadores */
+/* Implementa un equipo de la partida que puede ser de uno o dos jugadores */
 public class Equipo {
 
     private Monton monton;
-    private int juegos;
     public Jugador[] jugadores;
     private int tamEquipo;
 

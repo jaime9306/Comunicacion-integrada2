@@ -13,7 +13,7 @@ public class Partida {
     private int numJugadorMano;
 
     /**
-     * Inicializa una partida con los equipos y el numero de juegos indicados y le asigna una baraja.
+     * Inicializa una partida con los equipos indicados y le asigna una baraja.
      * El número de integrantes del equipo debe ser el mismo.
      * @param eq1 representa uno de los equipos de la partida
      * @param eq2 representa uno de los equipos de la partida
@@ -38,7 +38,7 @@ public class Partida {
     }
 
     /**
-     * Reparte 3 cartas de la baraja a cada jugador de la partida
+     *  Mezcla la baraja y reparte 3 cartas de la baraja a cada jugador de la partida
      */
     public void repartoInicial(){
         int i, j;
@@ -48,8 +48,6 @@ public class Partida {
         for(i = 0; i < 3; i++){
             for(j = 0; j < listajug.length; j++){
                 listajug[j].robar(baraja.saca());
-                //numJugadorMano = (numJugadorMano++)%listajug.length;//vuelve a 0 cuando roba el
-                                                                    // ultimo jugador de la lista
             }
         }
     }
@@ -120,19 +118,34 @@ public class Partida {
         }
     }
 
-
+    /**
+     * Devuelve la lista de jugadores de la partida
+     * @return array de Jugadores de la partida
+     */
     public Jugador[] getListajug() {
         return listajug;
     }
 
+    /**
+     * Entero que representa el número de jugador que es mano
+     * @return numero de jugador que es mano
+     */
     public int getNumJugadorMano() {
         return numJugadorMano;
     }
 
+    /**
+     * Devuelve los Equipos de la partida
+     * @return array con los equipos de la partida
+     */
     public Equipo[] getEquipos() {
         return equipos;
     }
 
+    /**
+     * Devuelve la Baraja de la partida
+     * @return la baraja de la partida
+     */
     public Baraja getBaraja() {
         return baraja;
     }
