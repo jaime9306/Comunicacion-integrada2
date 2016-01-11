@@ -192,6 +192,8 @@ public class Client  {
                                 sa.eliminaDos();
                                 quedan--;
                                 break;
+                            default:
+                                break;
                         }
                     }
 
@@ -207,6 +209,8 @@ public class Client  {
                             case 2:
                                 ca.eliminaDos();
                                 quedan--;
+                                break;
+                            default:
                                 break;
                         }
                     }
@@ -275,10 +279,11 @@ public class Client  {
                 String turnoRoban = d[1];
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
+                    sa.recogeSinMazo();
                     if (turnoRoban.equals(id)){
                         sa.notificaTurno();
                         sa.setTurno();
-                        sa.recogeSinMazo();
+
                     }else {
                         sa.notificaTurnoEl();
                         RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
@@ -286,10 +291,11 @@ public class Client  {
                     }
                 } else {
                     ClientActivity ca = (ClientActivity) context;
+                    ca.recogeSinMazo();
                     if (turnoRoban.equals(id)) {
                         ca.notificaTurno();
                         ca.setTurno();
-                        ca.recogeSinMazo();
+
                     }else {
                         ca.notificaTurnoEl();
                         RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
