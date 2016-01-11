@@ -428,13 +428,13 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         Log.d("Recoge sin mazo","Recoge pos"+posVacia);
         switch (posVacia){
             case 0:
-                carta1.setVisibility(View.GONE);
+                carta1.setVisibility(View.INVISIBLE);
                 break;
             case 1:
-                carta2.setVisibility(View.GONE);
+                carta2.setVisibility(View.INVISIBLE);
                 break;
             case 2:
-                carta3.setVisibility(View.GONE);
+                carta3.setVisibility(View.INVISIBLE);
                 break;
         }
         carta4.setX(ini4.x);
@@ -443,7 +443,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void eliminaDos(){
         Log.d("Elimina","2");
-        carta5.setVisibility(View.GONE);
+        carta5.setVisibility(View.INVISIBLE);
     }
     public void reparteCartas(String c){
 

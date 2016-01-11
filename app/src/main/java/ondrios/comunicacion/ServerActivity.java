@@ -421,20 +421,20 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
 
     }
     public void eliminaUna(){
-        carta6.setVisibility(View.GONE);
+        carta6.setVisibility(View.INVISIBLE);
         Log.d("Elimina", "1");
     }
     public void recogeSinMazo(){
         Log.d("Recoge sin mazo","Recoge pos"+posVacia);
         switch (posVacia){
             case 0:
-                carta1.setVisibility(View.GONE);
+                carta1.setVisibility(View.INVISIBLE);
                 break;
             case 1:
-                carta2.setVisibility(View.GONE);
+                carta2.setVisibility(View.INVISIBLE);
                 break;
             case 2:
-                carta3.setVisibility(View.GONE);
+                carta3.setVisibility(View.INVISIBLE);
                 break;
         }
         carta4.setX(ini4.x);
@@ -444,7 +444,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     public void eliminaDos(){
 
         Log.d("Elimina","2");
-        carta5.setVisibility(View.GONE);
+        carta5.setVisibility(View.INVISIBLE);
     }
     public void notificaTurno(){
         textoTurno.setText(getString(R.string.tu_turno));
