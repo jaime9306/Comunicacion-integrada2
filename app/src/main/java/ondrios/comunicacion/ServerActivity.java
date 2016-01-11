@@ -422,9 +422,10 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void eliminaUna(){
         carta6.setVisibility(View.GONE);
-
+        Log.d("Elimina", "1");
     }
     public void recogeSinMazo(){
+        Log.d("Recoge sin mazo","Recoge pos"+posVacia);
         switch (posVacia){
             case 0:
                 carta1.setVisibility(View.GONE);
@@ -441,6 +442,8 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         carta4.setBackgroundResource(getCarta("reverso"));
     }
     public void eliminaDos(){
+
+        Log.d("Elimina","2");
         carta5.setVisibility(View.GONE);
     }
     public void notificaTurno(){
