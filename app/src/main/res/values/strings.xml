@@ -94,7 +94,12 @@
     <string name="title_activity_crear_nueva_partida">Crear nueva partida</string>
     <string name="mens_nombre_partida">Nombre de la partida</string>
     <string name="boton_crear">Crear</string>
-
+    <string name="selecciona_partida">Selecciona una...</string>
+    <string name="debes_seleccionar">Debes selecionar una</string>
+    <string name="no_encontrado_servicio">No se ha encontrado el servicio.</string>
+    <string name="esperando_jugadores">Esperando jugadores...</string>
+    <string name="unovsuno">Has elegido 1 vs 1</string>
+    <string name="dosvsdos">Has elegido 2 vs 2</string>
     <!-- Unirse a nueva partida-->
     <string name="title_activity_unirse_nueva_partida">Unirse a partida</string>
     <string name="mens_nombre_unirse_partida">Elije la partida a la cuál deseas unirte</string>
