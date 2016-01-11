@@ -121,7 +121,7 @@ public class Server {
             }
 
             //Crea la partida a 8 juegos
-            partida = new Partida(equipo0, equipo1, 8);
+            partida = new Partida(equipo0, equipo1);
 
             motor = new MotorJuego(this, partida);
 
