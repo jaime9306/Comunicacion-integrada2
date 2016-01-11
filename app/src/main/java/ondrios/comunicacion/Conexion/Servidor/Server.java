@@ -316,6 +316,12 @@ public class Server {
                     Log.e(TAG, "Error al intentar cerrar el socket del servidor");
                 }
                 break;
+            case "apaga":
+                for (int i=0;i<nclientes;i++){
+                    Mensaje mensajeApaga =  new Mensaje(clientes.get(i),"null","apaga");
+                    enviaMensaje(mensajeApaga);
+                }
+
         }
     }
 

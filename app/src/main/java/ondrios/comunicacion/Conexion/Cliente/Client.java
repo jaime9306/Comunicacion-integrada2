@@ -311,6 +311,11 @@ public class Client  {
                 if(contextID == 0){
                     enviaMensaje("null", "OK_apaga");
                     try {
+                        sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    try {
                         socketServidor.close();
                         ServerActivity sa = (ServerActivity) context;
                         sa.notificaFinal(datosFin);
@@ -320,6 +325,11 @@ public class Client  {
                     }
                 } else {
                     enviaMensaje("null", "OK_apaga");
+                    try {
+                        sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                     try {
                         socketServidor.close();
                         ClientActivity c = (ClientActivity) context;
@@ -335,6 +345,11 @@ public class Client  {
             case "apaga":
                 //No comprobado si null que algunas veces recibia null en este caso
                 enviaMensaje("null","OK_apaga");
+                try {
+                    sleep(500);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 try {
                     socketServidor.close();
                     if(contextID==1){
@@ -366,11 +381,17 @@ public class Client  {
                 enviaCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeCarta);
                 recibeMensajeCarta.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 break;
+            case "apaga":
+                EnviaMensajeTarea enviaApaga = new EnviaMensajeTarea();
+                RecibeMensajeTarea recibeApaga= new RecibeMensajeTarea();
+                Mensaje mensajeApaga = new Mensaje(socketServidor,datos,protocolo);
+                enviaApaga.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,mensajeApaga);
+                recibeApaga.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                break;
         }
     }
 
     public void enviaCarta(int i){
-        //Mensaje mensaje = new Mensaje(socketServidor,Integer.toString(i),"tira_carta");
         enviaMensaje(Integer.toString(i),"tira_carta");
     }
 
@@ -479,4 +500,5 @@ public class Client  {
     public Context getContext() {
         return context;
     }
+
 }

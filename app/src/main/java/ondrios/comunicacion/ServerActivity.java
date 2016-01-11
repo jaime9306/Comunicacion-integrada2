@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
@@ -136,7 +137,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         ini2=new PointF();
         ini3=new PointF();
         ini4=new PointF();
-        ini4.set(carta4.getX(),carta4.getY());
+        ini4.set(carta4.getX(), carta4.getY());
         cartasRestantes=(TextView)findViewById(R.id.restantes);
         cartasRestantes.setText("34");
         textoTurno=(TextView)findViewById(R.id.turno);
@@ -449,7 +450,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void eliminaDos(){
 
-        Log.d("Elimina","2");
+        Log.d("Elimina", "2");
         carta5.setVisibility(View.INVISIBLE);
     }
     public void notificaTurno(){
@@ -493,5 +494,13 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         m=parcelable.getM();
         servidor=parcelable.getServidor();
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            cliente.enviaMensaje("null","apaga");
+        }
+        return true;
     }
 }

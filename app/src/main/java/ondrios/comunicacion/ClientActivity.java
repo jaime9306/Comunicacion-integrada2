@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -18,10 +19,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.security.KeyException;
 import java.util.ArrayList;
 
 import ondrios.comunicacion.Conexion.Cliente.Client;
 import ondrios.comunicacion.Conexion.Cliente.MyParcelableClient;
+import ondrios.comunicacion.Conexion.Mensaje;
 
 import static java.lang.Thread.sleep;
 
@@ -444,7 +447,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta4.setBackgroundResource(getCarta("reverso"));
     }
     public void eliminaDos(){
-        Log.d("Elimina","2");
+        Log.d("Elimina", "2");
         carta5.setVisibility(View.INVISIBLE);
     }
     public void reparteCartas(String c){
@@ -508,6 +511,14 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta4.setY(ini4.y);
         carta4.setBackgroundResource(getCarta("reverso"));
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            cliente.enviaMensaje("null","apaga");
+        }
+        return true;
     }
 
 
