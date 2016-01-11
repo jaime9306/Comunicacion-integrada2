@@ -36,7 +36,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
 
     protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4,carta5,carta6;
     protected ImageButton cartaMonton;
-    protected TextView textoTurno;
+    protected TextView textoTurno,cartasRestantes;
     private int modificarX=20;
     private int modificarY=20;
     private int margenX=2000;
@@ -137,6 +137,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         ini3=new PointF();
         ini4=new PointF();
         ini4.set(carta4.getX(),carta4.getY());
+        cartasRestantes=(TextView)findViewById(R.id.restantes);
         textoTurno=(TextView)findViewById(R.id.turno);
         textoTurno.setText(getString(R.string.su_turno));
         fin=new PointF();
@@ -388,11 +389,15 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         carta4.setX(ini4.x);
         carta4.setY(ini4.y);
         carta4.setBackgroundResource(getCarta("reverso"));
+        String rest=cartasRestantes.getText().toString();
+        int resAct=Integer.parseInt(rest)-2;
+        cartasRestantes.setText(Integer.toString(resAct));
 
     }
     public void desaparecePinte(String c){
         cartaPinte.setVisibility(View.INVISIBLE);
         cartaMonton.setVisibility(View.INVISIBLE);
+        cartasRestantes.setVisibility(View.INVISIBLE);
         switch (posVacia) {
             case 0:
                 carta1.setX(ini1.x);

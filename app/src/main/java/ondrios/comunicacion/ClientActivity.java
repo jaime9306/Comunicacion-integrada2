@@ -41,7 +41,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private int margenX=2000;
     private int margenY=400;
     private PointF ini1,ini2,ini3,fin,ini4;
-    protected TextView textoTurno;
+    protected TextView textoTurno,cartasRestantes;
 
 
     private MyParcelableClient parcelable=new MyParcelableClient();
@@ -135,6 +135,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta5 = (ImageView) findViewById(R.id.c2j1);
         carta6 = (ImageView) findViewById(R.id.c3j1);
         cartaMonton=(ImageButton)findViewById(R.id.mazo);
+        cartasRestantes=(TextView)findViewById(R.id.restantes);
         ini1=new PointF();
         ini2=new PointF();
         ini3=new PointF();
@@ -472,10 +473,14 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta4.setX(ini4.x);
         carta4.setY(ini4.y);
         carta4.setBackgroundResource(getCarta("reverso"));
+        String rest=cartasRestantes.getText().toString();
+        int resAct=Integer.parseInt(rest)-2;
+        cartasRestantes.setText(Integer.toString(resAct));
     }
     public void desaparecePinte(String c){
         cartaPinte.setVisibility(View.INVISIBLE);
         cartaMonton.setVisibility(View.INVISIBLE);
+        cartasRestantes.setVisibility(View.INVISIBLE);
         switch (posVacia) {
             case 0:
                 carta1.setX(ini1.x);
