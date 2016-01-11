@@ -231,7 +231,7 @@ public class Server {
                 break;
 
             case "roba":
-                duerme();
+                duerme(300);
                 //Otorga un identificador al cliente
                 EnviaMensajeTarea enviaRoba = new EnviaMensajeTarea();
                 enviaRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mensaje);

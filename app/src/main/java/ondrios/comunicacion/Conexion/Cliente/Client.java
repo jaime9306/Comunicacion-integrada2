@@ -34,6 +34,7 @@ public class Client  {
     private Socket socketServidor;
 
     private String id;
+    private int quedan=99999;
 
     public Client (Context context, int id){
         this.context=context;
@@ -143,6 +144,27 @@ public class Client  {
                 break;
             case "tira": //Notificacion de que le toca tirar al cliete
                 //Te toca tirar
+                switch(quedan){
+                    case 2:
+                        if (contextID == 0) {
+                            ServerActivity sa = (ServerActivity) context;
+                            sa.eliminaUna();
+                        } else {
+                            ClientActivity ca = (ClientActivity) context;
+                            ca.eliminaUna();
+                        }
+
+                        break;
+                    case 1:
+                        if (contextID == 0) {
+                            ServerActivity sa = (ServerActivity) context;
+                            sa.eliminaDos();
+                        } else {
+                            ClientActivity ca = (ClientActivity) context;
+                            ca.eliminaDos();
+                        }
+                        break;
+                }
                 Log.i(TAG, "Te toca tirar");
                 String lanzador = d[1];
                 if (lanzador.equals(id)){
@@ -215,6 +237,7 @@ public class Client  {
                 String [] mrp = d[1].split("::");
                 String cartaRobaPinte= mrp[0];
                 String turnoRobaPinte = mrp[1];
+                quedan=2;
                 if (contextID == 0) {
                     ServerActivity sa = (ServerActivity) context;
                     sa.desaparecePinte(cartaRobaPinte);

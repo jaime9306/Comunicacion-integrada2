@@ -37,7 +37,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private boolean turno;
     private int posVacia;
 
-    protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4;
+    protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4,carta5,carta6;
     protected ImageButton cartaMonton;
     private int modificarX=20;
     private int modificarY=20;
@@ -149,6 +149,8 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         cartaFin=(ImageView)findViewById(R.id.c4j1);
         cartaPinte=(ImageView)findViewById(R.id.pinta);
         carta4 = (ImageView) findViewById(R.id.c1j1);
+        carta5 = (ImageView) findViewById(R.id.c1j2);
+        carta6 = (ImageView) findViewById(R.id.c1j3);
         cartaMonton=(ImageButton)findViewById(R.id.mazo);
         ini1=new PointF();
         ini2=new PointF();
@@ -428,6 +430,34 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
                 "Es tu turno", Toast.LENGTH_SHORT);
 
         turno.show();
+    }
+    public void eliminaUna(){
+        carta6.setVisibility(View.INVISIBLE);
+        switch (posVacia){
+            case 0:
+                carta1.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                carta2.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                carta3.setVisibility(View.INVISIBLE);
+                break;
+        }
+    }
+    public void eliminaDos(){
+        carta5.setVisibility(View.INVISIBLE);
+        switch (posVacia){
+            case 0:
+                carta1.setVisibility(View.INVISIBLE);
+                break;
+            case 1:
+                carta2.setVisibility(View.INVISIBLE);
+                break;
+            case 2:
+                carta3.setVisibility(View.INVISIBLE);
+                break;
+        }
     }
     public void reparteCartas(String c){
 
