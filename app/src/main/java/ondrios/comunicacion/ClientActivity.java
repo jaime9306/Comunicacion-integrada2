@@ -42,7 +42,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private int margenY=400;
     private PointF ini1,ini2,ini3,fin,ini4;
     protected TextView textoTurno,cartasRestantes;
-
+    private float medidax,mediday;
 
     private MyParcelableClient parcelable=new MyParcelableClient();
     private Client cliente;
@@ -146,6 +146,8 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         textoTurno=(TextView)findViewById(R.id.turno);
         textoTurno.setText(getString(R.string.su_turno));
         turno=false;
+        medidax=carta1.getX();
+        mediday=carta1.getY();
     }
 
     public void muestraBotones(){
@@ -408,8 +410,8 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void tiraCartaContrario(String c){
         ini4.set(carta4.getX(),carta4.getY());
-        carta4.setX(cartaFin.getX()+carta4.getWidth());
-        carta4.setY(cartaFin.getY()+carta4.getHeight());
+        carta4.setX(cartaFin.getX()+(medidax)*2);
+        carta4.setY(cartaFin.getY()+ mediday/2);
         carta4.setBackgroundResource(getCarta(c));
     }
     public void setTurno(){

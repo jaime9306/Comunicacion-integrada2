@@ -33,6 +33,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     private ImageButton vs2;
     private int posVacia;
     private int nJugadores=2;
+    private float medidax,mediday;
 
     protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4,carta5,carta6;
     protected ImageButton cartaMonton;
@@ -141,6 +142,8 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         cartasRestantes.setText("34");
         textoTurno=(TextView)findViewById(R.id.turno);
         textoTurno.setText(getString(R.string.su_turno));
+        medidax=carta1.getX();
+        mediday=carta1.getY();
         fin=new PointF();
     }
 
@@ -359,8 +362,8 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void tiraCartaContrario(String c){
         ini4.set(carta4.getX(),carta4.getY());
-        carta4.setX(cartaFin.getX()+carta4.getWidth());
-        carta4.setY(cartaFin.getY()+carta4.getHeight());
+        carta4.setX(cartaFin.getX()+(medidax)*2);
+        carta4.setY(cartaFin.getY()+ mediday/2);
         carta4.setBackgroundResource(getCarta(c));
     }
     public void reparteCartas(String c){
