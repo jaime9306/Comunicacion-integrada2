@@ -3,7 +3,6 @@ package ondrios.comunicacion;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PointF;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +13,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -29,27 +27,31 @@ import static java.lang.Thread.sleep;
 public class ClientActivity extends AppCompatActivity implements View.OnClickListener{
 
     private Button boton_entrar;
-    private EditText entrada_nombre;
     private TextView estado;
     private Spinner spinner;
     private boolean turno;
     private int posVacia;
-    private TextView titulo,oponente,propio;
+    private TextView oponente,propio;
     private Long tiempoInicio,tiempoFinal;
     private String textJug1;
 
-    protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4,carta5,carta6;
-    protected ImageButton cartaMonton;
-    private int modificarX=20;
-    private int modificarY=20;
-    private int margenX=2000;
-    private int margenY=400;
-    private PointF ini1,ini2,ini3,fin,ini4;
-    protected TextView textoTurno,cartasRestantes;
+    private ImageView carta1;
+    private ImageView carta2;
+    private ImageView carta3;
+    private ImageView cartaFin;
+    private ImageView cartaPinte;
+    private ImageView carta4;
+    private ImageView carta5;
+    private ImageView carta6;
+    private ImageButton cartaMonton;
+    private final int modificarX=20;
+    private final int modificarY=20;
+    private PointF ini1,ini2,ini3,ini4;
+    private TextView textoTurno;
+    private TextView cartasRestantes;
 
 
     private Client cliente;
-    private String m;
     private ArrayList<String> lista;
     private String servicioSeleccionado;
 
@@ -82,7 +84,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
-    public void addServices(ArrayList lista){
+    private void addServices(ArrayList lista){
         spinner = (Spinner) findViewById(R.id.spinner);
 
         ArrayAdapter<String> adaptador = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, lista);
@@ -93,9 +95,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
             public void onItemSelected(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
                 String servicio = arg0.getItemAtPosition(arg2).toString();
                 if (!servicio.equals("null")) {
-                    //Toast.makeText(arg0.getContext(), "Seleccionado: " + servicio, Toast.LENGTH_SHORT).show();
                     servicioSeleccionado = servicio;
-                    //conectar(servicio);
                 }
             }
 
@@ -108,8 +108,6 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v){
         switch (v.getId()){
             case R.id.boton_entrar:
-                //String serviceName=entrada_nombre.getText().toString();
-                //cliente = new Client(this, serviceName, id);
                 if (servicioSeleccionado.equals("Selecciona una...")){
                     estado.setText("Debes selecionar una");
                 }else {
@@ -151,20 +149,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         ini3=new PointF();
         ini4=new PointF();
         ini4.set(carta4.getX(),carta4.getY());
-        fin=new PointF();
         textoTurno=(TextView)findViewById(R.id.turno);
         textoTurno.setText(getString(R.string.su_turno));
         turno=false;
-    }
-
-    public void muestraBotones(){
-        //boton_enviar.setVisibility(View.VISIBLE);
-    }
-
-    public void publicaMensaje(String mensaje){
-        this.m=mensaje;
-        //texto_entrada.setText(m);
-        //edit_entrada.setText("");
     }
 
     public void notificaFalloServicio(){
@@ -180,8 +167,8 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
 
 
 
-    View.OnTouchListener handlerMover1 = new View.OnTouchListener(){
-        PointF DownPT=new PointF();
+    private final View.OnTouchListener handlerMover1 = new View.OnTouchListener(){
+        final PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
             PointF StartPT;
@@ -218,8 +205,8 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
             return true;
         }
     };
-    View.OnTouchListener handlerMover2 = new View.OnTouchListener(){
-        PointF DownPT=new PointF();
+    private final View.OnTouchListener handlerMover2 = new View.OnTouchListener(){
+        final PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
             PointF StartPT;
@@ -256,8 +243,8 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
             return true;
         }
     };
-    View.OnTouchListener handlerMover3 = new View.OnTouchListener(){
-        PointF DownPT=new PointF();
+    private final View.OnTouchListener handlerMover3 = new View.OnTouchListener(){
+        final PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
             PointF StartPT;
@@ -294,7 +281,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
             return true;
         }
     };
-    protected int getCarta(String c){
+    private int getCarta(String c){
         switch(c){
             case("o1"):
                 return R.drawable.o1;

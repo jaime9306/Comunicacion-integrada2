@@ -11,14 +11,16 @@ import android.widget.TextView;
 import ondrios.comunicacion.BD.AdminSQLiteOpenHelper;
 
 public class FinPartidaActivity extends AppCompatActivity implements View.OnClickListener {
-    protected TextView tperdedor,tganador,hasGanado;
-    protected Button volver;
+    private TextView tperdedor;
+    private TextView tganador;
+    private TextView hasGanado;
+    private Button volver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fin_partida);
         String[] datos = getIntent().getStringArrayExtra("ganador");
-        Long duracionPartida=getIntent().getLongExtra("duracion",0);
+        Long duracionPartida=getIntent().getLongExtra("duracion", 0);
         String quien = getIntent().getStringExtra("quien");
         boolean hasGanadoV = Boolean.parseBoolean(quien);
         int puntuacionG = Integer.parseInt(datos[1]);
@@ -44,8 +46,8 @@ public class FinPartidaActivity extends AppCompatActivity implements View.OnClic
     }
 
     private void guardarDatos(Long duracionPartida, int puntuacionG, int puntuacionG1) {
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,
-                "brisca", null, 1);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this
+        );
         SQLiteDatabase db = admin.getWritableDatabase();
         Long tiempo=System.currentTimeMillis();
         db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion)" +

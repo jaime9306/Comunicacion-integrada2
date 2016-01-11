@@ -6,7 +6,7 @@ package ondrios.comunicacion.Juego;
 public class Partida {
 
     private Baraja baraja;
-    private Equipo[] equipos = new Equipo[2];
+    private final Equipo[] equipos = new Equipo[2];
     private Jugador[] listajug;
     private int tamEq;
     private String paloTriunfo;

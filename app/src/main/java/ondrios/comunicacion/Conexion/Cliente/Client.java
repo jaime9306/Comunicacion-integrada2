@@ -27,8 +27,8 @@ public class Client  {
 
     private final String TAG = "Client";
 
-    private Context context;
-    private int contextID;
+    private final Context context;
+    private final int contextID;
 
     private NsdFinder finder;
     private Socket socketServidor;
@@ -90,7 +90,7 @@ public class Client  {
      * Guarda el socket del servidor
      * @param socketServidor socket del servidor al que se tiene que conectar el cliente.
      */
-    public void setSocketServidor(Socket socketServidor){
+    private void setSocketServidor(Socket socketServidor){
         //Guarda el socket del servidor
         this.socketServidor=socketServidor;
         if (contextID == 1) {
@@ -102,7 +102,7 @@ public class Client  {
         recibeId.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR,socketServidor);
     }
 
-    public void recibeMensaje(String datos){
+    private void recibeMensaje(String datos){
         String [] d = datos.split("&");
 
         switch (d[0]){
@@ -416,7 +416,7 @@ public class Client  {
      */
     public class GetSocketServidorTarea extends AsyncTask<NsdServiceInfo, Void, Socket> {
 
-        String TAG = "GetSocketServidorTarea";
+        final String TAG = "GetSocketServidorTarea";
 
         @Override
         protected Socket doInBackground(NsdServiceInfo... params) {
@@ -442,7 +442,7 @@ public class Client  {
      */
     public class GetSocketServidorLocalTarea extends AsyncTask<Integer, Void, Socket> {
 
-        String TAG = "GetSocketServidorLocalTarea";
+        final String TAG = "GetSocketServidorLocalTarea";
 
         @Override
         protected Socket doInBackground(Integer... params) {
@@ -467,7 +467,7 @@ public class Client  {
      * Tarea que se encarga de coger los mensajes que llegan desde el servidor
      */
     public class RecibeMensajeTarea extends AsyncTask<Socket,Void,String>{
-        String TAG = "ReciveMensajeTarea";
+        final String TAG = "ReciveMensajeTarea";
         @Override
         protected String doInBackground(Socket... params) {
             Socket socket = params[0];
@@ -493,7 +493,7 @@ public class Client  {
      * Tarea que se encarga de enviar los mensajes al servidor
      */
     public class EnviaMensajeTarea extends AsyncTask<Mensaje,Void,Void>{
-        String TAG = "EnviaMensajeTarea";
+        final String TAG = "EnviaMensajeTarea";
         @Override
         protected Void doInBackground(Mensaje... params) {
             Socket socket = params[0].getSocket();

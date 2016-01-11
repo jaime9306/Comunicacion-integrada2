@@ -8,13 +8,13 @@ import ondrios.comunicacion.Conexion.NsdHelper;
  * Clase que se encarga de la parte de registar los servicios y tambien quitarlos.
  *  Usa la tecnologia Network Service Discovery de Android
  */
-public class NsdRegister {
+class NsdRegister {
 
-    private String TAG = "NsdRegister";
+    private final String TAG = "NsdRegister";
 
     private NsdHelper nsdHelper;
-    private String servicename;
-    private Server server;
+    private final String servicename;
+    private final Server server;
 
     /**
      * Constructor del registrador.

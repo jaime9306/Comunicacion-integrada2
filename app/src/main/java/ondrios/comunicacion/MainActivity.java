@@ -12,12 +12,12 @@ import android.widget.Button;
  */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    Button botonReglas;
-    Button botonInstrucciones;
-    Button botonCrearPartida;
-    Button botonUnirPartida;
-    Button botonEstadisticas;
-    Button botonPreferencias;
+    private Button botonReglas;
+    private Button botonInstrucciones;
+    private Button botonCrearPartida;
+    private Button botonUnirPartida;
+    private Button botonEstadisticas;
+    private Button botonPreferencias;
 
 
     @Override

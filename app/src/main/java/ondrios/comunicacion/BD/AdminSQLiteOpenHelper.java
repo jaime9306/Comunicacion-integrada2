@@ -9,8 +9,8 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class AdminSQLiteOpenHelper extends SQLiteOpenHelper {
 
-    public AdminSQLiteOpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
-        super(context, name, factory, version);
+    public AdminSQLiteOpenHelper(Context context) {
+        super(context, "brisca", null, 1);
     }
 
     @Override

@@ -12,12 +12,12 @@ import ondrios.comunicacion.Conexion.Servidor.Server;
  */
 public class MotorJuego {
 
-    private String TAG = "MotorJuego";
+    private final String TAG = "MotorJuego";
 
-    private Server servidor;
-    private Partida partida;
+    private final Server servidor;
+    private final Partida partida;
 
-    private int njugadores;
+    private final int njugadores;
     private ArrayList<Carta> baza;
     private ArrayList<String> orden;
     private ArrayList<Carta> jugadaEq1;

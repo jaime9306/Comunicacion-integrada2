@@ -5,8 +5,8 @@ package ondrios.comunicacion.Juego;
  */
 public class Carta {
 
-    private int numero;
-    private String palo;
+    private final int numero;
+    private final String palo;
 
     /**
      * Inicializa una nueva carta con el número y el palo indicados

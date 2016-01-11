@@ -27,24 +27,24 @@ import static java.lang.Thread.sleep;
  */
 public class Server {
 
-    private String TAG = "Servidor";
+    private final String TAG = "Servidor";
 
     private MotorJuego motor;
     private Partida partida;
     private Equipo equipo0;
     private Equipo equipo1;
 
-    private NsdRegister register;
+    private final NsdRegister register;
     private ServerSocket serverSocket;
     private int port;
 
-    private int nclientes;
-    private ArrayList<Socket> clientes;
+    private final int nclientes;
+    private final ArrayList<Socket> clientes;
     private int turno;
 
     private boolean apagado = false;
 
-    private Context context;
+    private final Context context;
 
     /**
      * Clase servidor. Se encarga de manejar las conexiones, llevar la logica del juego y
@@ -81,7 +81,7 @@ public class Server {
         }
     }
 
-    public void setCliente(Socket socketCliente) {
+    private void setCliente(Socket socketCliente) {
         clientes.add(socketCliente);
         Log.e(TAG, "Cliente añadido: " + socketCliente.getInetAddress().getHostAddress());
 
@@ -275,7 +275,7 @@ public class Server {
         }
     }
 
-    public void recibeMensaje(String datos){
+    private void recibeMensaje(String datos){
         turno++;
         if (turno==nclientes){turno=0;}
 
@@ -335,7 +335,7 @@ public class Server {
 
     public class RecibeClienteTarea extends AsyncTask<ServerSocket,Void,Socket> {
 
-        String TAG="RecibeClienteTarea(Servidor)";
+        final String TAG="RecibeClienteTarea(Servidor)";
 
         @Override
         protected Socket doInBackground(ServerSocket... params) {
@@ -364,7 +364,7 @@ public class Server {
      */
     public class RecibeMensajeTarea extends AsyncTask<Socket,Void,String>{
 
-        String TAG = "ReciveMensajeTarea(Servidor)";
+        final String TAG = "ReciveMensajeTarea(Servidor)";
 
         @Override
         protected String doInBackground(Socket... params) {
@@ -391,7 +391,7 @@ public class Server {
      */
     public class EnviaMensajeTarea extends AsyncTask<Mensaje,Void,Void>{
 
-        String TAG = "EnviaMensajeTarea(Servidor)";
+        final String TAG = "EnviaMensajeTarea(Servidor)";
 
         @Override
         protected Void doInBackground(Mensaje... params) {

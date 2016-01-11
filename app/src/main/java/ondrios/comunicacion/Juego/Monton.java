@@ -7,7 +7,7 @@ import java.util.ArrayList;
  */
 public class Monton {
 
-    private ArrayList<Carta> monton;
+    private final ArrayList<Carta> monton;
 
     /**
      * Constructor. Inicializa un nuevo Montón

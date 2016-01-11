@@ -8,7 +8,7 @@ import java.util.Collections;
  */
 public class Baraja {
 
-    private ArrayList<Carta> baraja;
+    private final ArrayList<Carta> baraja;
 
 
     /**

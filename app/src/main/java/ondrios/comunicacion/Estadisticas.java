@@ -81,18 +81,15 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
     /**
      * Este metodo dibuja una grafica de pastel en tres partes.
      * @param n1 primer valor
-     * @param t1 nombre asociado al primer valor
      * @param n2 segundo valor
-     * @param t2 nombre asociado al segundo valor
      * @param n3 tercer valor
-     * @param t3 nombre asociado al tercer valor
      * @param grafica grafica en la cual se dibujara
      */
-    private void crearGraficaPIE(int n1,String t1, int n2,String t2, int n3,String t3, PieChart grafica) {
+    private void crearGraficaPIE(int n1, int n2, int n3, PieChart grafica) {
 
-        Segment seg1 = new Segment(t1+": "+n1, n1);
-        Segment seg2 = new Segment(t2+": "+n2, n2);
-        Segment seg3 = new Segment(t3+": "+n3, n3);
+        Segment seg1 = new Segment("Ganados" +": "+n1, n1);
+        Segment seg2 = new Segment("Perdidos" +": "+n2, n2);
+        Segment seg3 = new Segment("Empatados" +": "+n3, n3);
 
         grafica.getBackgroundPaint().setColor(Color.TRANSPARENT);
         grafica.addSeries(seg2, new SegmentFormatter(Color.rgb(0, 100, 0), Color.BLACK, Color.BLACK, Color.BLACK));
@@ -106,15 +103,13 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
     /**
      * Este metodo dibuja una grafica de pastel en dos partes.
      * @param n1 primer valor
-     * @param t1 nombre asociado al primer valor
      * @param n2 segundo valor
-     * @param t2 nombre asociado al segundo valor
      * @param grafica grafica en la cual se dibujara
      */
-    private void crearGraficaPIE(int n1,String t1, int n2,String t2, PieChart grafica) {
+    private void crearGraficaPIE(int n1, int n2, PieChart grafica) {
 
-        Segment seg1 = new Segment(t1+": "+n1, n1);
-        Segment seg2 = new Segment(t2+": "+n2, n2);
+        Segment seg1 = new Segment("Propios" +": "+n1, n1);
+        Segment seg2 = new Segment("Ajenos" +": "+n2, n2);
 
         grafica.getBackgroundPaint().setColor(Color.TRANSPARENT);
         grafica.addSeries(seg2, new SegmentFormatter(Color.rgb(0, 100, 0), Color.BLACK, Color.BLACK, Color.BLACK));
@@ -130,7 +125,7 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
      * @param arrayNumerosM segundo conjunto de datos que se dibujara
      * @param grafica grafica en la cual se dibujara
      */
-    public void crearGraficaXY(Number[] arrayNumeros,Number[] arrayNumerosM,XYPlot grafica){
+    private void crearGraficaXY(Number[] arrayNumeros, Number[] arrayNumerosM, XYPlot grafica){
         // Añadimos Línea Número UNO:
         XYSeries series1 = new SimpleXYSeries(
                 Arrays.asList(arrayNumeros),  // Array de datos
@@ -166,9 +161,9 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
     /**
      * Metodo encargado de obtener los datos de la base de datos y mostrarlos
      */
-    public void ver(){
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,
-                "brisca", null, 1);
+    private void ver(){
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this
+        );
         SQLiteDatabase bd = admin.getReadableDatabase();
 
         Cursor cur= bd.rawQuery("select puntEquipo,duracion,puntPropia, puntEquipo from partidas", null);
@@ -224,10 +219,10 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
 
         crearGraficaXY(puntos,puntosM, historialPuntuaciones);
         crearGraficaXY(numberDuraciones,numberDuracionesM, historialDuracion);
-        crearGraficaPIE(ganados, "Ganados", perdidos, "Perdidos", empatados, "Empatados", porcentajeResultados);
+        crearGraficaPIE(ganados, perdidos, empatados, porcentajeResultados);
 
         if(!(puntosEquipos-puntosPropios<0)) {
-            crearGraficaPIE(puntosPropios, "Propios", puntosEquipos - puntosPropios, "Ajenos", porcentajePuntos);
+            crearGraficaPIE(puntosPropios, puntosEquipos - puntosPropios, porcentajePuntos);
         }
 
 
@@ -266,8 +261,8 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
      * Borra todos los datos almacenados
      */
     private void borrarDatos() {
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,
-                "brisca", null, 1);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this
+        );
         SQLiteDatabase db = admin.getWritableDatabase();
         db.execSQL("DELETE FROM partidas;");
         db.close();
@@ -279,8 +274,8 @@ public class Estadisticas extends AppCompatActivity implements View.OnClickListe
      * Puebla la base de datos con valores de prueba
      */
     private void script() {
-        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this,
-                "brisca", null, 1);
+        AdminSQLiteOpenHelper admin = new AdminSQLiteOpenHelper(this
+        );
         SQLiteDatabase db = admin.getWritableDatabase();
         Long tiempo=System.currentTimeMillis();
         db.execSQL("insert into partidas (fecha,puntPropia,puntEquipo,duracion) values("+tiempo+",60,60,60);");

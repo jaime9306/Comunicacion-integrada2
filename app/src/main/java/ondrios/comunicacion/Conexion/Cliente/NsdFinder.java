@@ -10,12 +10,12 @@ import ondrios.comunicacion.Conexion.NsdHelper;
  * Clase que se encarga de buscar los servicios y resolver la dirreccion
  * y puerto del servicio.
  */
-public class NsdFinder {
+class NsdFinder {
 
     private String TAG = "NsdFinder";
 
-    private NsdHelper nsdHelper;
-    private Client client;
+    private final NsdHelper nsdHelper;
+    private final Client client;
 
     /**
      * Constructor del buscador.

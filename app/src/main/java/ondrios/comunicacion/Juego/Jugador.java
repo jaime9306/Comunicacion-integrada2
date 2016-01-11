@@ -5,8 +5,8 @@ package ondrios.comunicacion.Juego;
  */
 public class Jugador {
 
-    String nombre;
-    private Carta[] mano;
+    private final String nombre;
+    private final Carta[] mano;
 
     /**
      * Inicializa un jugador con el nombre indicado
@@ -22,7 +22,7 @@ public class Jugador {
      * @param mano array que representa la cartas que tiene un jugador
      * @return entero con la primera posición vacía del array mano
      */
-    public int posicionVacia(Carta[] mano){
+    private int posicionVacia(Carta[] mano){
         if(mano[0] == null){
             return 0;
         }

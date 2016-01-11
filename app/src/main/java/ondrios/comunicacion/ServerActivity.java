@@ -3,7 +3,6 @@ package ondrios.comunicacion;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.PointF;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -36,11 +35,19 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     private int nJugadores=2;
     private String textJug1;
 
-    protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4,carta5,carta6;
-    protected ImageButton cartaMonton;
-    protected TextView textoTurno,cartasRestantes;
-    private int modificarX=20;
-    private int modificarY=20;
+    private ImageView carta1;
+    private ImageView carta2;
+    private ImageView carta3;
+    private ImageView cartaFin;
+    private ImageView cartaPinte;
+    private ImageView carta4;
+    private ImageView carta5;
+    private ImageView carta6;
+    private ImageButton cartaMonton;
+    private TextView textoTurno;
+    private TextView cartasRestantes;
+    private final int modificarX=20;
+    private final int modificarY=20;
     private int margenX=2000;
     private int margenY=400;
     private PointF ini1,ini2,ini3,fin,ini4;
@@ -151,8 +158,8 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         fin=new PointF();
     }
 
-    View.OnTouchListener handlerMover1 = new View.OnTouchListener(){
-        PointF DownPT=new PointF();
+    private final View.OnTouchListener handlerMover1 = new View.OnTouchListener(){
+        final PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
             PointF StartPT;
@@ -189,8 +196,8 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
             return true;
         }
     };
-    View.OnTouchListener handlerMover2 = new View.OnTouchListener(){
-        PointF DownPT=new PointF();
+    private final View.OnTouchListener handlerMover2 = new View.OnTouchListener(){
+        final PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
             PointF StartPT;
@@ -227,8 +234,8 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
             return true;
         }
     };
-    View.OnTouchListener handlerMover3 = new View.OnTouchListener(){
-        PointF DownPT=new PointF();
+    private final View.OnTouchListener handlerMover3 = new View.OnTouchListener(){
+        final PointF DownPT=new PointF();
         @Override
         public boolean onTouch(View v, MotionEvent event){
             PointF StartPT;
@@ -265,7 +272,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
             return true;
         }
     };
-    protected int getCarta(String c){
+    private int getCarta(String c){
         switch(c){
             case("o1"):
                 return R.drawable.o1;
@@ -485,10 +492,6 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         }
         startActivity(finalPartida);
         finish();
-    }
-
-    public void muestraBotones(){
-        //boton_enviar.setVisibility(View.VISIBLE);
     }
 
     @Override

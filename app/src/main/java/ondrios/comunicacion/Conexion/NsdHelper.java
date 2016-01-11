@@ -28,19 +28,19 @@ import java.util.ArrayList;
  */
 public class NsdHelper {
 
-    Context mContext;
-    NsdManager mNsdManager;
-    NsdManager.ResolveListener mResolveListener;
-    NsdManager.DiscoveryListener mDiscoveryListener;
-    NsdManager.RegistrationListener mRegistrationListener;
+    private final Context mContext;
+    private final NsdManager mNsdManager;
+    private NsdManager.ResolveListener mResolveListener;
+    private NsdManager.DiscoveryListener mDiscoveryListener;
+    private NsdManager.RegistrationListener mRegistrationListener;
 
     private static final String SERVICE_TYPE = "_http._tcp.";
 
-    private static  String TAG = "NsdHelper";
-    private static String mServiceName;
-    private ArrayList<String> partidas= new ArrayList();
+    private final String TAG = "NsdHelper";
+    private String mServiceName;
+    private final ArrayList<String> partidas= new ArrayList();
 
-    NsdServiceInfo mService;
+    private NsdServiceInfo mService;
 
 
     public NsdHelper(Context context, String mServiceName) {
@@ -56,7 +56,7 @@ public class NsdHelper {
         initializeRegistrationListener();
     }
 
-    public void initializeDiscoveryListener() {
+    private void initializeDiscoveryListener() {
         mDiscoveryListener = new NsdManager.DiscoveryListener() {
 
             @Override
@@ -105,7 +105,7 @@ public class NsdHelper {
         };
     }
 
-    public void initializeResolveListener() {
+    private void initializeResolveListener() {
         mResolveListener = new NsdManager.ResolveListener() {
 
             @Override
