@@ -210,8 +210,32 @@ public class Client  {
                         recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                     }
                 }
-
-
+                break;
+            case "roba_pinte":
+                String [] mrp = d[1].split("::");
+                String cartaRobaPinte= mrp[0];
+                String turnoRobaPinte = mrp[1];
+                if (contextID == 0) {
+                    ServerActivity sa = (ServerActivity) context;
+                    sa.desaparecePinte(cartaRobaPinte);
+                    if (turnoRobaPinte.equals(id)){
+                        sa.notificaTurno();
+                        sa.setTurno();
+                    }else {
+                        RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
+                        recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                    }
+                } else {
+                    ClientActivity ca = (ClientActivity) context;
+                    ca.reparteCartas(cartaRobaPinte);
+                    if (turnoRobaPinte.equals(id)) {
+                        ca.notificaTurno();
+                        ca.setTurno();
+                    }else {
+                        RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
+                        recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
+                    }
+                }
                 break;
             case "apaga":
                 //No comprobado si null que algunas veces recibia null en este caso
