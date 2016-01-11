@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         botonPreferencias=(Button) findViewById(R.id.buttonPreferencias);
         botonPreferencias.setOnClickListener(this);
 
-        botonGraficas=(Button) findViewById(R.id.graficas);
-        botonGraficas.setOnClickListener(this);
+
     }
 
     @Override
@@ -81,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.buttonEstadisticas:
-                Intent intentEstadisticas = new Intent(MainActivity.this,Interfaz.class);
+                Intent intentEstadisticas = new Intent(MainActivity.this,GraficasPrueba.class);
                 startActivity(intentEstadisticas);
                 break;
 
@@ -106,10 +105,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intentPreferencias);
                 break;
 
-            case R.id.graficas:
-                Intent intentGraficas = new Intent(MainActivity.this,GraficasPrueba.class);
-                startActivity(intentGraficas);
-                break;
+
 
             default:
                 break;

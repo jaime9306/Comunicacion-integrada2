@@ -11,62 +11,43 @@
     tools:showIn="@layout/activity_client" tools:context="ondrios.comunicacion.ClientActivity"
     android:orientation="vertical"
     android:weightSum="1">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="No buscado"
-        android:id="@+id/textView_estado"
-        android:layout_below="@+id/editText_nombre"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="353dp"
-        android:layout_height="wrap_content"
-        android:text="Entrar"
-        android:id="@+id/boton_entrar"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="349dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextClient_entrada"
-        android:layout_below="@+id/textView_estado"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/botonClient_enviar"
-        android:layout_toStartOf="@+id/botonClient_enviar" />
-
-    <Button
-        android:layout_width="349dp"
-        android:layout_height="wrap_content"
-        android:text="Enviar"
-        android:id="@+id/botonClient_enviar"
-        android:layout_below="@+id/textView_estado"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Spinner
-        android:id="@+id/spinner"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:orientation="vertical"
+        android:weightSum="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Unirse a partida"
+            android:id="@+id/textView_estado"
+            android:layout_below="@+id/editText_nombre"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textViewClient_entrada"
-        android:layout_below="@+id/botonClient_enviar"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/botonClient_enviar"
-        android:layout_alignEnd="@+id/botonClient_enviar"
-        android:layout_gravity="bottom"
-        android:layout_weight="0.74" />
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="20sp"
+            android:layout_weight="0.20" />
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Entrar"
+
+            android:background="@drawable/botonconectar"
+            android:textStyle="bold"
+            android:id="@+id/boton_entrar"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            />
+
+
+    </LinearLayout>
 </LinearLayout>
