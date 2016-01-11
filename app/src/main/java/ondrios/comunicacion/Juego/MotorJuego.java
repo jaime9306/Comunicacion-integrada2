@@ -227,7 +227,7 @@ public class MotorJuego {
             puntuacion1 = monton1.contar();
 
             //Ganador equipo0
-            if(monton0.contar() > monton1.contar()){
+            if(puntuacion0 > puntuacion1){
                 Log.d("Monton0: ",Integer.toString(puntuacion0));
                 Log.d("Monton1: ",Integer.toString(puntuacion1));
                 ganador = lista[0].getNombre();
@@ -237,7 +237,7 @@ public class MotorJuego {
                 }
             } else{
                 //Ganador equipo1
-                if(monton0.contar() < monton1.contar()){
+                if(puntuacion0 < puntuacion1){
                     Log.d("Monton0: ",Integer.toString(puntuacion0));
                     Log.d("Monton1: ",Integer.toString(puntuacion1));
                     ganador = lista[1].getNombre();
