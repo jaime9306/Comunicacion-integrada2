@@ -3,6 +3,9 @@ package ondrios.comunicacion;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+/**
+ * Esta activity sirve para mostrar las reglas del juego de la brisca(no de la app).
+ */
 
 public class ReglasBrisca extends AppCompatActivity {
 

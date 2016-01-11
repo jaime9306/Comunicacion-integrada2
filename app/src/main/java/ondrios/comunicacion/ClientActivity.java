@@ -81,6 +81,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+
     public void addServices(ArrayList lista){
         spinner = (Spinner) findViewById(R.id.spinner);
 

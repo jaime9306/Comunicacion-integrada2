@@ -514,4 +514,10 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         }
         return true;
     }
+
+    public void notificaApaga(){
+        Intent intent = new Intent(ServerActivity.this,MainActivity.class);
+        startActivity(intent);
+    }
+
 }
