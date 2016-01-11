@@ -43,8 +43,6 @@ public class Server {
     private final ArrayList<Socket> clientes;
     private int turno;
 
-    private final boolean apagado = false;
-
     private final Context context;
 
     /**
@@ -364,7 +362,6 @@ public class Server {
         @Override
         protected String doInBackground(Socket... params) {
             Socket socket = params[0];
-            if (apagado){this.cancel(true);}
             try {
                 Log.i(TAG, "Esperando mensaje de " + socket.getInetAddress().getHostAddress());
                 BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -394,7 +391,6 @@ public class Server {
             String mensaje = params[0].getMensaje();
             String protocolo   = params[0].getProtocolo();
             String datos = protocolo + "&" + mensaje;
-            if (apagado){this.cancel(true);}
             try {
                 Log.i(TAG, "Enviando mensaje a " + socket.getInetAddress().getHostAddress()+" "+datos);
                 PrintWriter escritor = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));

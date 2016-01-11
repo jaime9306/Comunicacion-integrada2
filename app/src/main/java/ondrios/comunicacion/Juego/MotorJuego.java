@@ -179,12 +179,12 @@ public class MotorJuego {
             vacia = vacia && lista[i].manoVacia();
         }
 
-        if(!partida.getBaraja().estaAcabada()){
+        if(partida.getBaraja().noAcabada()){
             int j = servidor.getTurno();
             //Para cada jugador roba una carta
             for (int i =0; i<njugadores;i++) {
                 // Si la baraja no esta acabada la saca de la baraja
-                if (!partida.getBaraja().estaAcabada()) {
+                if (partida.getBaraja().noAcabada()) {
                     Carta cartaRobada = partida.getBaraja().saca();
                     lista[j].robar(cartaRobada);
                     cartasRobadas[j] = cartaRobada;
@@ -196,7 +196,7 @@ public class MotorJuego {
                 j = (j + 1) % njugadores;
 
             }
-            if(!partida.getBaraja().estaAcabada()) {
+            if(partida.getBaraja().noAcabada()) {
                 //Envia un mensaje a todos los jugadores de su carta robada
                 for (int i = 0; i < njugadores; i++) {
                     // Mensaje para todos los clientes. El formato del cuerpo: <<carta robada palo-numero>>::<<turno del que tira despues de robar>>

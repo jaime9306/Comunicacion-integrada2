@@ -49,8 +49,8 @@ public class Baraja {
      * Devuelve true si no hay cartas en la baraja
      * @return true si no hay Cartas en la baraja y false en caso contrario
      */
-    public boolean estaAcabada(){
-        return baraja.size()==0;
+    public boolean noAcabada(){
+        return baraja.size() != 0;
     }
 
 }
