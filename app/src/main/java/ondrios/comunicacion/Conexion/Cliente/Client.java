@@ -225,6 +225,7 @@ public class Client  {
                         sa.notificaTurno();
                         sa.setTurno();
                     }else {
+                        sa.notificaTurnoEl();
                         RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
                         recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                     }
@@ -235,6 +236,7 @@ public class Client  {
                         ca.notificaTurno();
                         ca.setTurno();
                     }else {
+                        ca.notificaTurnoEl();
                         RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
                         recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                     }
@@ -252,6 +254,7 @@ public class Client  {
                         sa.notificaTurno();
                         sa.setTurno();
                     }else {
+                        sa.notificaTurnoEl();
                         RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
                         recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                     }
@@ -262,6 +265,7 @@ public class Client  {
                         ca.notificaTurno();
                         ca.setTurno();
                     }else {
+                        ca.notificaTurnoEl();
                         RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
                         recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                     }
@@ -276,6 +280,7 @@ public class Client  {
                         sa.setTurno();
                         sa.recogeSinMazo();
                     }else {
+                        sa.notificaTurnoEl();
                         RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
                         recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                     }
@@ -286,6 +291,7 @@ public class Client  {
                         ca.setTurno();
                         ca.recogeSinMazo();
                     }else {
+                        ca.notificaTurnoEl();
                         RecibeMensajeTarea recibeRoba= new RecibeMensajeTarea();
                         recibeRoba.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                     }
