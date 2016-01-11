@@ -10,6 +10,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,14 +24,13 @@ import static java.lang.Thread.sleep;
 public class ServerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button boton_registrar;
-    private Button boton_parar;
-    private Button boton_enviar;
+    private TextView titulo;
     private EditText entrada_nombre;
-    private EditText entrada_nusuarios;
-    private EditText edit_entrada;
-    private TextView estado;
-    private TextView texto_entrada;
+
+    private ImageButton vs1;
+    private ImageButton vs2;
     private int posVacia;
+    private int nJugadores=2;
 
     protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4;
     private int modificarX=20;
@@ -53,50 +53,54 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_server);
 
-
-        //Elementos de la vista
-        boton_parar       = (Button)   findViewById(R.id.boton_parar);
+        titulo = (TextView) findViewById(R.id.textView_titulo);
         boton_registrar   = (Button)   findViewById(R.id.boton_registrar);
         entrada_nombre    = (EditText) findViewById(R.id.editText_nombre);
-        estado            = (TextView) findViewById(R.id.textView_estado);
-        entrada_nusuarios = (EditText) findViewById(R.id.editText_nusuarios);
-
-        boton_enviar  = (Button)   findViewById(R.id.botonServer_enviar);
-        edit_entrada  = (EditText) findViewById(R.id.editTextServer_entrada);
-        texto_entrada = (TextView) findViewById(R.id.textViewServer_entrada);
+        vs1 = (ImageButton) findViewById(R.id.imageView_1vs1);
+        vs2 = (ImageButton) findViewById(R.id.imageView_2vs2);
 
         boton_registrar.setOnClickListener(this);
-        boton_enviar.setOnClickListener(this);
-        boton_parar.setOnClickListener(this);
 
-        boton_enviar.setVisibility(View.GONE);
-        edit_entrada.setVisibility(View.GONE);
-        texto_entrada.setVisibility(View.GONE);
+        vs1.setOnClickListener(this);
+        vs2.setOnClickListener(this);
+
+
+
 
     }
 
     public void onClick(View v){
         switch (v.getId()){
-            case R.id.boton_parar:
-                servidor.apagar();
-                Intent intentCrearPartida = new Intent(ServerActivity.this,MainActivity.class);
-                startActivity(intentCrearPartida);
-                break;
+
+
             case R.id.boton_registrar:
                 String serviceName = entrada_nombre.getText().toString();
-                int nusuarios = Integer.valueOf(entrada_nusuarios.getText().toString());
-                servidor = new Server(this,serviceName,nusuarios);
-                estado.setText("Estado del servidor:\nDireccion:"+servidor.getAddress()+"\nPuerto:"+servidor.getPort());
+                servidor = new Server(this,serviceName,nJugadores);
+                titulo.setText("Esperando jugadores...");
+                boton_registrar.setVisibility(View.INVISIBLE);
                 cliente = new Client(this, servidor.getPort(),id);
                 break;
 
-            case R.id.botonServer_enviar:
-                String mensaje = edit_entrada.getText().toString();
-                Log.e(TAG, "Envia mensaje");
-                cliente.enviaMensaje(mensaje,"mensaje");
-                boton_enviar.setVisibility(View.GONE);
+
+            case R.id.imageView_1vs1:
+                nJugadores=2;
+                vs1.setBackgroundResource(R.drawable.ico1vs1);
+                vs2.setBackgroundResource(R.drawable.ico2vs2gris);
+                Toast v1 = Toast.makeText(getApplicationContext(),
+                        "Has elegido 1 vs 1", Toast.LENGTH_SHORT);
+                v1.show();
+
+                break;
+            case R.id.imageView_2vs2:
+                nJugadores=4;
+                vs1.setBackgroundResource(R.drawable.ico1vs1gris);
+                vs2.setBackgroundResource(R.drawable.ico2vs2);
+                Toast v2 = Toast.makeText(getApplicationContext(),
+                        "Has elegido 2 vs 2", Toast.LENGTH_SHORT);
+                v2.show();
                 break;
 
             default:
@@ -107,10 +111,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     public void notificaClientesCompletados(){
         boton_registrar.setVisibility(View.GONE);
         entrada_nombre.setVisibility(View.GONE);
-        entrada_nusuarios.setVisibility(View.GONE);
-        estado.setVisibility(View.GONE);
-        edit_entrada.setVisibility(View.VISIBLE);
-        texto_entrada.setVisibility(View.VISIBLE);
+
         setContentView(R.layout.activity_interfaz_juego);
         carta1 = (ImageView) findViewById(R.id.c1j2);
         carta1.setOnTouchListener(handlerMover1);
@@ -385,12 +386,12 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     }
     public void publicaMensaje(String mensaje){
         this.m=mensaje;
-        texto_entrada.setText(m);
-        edit_entrada.setText("");
+        //texto_entrada.setText(m);
+        //edit_entrada.setText("");
     }
 
     public void muestraBotones(){
-        boton_enviar.setVisibility(View.VISIBLE);
+        //boton_enviar.setVisibility(View.VISIBLE);
     }
 
     @Override

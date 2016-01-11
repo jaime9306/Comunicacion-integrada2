@@ -10,61 +10,109 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_server" tools:context="ondrios.comunicacion.ServerActivity"
     android:orientation="vertical"
-    android:weightSum="1">
-
-    <Button
-        android:layout_width="354dp"
-        android:layout_height="wrap_content"
-        android:text="Parar servidor"
-        android:id="@+id/boton_parar" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="No registrado"
-        android:id="@+id/textView_estado"
-         />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Registrar"
-        android:id="@+id/boton_registrar"
-         />
-
-    <EditText
+    android:weightSum="1"
+    >
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText_nombre"
-         />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20sp"
+        android:layout_marginRight="20sp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/title_activity_crear_nueva_partida"
+            android:id="@+id/textView_titulo"
+            />
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/editTextServer_entrada"
-         />
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_nombre"
+            android:hint="Escribe el nombre de la partida"
+            />
 
-    <Button
-        android:layout_width="349dp"
-        android:layout_height="wrap_content"
-        android:text="Enviar"
-        android:id="@+id/botonServer_enviar"
-        />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="number"
-        android:ems="10"
-        android:id="@+id/editText_nusuarios"
-         />
+            <ImageButton
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageView_1vs1"
+                android:layout_weight="1"
+                android:background="@drawable/ico1vs1"
+                android:paddingRight="10dp" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textViewServer_entrada"
+            <Space
+                android:layout_width="50dp"
+                android:layout_height="20px"
+                android:layout_weight="1" />
 
-        android:layout_weight="0.75" />
+            <ImageButton
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:id="@+id/imageView_2vs2"
+                android:layout_weight="1"
+                android:background="@drawable/ico2vs2gris"/>
+
+        </LinearLayout>
+
+
+        <Button
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Registrar"
+            android:background="@drawable/botonconectar"
+            android:textStyle="bold"
+            android:id="@+id/boton_registrar"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+             />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/editTextServer_entrada"
+            />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/editText_nusuarios"
+            />
+
+        <Button
+            android:layout_width="349dp"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+            android:id="@+id/botonServer_enviar"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="No registrado"
+            android:id="@+id/textView_estado"
+            />
+
+        <Button
+            android:layout_width="354dp"
+            android:layout_height="wrap_content"
+            android:text="Parar servidor"
+            android:id="@+id/boton_parar" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="New Text"
+            android:id="@+id/textViewServer_entrada"
+
+            android:layout_weight="0.75" />
+    </LinearLayout>
 </LinearLayout>
