@@ -7,6 +7,9 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * Activity del menu principal, es la que se inicia con la app.
+ */
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     Button botonReglas;
@@ -15,8 +18,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button botonUnirPartida;
     Button botonEstadisticas;
     Button botonPreferencias;
-    Button botonGraficas;
-    Button botonBD;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -41,8 +43,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         botonPreferencias=(Button) findViewById(R.id.buttonPreferencias);
         botonPreferencias.setOnClickListener(this);
 
-        botonBD=(Button) findViewById(R.id.buttonBD);
-        botonBD.setOnClickListener(this);
 
 
     }
@@ -109,10 +109,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intentPreferencias);
                 break;
 
-            case R.id.buttonBD:
-                Intent intentBD = new Intent(MainActivity.this,GuardarPartida.class);
-                startActivity(intentBD);
-                break;
+
 
 
 
