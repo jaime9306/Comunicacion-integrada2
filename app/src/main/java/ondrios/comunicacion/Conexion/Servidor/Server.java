@@ -137,7 +137,7 @@ public class Server {
                 c=c+clientes.get(i).getInetAddress().getHostAddress()+" ";
             }
             Log.i(TAG, "Clientes: " + c);
-
+            duerme();
             //Empieza a tirar el jugador que es mano (Se podria enviar un mensaje a los demas para notificar quien empieza.
             Mensaje mensajeTira = new Mensaje(clientes.get(turno),Integer.toString(turno),"tira");
             enviaMensaje(mensajeTira);
@@ -194,7 +194,7 @@ public class Server {
                 break;
 
             case "muestra_carta":
-                duerme();
+                duerme(250);
                 //Envia la carta a todos los usuarios menos al del turno para que la  muestren <<jugador>>::<<carta>>
                 String [] dmc = mensaje.getMensaje().split("::");
                 int jugador = Integer.valueOf(dmc[0]);
@@ -208,7 +208,7 @@ public class Server {
                 break;
 
             case "tira": //Notifica al cliente que le toca el turno de tirar
-                duerme();
+                duerme(250);
                 //El cuerpo del mensaje es un string que pone "null"
                 for (int i=0;i<nclientes;i++){
                     Mensaje mensajeTira = new Mensaje(clientes.get(i),Integer.toString(turno),"tira");
@@ -220,7 +220,7 @@ public class Server {
                 break;
 
             case "ganador_baza":
-                duerme();
+                duerme(250);
                 for (int i = 0; i<clientes.size();i++){
                     Mensaje mensajeMuestraGanador = new Mensaje(clientes.get(i),mensaje.getMensaje(),mensaje.getProtocolo());
                     EnviaMensajeTarea enviaMuestraGanador = new EnviaMensajeTarea();
