@@ -138,6 +138,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         ini4=new PointF();
         ini4.set(carta4.getX(),carta4.getY());
         cartasRestantes=(TextView)findViewById(R.id.restantes);
+        cartasRestantes.setText("34");
         textoTurno=(TextView)findViewById(R.id.turno);
         textoTurno.setText(getString(R.string.su_turno));
         fin=new PointF();

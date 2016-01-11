@@ -136,6 +136,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta6 = (ImageView) findViewById(R.id.c3j1);
         cartaMonton=(ImageButton)findViewById(R.id.mazo);
         cartasRestantes=(TextView)findViewById(R.id.restantes);
+        cartasRestantes.setText("34");
         ini1=new PointF();
         ini2=new PointF();
         ini3=new PointF();
