@@ -43,7 +43,7 @@ public class Server {
     private final ArrayList<Socket> clientes;
     private int turno;
 
-    private boolean apagado = false;
+    private final boolean apagado = false;
 
     private final Context context;
 
@@ -63,7 +63,7 @@ public class Server {
             this.serverSocket = new ServerSocket(0);
             this.port = serverSocket.getLocalPort();
         }catch (IOException e) {
-            Log.e(TAG, "Error al crear el ServerSocket: ", e);
+            Log.i(TAG, "Error al crear el ServerSocket: ", e);
             e.printStackTrace();
         }
 
@@ -84,7 +84,7 @@ public class Server {
 
     private void setCliente(Socket socketCliente) {
         clientes.add(socketCliente);
-        Log.e(TAG, "Cliente añadido: " + socketCliente.getInetAddress().getHostAddress());
+        Log.i(TAG, "Cliente añadido: " + socketCliente.getInetAddress().getHostAddress());
 
         //El sevidor manda un identificador al cliente que se ha conectado
         Mensaje mensajeIdentificador = new Mensaje(socketCliente,Integer.toString(clientes.indexOf(socketCliente)),"identificador");
@@ -310,9 +310,9 @@ public class Server {
                         clientes.get(i).close();
                     }
                     serverSocket.close();
-                    Log.e(TAG, "cerrado");
+                    Log.i(TAG, "cerrado");
                 } catch (IOException ioe) {
-                    Log.e(TAG, "Error al intentar cerrar el socket del servidor");
+                    Log.i(TAG, "Error al intentar cerrar el socket del servidor");
                 }
                 break;
             case "apaga":
@@ -321,14 +321,6 @@ public class Server {
                     enviaMensaje(mensajeApaga);
                 }
 
-        }
-    }
-
-    public void apagar() {
-        apagado=true;
-        for (int i=0;i<clientes.size();i++) {
-            Mensaje mensaje = new Mensaje(clientes.get(i),"null","apaga");
-            enviaMensaje(mensaje);
         }
     }
 
@@ -342,14 +334,14 @@ public class Server {
         protected Socket doInBackground(ServerSocket... params) {
             try {
                 ServerSocket mServerSocket = params[0];
-                Log.e(TAG,"Esparando conexion");
+                Log.i(TAG,"Esparando conexion");
                 Socket socketCliente = mServerSocket.accept();
-                Log.e(TAG, "Cliente conectado");
+                Log.i(TAG, "Cliente conectado");
                 return socketCliente;
             } catch (IOException e) {
-                Log.e(TAG,"ERROR: Error al conectar cliente",e);
+                Log.i(TAG,"ERROR: Error al conectar cliente",e);
             } catch (Exception e){
-                Log.e(TAG,"ERROR: Error inesperado",e);
+                Log.i(TAG,"ERROR: Error inesperado",e);
             }
             return null;
         }
@@ -372,11 +364,11 @@ public class Server {
             Socket socket = params[0];
             if (apagado){this.cancel(true);}
             try {
-                Log.e(TAG,"Esperando mensaje de "+socket.getInetAddress().getHostAddress());
+                Log.i(TAG,"Esperando mensaje de "+socket.getInetAddress().getHostAddress());
                 BufferedReader lector = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 return lector.readLine();
             } catch (IOException e) {
-                Log.e(TAG, "ERROR: Al recibir el mensaje", e);
+                Log.i(TAG, "ERROR: Al recibir el mensaje", e);
             }
             return null;
         }
@@ -392,7 +384,7 @@ public class Server {
      */
     public class EnviaMensajeTarea extends AsyncTask<Mensaje,Void,Void>{
 
-        final String TAG = "EnviaMensajeTarea(Servidor)";
+        final String TAG = "EMT(Servidor)";
 
         @Override
         protected Void doInBackground(Mensaje... params) {
@@ -402,13 +394,13 @@ public class Server {
             String datos = protocolo + "&" + mensaje;
             if (apagado){this.cancel(true);}
             try {
-                Log.e(TAG, "Enviando mensaje a " + socket.getInetAddress().getHostAddress()+" "+datos);
+                Log.i(TAG, "Enviando mensaje a " + socket.getInetAddress().getHostAddress()+" "+datos);
                 PrintWriter escritor = new PrintWriter(new OutputStreamWriter(socket.getOutputStream()));
                 escritor.println(datos);
                 escritor.flush();
 
             } catch (IOException e) {
-                Log.e(TAG, "ERROR: Al recibir el mensaje", e);
+                Log.i(TAG, "ERROR: Al recibir el mensaje", e);
             }
             return null;
         }
@@ -425,10 +417,6 @@ public class Server {
 
     public int getPort(){
         return port;
-    }
-
-    public String getAddress(){
-        return serverSocket.getInetAddress().getHostAddress();
     }
 
     public ArrayList<Socket> getClientes() {

@@ -12,17 +12,13 @@ import ondrios.comunicacion.Conexion.NsdHelper;
  */
 class NsdFinder {
 
-    private String TAG = "NsdFinder";
-
     private final NsdHelper nsdHelper;
-    private final Client client;
 
     /**
      * Constructor del buscador.
      * @param client Necesaro para obtener el contexto
      */
     public NsdFinder(Client client){
-        this.client = client;
         nsdHelper = new NsdHelper(client.getContext(),"Brisca");
         nsdHelper.initializeNsd();
     }

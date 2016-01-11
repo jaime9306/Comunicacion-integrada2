@@ -7,9 +7,9 @@ import java.net.Socket;
  * y el mensaje correspondiente a ese protocolo.
  */
 public class Mensaje {
-    private Socket socket;
+    private final Socket socket;
     private String mensaje;
-    private String protocolo;
+    private final String protocolo;
 
     /**
      * Constuctor del mensaje.
@@ -27,16 +27,8 @@ public class Mensaje {
         return protocolo;
     }
 
-    public void setProtocolo(String protocolo) {
-        this.protocolo = protocolo;
-    }
-
     public Socket getSocket() {
         return socket;
-    }
-
-    public void setSocket(Socket socket) {
-        this.socket = socket;
     }
 
     public String getMensaje() {

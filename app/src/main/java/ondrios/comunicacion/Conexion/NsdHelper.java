@@ -28,7 +28,6 @@ import java.util.ArrayList;
  */
 public class NsdHelper {
 
-    private final Context mContext;
     private final NsdManager mNsdManager;
     private NsdManager.ResolveListener mResolveListener;
     private NsdManager.DiscoveryListener mDiscoveryListener;
@@ -44,7 +43,6 @@ public class NsdHelper {
 
 
     public NsdHelper(Context context, String mServiceName) {
-        mContext = context;
         mNsdManager = (NsdManager) context.getSystemService(Context.NSD_SERVICE);
         this.mServiceName = mServiceName;
     }

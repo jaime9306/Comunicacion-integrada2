@@ -48,18 +48,13 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     private TextView cartasRestantes;
     private final int modificarX=20;
     private final int modificarY=20;
-    private int margenX=2000;
-    private int margenY=400;
-    private PointF ini1,ini2,ini3,fin,ini4;
+    private PointF ini1,ini2,ini3,ini4;
     private boolean turno;
 
 
     private Server servidor;
     private Client cliente;
 
-    private String m;
-
-    private final String TAG = "ServerActivity";
     private final int id = 0; //Indica que es la actividad servidor
 
     @Override
@@ -154,8 +149,6 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         cartasRestantes.setText("34");
         textoTurno=(TextView)findViewById(R.id.turno);
         textoTurno.setText(getString(R.string.su_turno));
-
-        fin=new PointF();
     }
 
     private final View.OnTouchListener handlerMover1 = new View.OnTouchListener(){
@@ -475,11 +468,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     public void setTurno(){
         turno=true;
     }
-    public void publicaMensaje(String mensaje){
-        this.m=mensaje;
-        //texto_entrada.setText(m);
-        //edit_entrada.setText("");
-    }
+
     public void notificaFinal(String[] datos){
         tiempoFinal=System.currentTimeMillis();
         Intent finalPartida = new Intent(ServerActivity.this,FinPartidaActivity.class);
