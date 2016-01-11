@@ -224,8 +224,8 @@ public class MotorJuego {
 
             //Ganador equipo0
             if(monton0.contar() > monton1.contar()){
-                Log.d("Monton1: ",Integer.toString(monton1.contar()));
                 Log.d("Monton0: ",Integer.toString(monton0.contar()));
+                Log.d("Monton1: ",Integer.toString(monton1.contar()));
                 ganador = lista[0].getNombre();
                 for (int j = 0; j<servidor.getClientes().size();j++) {
                     Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+monton0.contar(),"fin_partida");
@@ -234,6 +234,8 @@ public class MotorJuego {
             } else{
                 //Ganador equipo1
                 if(monton0.contar() < monton1.contar()){
+                    Log.d("Monton0: ",Integer.toString(monton0.contar()));
+                    Log.d("Monton1: ",Integer.toString(monton1.contar()));
                     ganador = lista[1].getNombre();
                     for (int j = 0; j<servidor.getClientes().size();j++) {
                         Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+monton1.contar(),"fin_partida");
@@ -241,6 +243,8 @@ public class MotorJuego {
                     }
                   //Empate
                 } else{
+                    Log.d("Monton0: ",Integer.toString(monton0.contar()));
+                    Log.d("Monton1: ",Integer.toString(monton1.contar()));
                     ganador = "Empate";
                     for (int j = 0; j<servidor.getClientes().size();j++) {
                         Mensaje mensaje = new Mensaje(servidor.getClientes().get(j),ganador+"::"+"60","fin_partida");
