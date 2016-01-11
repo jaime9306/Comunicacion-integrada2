@@ -180,19 +180,21 @@ public class MotorJuego {
         }
 
         if(!partida.getBaraja().estaAcabada()){
-
+            int j = servidor.getTurno();
             //Para cada jugador roba una carta
             for (int i =0; i<njugadores;i++) {
                 // Si la baraja no esta acabada la saca de la baraja
                 if (!partida.getBaraja().estaAcabada()) {
                     Carta cartaRobada = partida.getBaraja().saca();
-                    lista[i].robar(cartaRobada);
-                    cartasRobadas[i] = cartaRobada;
+                    lista[j].robar(cartaRobada);
+                    cartasRobadas[j] = cartaRobada;
                 } else { // Si esta acabada coge la del pinte.
                     Carta cartaRobada = pinte;
-                    lista[i].robar(cartaRobada);
-                    cartasRobadas[i] = cartaRobada;
+                    lista[j].robar(cartaRobada);
+                    cartasRobadas[j] = cartaRobada;
                 }
+                j = (j + 1) % njugadores;
+
             }
             if(!partida.getBaraja().estaAcabada()) {
                 //Envia un mensaje a todos los jugadores de su carta robada
