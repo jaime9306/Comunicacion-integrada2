@@ -16,15 +16,28 @@
         tools:context="com.brisca.moviles.uva.brisca30.ReglasBrisca"
         >
 
-
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/graficas"
-            android:id="@+id/textView2"
+            android:text="Nombre de Usuario:"
+            android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
-            android:textSize="30sp"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/Usuario" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntuación media:"
+            android:textSize="20sp"
+            android:textColor="@android:color/primary_text_dark"
+            android:id="@+id/Media"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Historial de puntuaciones:"
+            android:textSize="20sp"
+            android:textColor="@android:color/primary_text_dark"
+            android:id="@+id/Historial"/>
+
 
 
         <com.androidplot.xy.XYPlotZoomPan
@@ -32,6 +45,21 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Número de partidas jugadas:"
+            android:textSize="20sp"
+            android:textColor="@android:color/primary_text_dark"
+            android:id="@+id/NumeroPartidas"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Resultados de las partidas:"
+            android:textSize="20sp"
+            android:textColor="@android:color/primary_text_dark"
+            android:id="@+id/Resultados"/>
+
         <com.androidplot.pie.PieChart
             android:id="@+id/PieChart2"
             android:layout_width="match_parent"
@@ -40,10 +68,36 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Text"
+            android:text="Duración media(segundos):"
+            android:textSize="20sp"
             android:textColor="@android:color/primary_text_dark"
-            android:id="@+id/textPrueba"
-            android:layout_gravity="center_horizontal" />
+            android:id="@+id/DuracionMedia"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Historial de la duración de las partidas:"
+            android:textSize="20sp"
+            android:textColor="@android:color/primary_text_dark"
+            android:id="@+id/HistorialDuracion"/>
+
+        <com.androidplot.xy.XYPlotZoomPan
+            android:id="@+id/mySimpleXYPlot3"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Porcentaje de puntos del equipo conseguidos:"
+            android:textSize="20sp"
+            android:textColor="@android:color/primary_text_dark"
+            android:id="@+id/PorcentajePuntosEquipo"/>
+
+        <com.androidplot.pie.PieChart
+            android:id="@+id/PieChart3"
+            android:layout_width="match_parent"
+            android:layout_height="300dp" />
 
     </LinearLayout>
 </ScrollView>

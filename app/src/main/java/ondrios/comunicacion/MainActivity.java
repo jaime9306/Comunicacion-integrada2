@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.buttonEstadisticas:
-                Intent intentEstadisticas = new Intent(MainActivity.this,GraficasPrueba.class);
+                Intent intentEstadisticas = new Intent(MainActivity.this,Estadisticas.class);
                 startActivity(intentEstadisticas);
                 break;
 
