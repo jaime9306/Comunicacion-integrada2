@@ -1,9 +1,11 @@
 package ondrios.comunicacion;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -27,13 +29,14 @@ import static java.lang.Thread.sleep;
 public class ServerActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button boton_registrar;
-    private TextView titulo;
+    private TextView titulo,oponente,propio;
     private EditText entrada_nombre;
 
     private ImageButton vs1;
     private ImageButton vs2;
     private int posVacia;
     private int nJugadores=2;
+    private String textJug1;
 
     protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4,carta5,carta6;
     protected ImageButton cartaMonton;
@@ -133,6 +136,10 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         carta5 = (ImageView) findViewById(R.id.c2j1);
         carta6 = (ImageView) findViewById(R.id.c3j1);
         cartaMonton = (ImageButton) findViewById(R.id.mazo);
+        oponente = (TextView)findViewById(R.id.nomJuador1);
+        propio = (TextView)findViewById(R.id.nomJugador2);
+        oponente.setText(getString(R.string.oponente));
+        propio.setText(textJug1);
         ini1=new PointF();
         ini2=new PointF();
         ini3=new PointF();
@@ -142,6 +149,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         cartasRestantes.setText("34");
         textoTurno=(TextView)findViewById(R.id.turno);
         textoTurno.setText(getString(R.string.su_turno));
+
         fin=new PointF();
     }
 
@@ -359,8 +367,8 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         cartaPinte.setBackgroundResource(getCarta(c));
     }
     public void tiraCartaContrario(String c){
-        ini4.set(carta4.getX(),carta4.getY());
-        carta4.setX(cartaFin.getX()+carta4.getWidth()*2);
+        ini4.set(carta4.getX(), carta4.getY());
+        carta4.setX(cartaFin.getX() + carta4.getWidth() * 2);
         carta4.setY(cartaFin.getY()+ carta4.getWidth());
         carta4.setBackgroundResource(getCarta(c));
     }
@@ -519,5 +527,15 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = new Intent(ServerActivity.this,MainActivity.class);
         startActivity(intent);
     }
+    @Override
+    protected void onResume() {
+        // Recogemos las preferencias del sistema.
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(this);
 
+        textJug1 = pref.getString("nombreUsuario", "Usuario");
+
+
+        super.onResume();
+    }
 }

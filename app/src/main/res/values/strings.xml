@@ -131,6 +131,7 @@
     <string name="volver">Volver</string>
     <string name="hasGanado">Has ganado</string>
     <string name="hasPerdido">Has perdido</string>
+    <string name="oponente">Oponente</string>
 
     <!--Preferencias-->
     <string name="ingles">Ingles</string>

@@ -1,9 +1,11 @@
 package ondrios.comunicacion;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.PointF;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -36,7 +38,9 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
     private Spinner spinner;
     private boolean turno;
     private int posVacia;
+    private TextView titulo,oponente,propio;
     private Long tiempoInicio,tiempoFinal;
+    private String textJug1;
 
     protected ImageView carta1,carta2,carta3,cartaFin,cartaPinte,carta4,carta5,carta6;
     protected ImageButton cartaMonton;
@@ -136,6 +140,10 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta3 = (ImageView) findViewById(R.id.c3j2);
         carta3.setOnTouchListener(handlerMover3);
         cartaFin=(ImageView)findViewById(R.id.c4j1);
+        oponente = (TextView)findViewById(R.id.nomJuador1);
+        propio = (TextView)findViewById(R.id.nomJugador2);
+        oponente.setText(getString(R.string.oponente));
+        propio.setText(textJug1);
         cartaPinte=(ImageView)findViewById(R.id.pinta);
         carta4 = (ImageView) findViewById(R.id.c1j1);
         carta5 = (ImageView) findViewById(R.id.c2j1);
@@ -527,6 +535,17 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         }
         startActivity(finalPartida);
         finish();
+    }
+    @Override
+    protected void onResume() {
+        // Recogemos las preferencias del sistema.
+        SharedPreferences pref = PreferenceManager
+                .getDefaultSharedPreferences(this);
+
+        textJug1 = pref.getString("nombreUsuario", "Usuario");
+
+
+        super.onResume();
     }
 
     @Override
