@@ -20,7 +20,8 @@ import ondrios.comunicacion.ServerActivity;
 import static java.lang.Thread.sleep;
 
 /**
- * Created by Mario on 29/12/2015.
+ * Clase cliente, se encarga de enviar y recibir los mensajes del servidor y notificar a la vista
+ * en funcion de los mensajes que recibe del servidor.
  */
 public class Client  {
 
@@ -36,20 +37,25 @@ public class Client  {
     private int quedan=99999;
 
     /**
-     * Constructor de la clase cliente. Inicia
-     * @param context
-     * @param id
+     * Constructor de la clase cliente. Inicia la busqueda de servicios en la red. Para el cliente que no es local.
+     * @param context Contexto donde se instancia la clase cliente (Solo puede ser ClientAcivity o Server Activity).
+     * @param contextID Identificador del contexto, 0 si es ServerActivity, 1 si es ClientActivity.
      */
-    public Client (Context context, int id){
+    public Client (Context context, int contextID){
         this.context   =context;
-        this.contextID = id;
+        this.contextID = contextID;
         this.finder    = new NsdFinder(this);
         this.finder.iniciaBusqueda();
     }
-
-    public Client (Context context, int port, int id){
+    /**
+     * Constructor de la clase cliente. Crea la conexion con el servidor local. Para el cliente que es local.
+     * @param context Contexto donde se instancia la clase cliente (Solo puede ser ClientAcivity o Server Activity).
+     * @param port Puerto local del servidor.
+     * @param contextID Identificador del contexto, 0 si es ServerActivity, 1 si es ClientActivity.
+     */
+    public Client (Context context, int port, int contextID){
         this.context     = context;
-        this.contextID   = id;
+        this.contextID   = contextID;
         NsdServiceInfo n = new NsdServiceInfo();
         n.setHost(null);
         n.setPort(port);
@@ -144,42 +150,31 @@ public class Client  {
                     ca.setCarta3(cartas[2]);
                     ca.setPinte(m[1]);
                 }
-
                 break;
+
             case "tira": //Notificacion de que le toca tirar al cliete
-                //Te toca tirar
-                Log.i(TAG, "Te toca tirar");
                 String lanzador = d[1];
                 if (lanzador.equals(id)){
                     if (contextID == 0) {
                         ServerActivity sa = (ServerActivity) context;
                         sa.notificaTurno();
                         sa.setTurno();
-
                     } else {
                         ClientActivity ca = (ClientActivity) context;
                         ca.notificaTurno();
                         ca.setTurno();
-
                     }
-
                 } else {
-
                     RecibeMensajeTarea recibeTira= new RecibeMensajeTarea();
                     recibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 }
-               // RecibeMensajeTarea recibeTira= new RecibeMensajeTarea();
-                //recibeTira.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
-
                 break;
-            case "ganador_baza":
-                String jugador = d[1];
 
+            case "ganador_baza":
                 RecibeMensajeTarea recibeGanador= new RecibeMensajeTarea();
                 recibeGanador.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
-               // RecibeMensajeTarea recibeGanador2= new RecibeMensajeTarea();
-                //recibeGanador2.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, socketServidor);
                 break;
+
             case "muestra_carta":
                 String[] mens=d[1].split("::");
                 String carta = mens[1];
