@@ -257,9 +257,11 @@ public class Client  {
                         switch (quedan){
                             case 3:
                                 sa.eliminaUna();
+                                quedan--;
                                 break;
                             case 2:
                                 sa.eliminaDos();
+                                quedan--;
                                 break;
                             default:
                                 break;
@@ -281,9 +283,11 @@ public class Client  {
                         switch (quedan){
                             case 3:
                                 ca.eliminaUna();
+                                quedan--;
                                 break;
                             case 2:
                                 ca.eliminaDos();
+                                quedan--;
                                 break;
                             default:
                                 break;
