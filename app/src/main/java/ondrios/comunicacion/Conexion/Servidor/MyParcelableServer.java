@@ -10,6 +10,15 @@ public class MyParcelableServer implements Parcelable {
 
     private Server servidor;
     private Client cliente;
+    private NsdRegister registrao;
+
+    public NsdRegister getRegistrao() {
+        return registrao;
+    }
+
+    public void setRegistrao(NsdRegister registrao) {
+        this.registrao = registrao;
+    }
 
     private String m;
 

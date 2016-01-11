@@ -81,6 +81,9 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
                 String serviceName = entrada_nombre.getText().toString();
                 servidor = new Server(this,serviceName,nJugadores);
                 titulo.setText("Esperando jugadores...");
+                vs1.setEnabled(false);
+                vs2.setEnabled(false);
+                entrada_nombre.setEnabled(false);
                 boton_registrar.setVisibility(View.INVISIBLE);
                 cliente = new Client(this, servidor.getPort(),id);
                 break;
