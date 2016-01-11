@@ -27,6 +27,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
 
     private Button boton_registrar;
     private TextView titulo,oponente,propio;
+    private Long tiempoInicio,tiempoFinal;
     private EditText entrada_nombre;
 
     private ImageButton vs1;
@@ -116,6 +117,7 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     public void notificaClientesCompletados(){
+        tiempoInicio = System.currentTimeMillis();
         boton_registrar.setVisibility(View.GONE);
         entrada_nombre.setVisibility(View.GONE);
 
@@ -473,7 +475,9 @@ public class ServerActivity extends AppCompatActivity implements View.OnClickLis
         //edit_entrada.setText("");
     }
     public void notificaFinal(String[] datos){
+        tiempoFinal=System.currentTimeMillis();
         Intent finalPartida = new Intent(ServerActivity.this,FinPartidaActivity.class);
+        finalPartida.putExtra("duracion",tiempoFinal-tiempoInicio);
         finalPartida.putExtra("ganador", datos);
         if(cliente.getIdentificador().equals(datos[0])) {
             finalPartida.putExtra("quien", "true");
