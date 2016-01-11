@@ -421,19 +421,19 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         textoTurno.setText(getString(R.string.su_turno));
     }
     public void eliminaUna(){
-        carta6.setVisibility(View.INVISIBLE);
+        carta6.setVisibility(View.GONE);
 
     }
     public void recogeSinMazo(){
         switch (posVacia){
             case 0:
-                carta1.setVisibility(View.INVISIBLE);
+                carta1.setVisibility(View.GONE);
                 break;
             case 1:
-                carta2.setVisibility(View.INVISIBLE);
+                carta2.setVisibility(View.GONE);
                 break;
             case 2:
-                carta3.setVisibility(View.INVISIBLE);
+                carta3.setVisibility(View.GONE);
                 break;
         }
         carta4.setX(ini4.x);
@@ -441,7 +441,7 @@ public class ClientActivity extends AppCompatActivity implements View.OnClickLis
         carta4.setBackgroundResource(getCarta("reverso"));
     }
     public void eliminaDos(){
-        carta5.setVisibility(View.INVISIBLE);
+        carta5.setVisibility(View.GONE);
     }
     public void reparteCartas(String c){
 
