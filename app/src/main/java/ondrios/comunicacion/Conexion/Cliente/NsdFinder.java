@@ -45,7 +45,7 @@ public class NsdFinder {
     /**
      * Resuelve la direccion ip y el puerto del servicio, encapsulado en
      * la clase NsdServiceInfo.
-     * @param servicename
+     * @param servicename Nombre del servicio que tiene que resolver.
      * @return Direccion ip y puerto encapsulado en la clase NsdServiceInfo.
      */
     public NsdServiceInfo resuelve(String servicename){

@@ -174,7 +174,7 @@ public class NsdHelper {
 
     /**
      * Pasados 10 segundos si no encuentra el servicio retorna null
-     * @return
+     * @return Devuelve los datos del servicio, pasados 10 segundos retorna null.
      */
     public NsdServiceInfo getChosenServiceInfo() {
         long inicio = System.currentTimeMillis();

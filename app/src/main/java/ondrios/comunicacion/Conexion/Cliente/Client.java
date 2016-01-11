@@ -63,10 +63,18 @@ public class Client  {
         tareaGetSocket.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, port);
     }
 
+    /**
+     * Devuelve los servicios diponibles.
+     * @return Array de nombres de servicios dispnibles
+     */
     public ArrayList<String> getServiciosDisponibles(){
         return finder.getServiciosDisponibles();
     }
 
+    /**
+     * Conecta el cliente al servidor con el nombre de servicio seleccionado.
+     * @param servicename Nombre de servicio al que se va a conectar el cliente.
+     */
     public void conectar(String servicename)  {
         NsdServiceInfo serviceInfo = finder.resuelve(servicename);
         if(serviceInfo!=null) {
@@ -78,6 +86,10 @@ public class Client  {
         }
     }
 
+    /**
+     * Guarda el socket del servidor
+     * @param socketServidor socket del servidor al que se tiene que conectar el cliente.
+     */
     public void setSocketServidor(Socket socketServidor){
         //Guarda el socket del servidor
         this.socketServidor=socketServidor;
