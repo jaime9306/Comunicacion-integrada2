@@ -103,9 +103,9 @@ public class MotorJuego {
         // Guarda la carta tirada del jugador en la jugada de cada equipo para luego saber de que
         // equipo es la carta ganadora.
         for(int i = 0; i<eq1.jugadores.length;i++){
-            if(nombre.equals(eq1.jugadores[i])){
+            if(nombre.equals(eq1.jugadores[i].getNombre())){
                 jugadaEq1.add(tirada);
-            }else if (nombre.equals(eq2.jugadores[i])){
+            }else if (nombre.equals(eq2.jugadores[i].getNombre())){
                 jugadaEq2.add(tirada);
             }
         }
