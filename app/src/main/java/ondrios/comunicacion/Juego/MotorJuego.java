@@ -175,19 +175,26 @@ public class MotorJuego {
         Jugador [] lista = partida.getListajug();
         Carta [] cartasRobadas = new Carta [njugadores];
 
-        //Para cada jugador roba una carta
-        for (int i =0; i<njugadores;i++){
-            // Si la baraja no esta acabada la saca de la baraja
-            if (!partida.getBaraja().estaAcabada()){
-                Carta cartaRobada = partida.getBaraja().saca();
-                lista[i].robar(cartaRobada);
-                cartasRobadas[i] = cartaRobada;
-            }else { // Si esta acabada coge la del pinte.
-                Carta cartaRobada = pinte;
-                lista[i].robar(cartaRobada);
-                cartasRobadas[i] = cartaRobada;
+        if(!partida.getBaraja().estaAcabada()){
+
+            //Para cada jugador roba una carta
+            for (int i =0; i<njugadores;i++) {
+                // Si la baraja no esta acabada la saca de la baraja
+                if (!partida.getBaraja().estaAcabada()) {
+                    Carta cartaRobada = partida.getBaraja().saca();
+                    lista[i].robar(cartaRobada);
+                    cartasRobadas[i] = cartaRobada;
+                } else { // Si esta acabada coge la del pinte.
+                    Carta cartaRobada = pinte;
+                    lista[i].robar(cartaRobada);
+                    cartasRobadas[i] = cartaRobada;
+                }
             }
+        } else{ //Si la baraja está acabada solo puede tirar
+            Mensaje mensajeTurno = new Mensaje(servidor.getClientes().get(servidor.getTurno()),Integer.toString(servidor.getTurno()),"tira");
+            servidor.enviaMensaje(mensajeTurno);
         }
+
         //Envia un mensaje a todos los jugadores de su carta robada
         for (int i =0; i<njugadores;i++){
             // Mensaje para todos los clientes. El formato del cuerpo: <<carta robada palo-numero>>::<<turno del que tira despues de robar>>
