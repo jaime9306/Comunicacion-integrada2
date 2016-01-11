@@ -3,7 +3,6 @@
     <string name="title_activity_client">ClientActivity</string>
     <string name="app_name">Brisca3.0</string>
 
-    <string name="titulo">Brisca3.0</string>
     <string name="boton1">New game</string>
     <string name="boton2">Join game</string>
     <string name="boton3">Statistics</string>
@@ -11,7 +10,6 @@
     <string name="boton5">Rules</string>
     <string name="boton6">Preferences</string>
     <string name="action_settings">Settings</string>
-    <string name="nombrePartida">Game Name</string>
 
     <!--ReglasBrisca-->
     <string name="title_activity_reglas_brisca">Briscas Rules</string>
@@ -86,17 +84,11 @@
     <!--InstruccionesBrisca-->
     <string name="title_activity_instrucciones_brisca">Game Instructions</string>
 
-    <string name="instrucciones_1">Instructions</string>
 
     <!--Crear nueva partida-->
     <string name="title_activity_crear_nueva_partida">Create new game</string>
-    <string name="mens_nombre_partida">Write the name of the game</string>
-
-    <!--Conectar-->
-    <string name="conect_enviar">Send</string>
 
     <!--Partida-->
-    <string name="partida_titulo">Game</string>
     <string name="partida_jugador1">Player 1</string>
     <string name="partida_jugador2">Player 2</string>
     <string name="partida_mensajes">Mensages</string>
@@ -109,14 +101,11 @@
     <string name="partida_mazo">Deck of cards</string>
     <string name="partida_pinta">Carta que pinta</string>
     <string name="partida_espacio1">Space for player 1 place his card</string>
-    <string name="partida_espacio2">Space for player 2 place his card</string>
 
     <!--Preferencias-->
     <string name="ingles">English</string>
     <string name="espanol">Spanish</string>
     <string name="pref_categoria1_title">Player info</string>
-    <string name="pref_categoria2_title">Game info</string>
-    <string name="noInicializado">Not inicializated</string>
     <string name="pref_nombreusuario">Player name</string>
     <string name="pref_nombreusuario_summary">Change player name</string>
     <string name="pref_nombreusuario_dialog">Name</string>
